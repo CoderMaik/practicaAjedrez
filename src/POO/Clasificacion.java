@@ -6,28 +6,26 @@ import java.util.Comparator;
 
 public class Clasificacion {
 
-    private ArrayList <Usuario> LClasificacionUser;
-    public Clasificacion(){
-        AlmacenLogin AL = null;
-        this.LClasificacionUser = AL.getListaUsuarios();
+    private ArrayList<Usuario> ListaClasificacion;
+
+    public Clasificacion() {
+        //Método que pase el HashSet a ArrayList y lo meta en ListaClasificacion
     }
 
-    public ArrayList<Usuario> getLClasificacionUser() {
-        return LClasificacionUser;
+    public ArrayList<Usuario> getListaClasificacion() {
+        return ListaClasificacion;
     }
 
-    public void setLClasificacionUser(ArrayList<Usuario> LClasificacionUser) {
-        this.LClasificacionUser = LClasificacionUser;
-    }
-    public ArrayList<Usuario> ordenarPorcentaje(){
-        Collections.sort(LClasificacionUser, new Comparator<Usuario>() {
+    public ArrayList<Usuario> ordenarPorcentaje() {
+        Collections.sort(ListaClasificacion, new Comparator<Usuario>() {
             @Override
             public int compare(Usuario u1, Usuario u2) {
                 return new Integer(u1.getPorcentaje_exito()).compareTo(new Integer(u2.getPorcentaje_exito()));
             }
         });
-        return LClasificacionUser;
+        return ListaClasificacion;
     }
+
     public void listaOrdenadaPorcentajes () {
         ArrayList <Usuario> estadistica = ordenarPorcentaje();
         for (Usuario u : estadistica) {
@@ -41,13 +39,13 @@ public class Clasificacion {
     }
 
     public ArrayList<Usuario> ordenarResueltos(){
-        Collections.sort(LClasificacionUser, new Comparator<Usuario>() {
+        Collections.sort(ListaClasificacion, new Comparator<Usuario>() {
             @Override
             public int compare(Usuario u1, Usuario u2) {
                 return new Integer(u1.getProblemas_resueltos()).compareTo(new Integer(u2.getProblemas_resueltos()));
             }
         });
-        return LClasificacionUser;
+        return ListaClasificacion;
     }
 
     public void listaReordenada () {

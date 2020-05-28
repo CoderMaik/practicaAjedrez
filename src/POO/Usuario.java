@@ -53,6 +53,7 @@ public class Usuario {
         porcentaje_exito = problemas_resueltos / problemas_intentados * 100;
         return porcentaje_exito;
     }
+
     public void verEstadisticas(){
         /*System.out.println("Usuario: "+login);
         System.out.println("Problemas intentados: "+problemas_intentados);

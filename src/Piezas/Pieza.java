@@ -1,4 +1,4 @@
-package POO;
+package Piezas;
 
 public abstract class Pieza {
     private char letra;

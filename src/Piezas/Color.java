@@ -1,4 +1,4 @@
-package POO;
+package Piezas;
 
 public enum Color {
     BLANCO,

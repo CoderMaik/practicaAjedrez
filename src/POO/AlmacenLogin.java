@@ -1,31 +1,37 @@
 package POO;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 
 public class AlmacenLogin {
-    private ArrayList<Usuario> listaUsuarios;
+    private HashSet<Usuario> listaUsuarios;
 
-    public AlmacenLogin(){
-        this.listaUsuarios=new ArrayList<>();
+    public AlmacenLogin() {
+        this.listaUsuarios = new HashSet<>();
     }
 
-    public ArrayList<Usuario> getListaUsuarios() {
+    public HashSet<Usuario> getListaUsuarios() {
         return listaUsuarios;
     }
 
-    public void setListaUsuarios(ArrayList<Usuario> listaUsuarios) {
-        this.listaUsuarios = listaUsuarios;
+    public boolean setListaUsuarios(HashSet<Usuario> listaUsuarios) {
+        if (listaUsuarios != null) {
+            this.listaUsuarios = listaUsuarios;
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public boolean existeUsuario(Usuario u){
-        boolean esta = false;
-        Iterator <Usuario> it = getListaUsuarios().iterator();
+    public boolean existeUsuario(Usuario u) {
+        boolean found = false;
+        Iterator<Usuario> it = getListaUsuarios().iterator();
         Usuario aux;
-        while((it.hasNext())&&(!esta)){
+        while ((it.hasNext()) && (!found)) {
             aux = it.next();
-            esta = (aux.equals(u));
+            found = (aux.equals(u));
         }
-        return esta;
+        return found;
     }
 
     public Usuario getUsuario(Usuario u){
@@ -52,14 +58,11 @@ public class AlmacenLogin {
         return null;
     }
 
-    public boolean anadirUsuario(Usuario u){
-        if(existeUsuario(u)){
-            return false;
-        }else{
-
-
-            //Añadir ordenando
+    public boolean anadirUsuario(Usuario u) {
+        if (!existeUsuario(u)) {
             return true;
+        } else {
+            return false;
         }
     }
 }

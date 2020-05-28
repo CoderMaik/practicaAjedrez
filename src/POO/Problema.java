@@ -7,13 +7,11 @@ public class Problema {
     private int resuelto_por;
     private double porcentaje_exito;
     private String jugada_ganadora;
-    private boolean valido;
 
-    public Problema(String jugGan, Boolean Valid) {
+    public Problema(String jugGan) {
         this.resuelto_por = 0;
         this.porcentaje_exito = 0;
         this.jugada_ganadora = jugGan;
-        this.valido = Valid;
     }
 
     public int getResuelto_por() {
@@ -40,13 +38,8 @@ public class Problema {
         this.jugada_ganadora = jugada_ganadora;
     }
 
-    public void setValido(boolean valido) {
-        this.valido = valido;
-    }
-
     public String NumProblemAleatorio (){
         int NumProblem = (int) Math.floor( Math.random()*10+1);
-        //Es 10 + 1 porque asi lee el 10, sino solo leeria hasta el 9
         String sol = "";
         switch (NumProblem){
             case 1:
@@ -92,11 +85,5 @@ public class Problema {
         }
         return sol;
     }
-    public boolean EsVaalido(String jugada) {
-        boolean sol = false;
-        if (jugada == jugada_ganadora) {
-            sol = true;
-        }
-        return sol;
-    }
+
 }

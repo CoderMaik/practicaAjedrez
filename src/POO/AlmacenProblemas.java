@@ -10,41 +10,42 @@ public class AlmacenProblemas implements Serializable {
     public AlmacenProblemas(){
         this.listaProblemas = new HashSet<>();
     }
+
     public boolean existeProblema (Problema p){
-        boolean encontrado = false;
-        Iterator <Problema> it = getListaProblemas().iterator();
+        boolean found = false;
+        Iterator<Problema> it = getListaProblemas().iterator();
         Problema aux;
-        while ((!encontrado) && it.hasNext()){
+        while ((!found) && it.hasNext()) {
             aux = it.next();
-            encontrado = aux.equals(p);
+            found = aux.equals(p);
         }
-        return encontrado;
+        return found;
     }
 
-    public HashSet<Problema> getListaProblemas(){
+    public HashSet<Problema> getListaProblemas() {
         return listaProblemas;
     }
-    public boolean anadirProblema (Problema p){
-        if (existeProblema(p))
-            return false;
-        else
-            return this.getListaProblemas().add(p);
-    }
-    public boolean borrarProblema (Problema p){
+
+    public boolean addProblema(Problema p) {
         if (!existeProblema(p))
-            return false;
+            return this.getListaProblemas().add(p);
         else
-            return getListaProblemas().remove(p);
+            return false;
     }
 
-    // Meth. escribir en problema en txt
+    public boolean borrarProblema(Problema p) {
+        if (!existeProblema(p))
+            return getListaProblemas().remove(p);
+        else
+            return false;
+    }
+
+    // Meth. escribir en problema en txt (toString)
     //
 
-    public boolean subirProblemaEnTXT(File fichero, Problema problem) throws IOException { // Pasamos el problema que queremos anhadir
-        FileWriter fileOut = new FileWriter(fichero);
-        BufferedWriter buffer = new BufferedWriter(fileOut);
-        PrintWriter salida = new PrintWriter(buffer);
-        salida.println(anadirProblema(problem));
+    public boolean subirProblemaEnTXT(File fichero, Problema problem) throws IOException {
+        PrintWriter salida = new PrintWriter(new BufferedWriter(new FileWriter(fichero)));
+        salida.println(problem.toString());
         salida.close();
         return true;
     }
@@ -59,6 +60,6 @@ public class AlmacenProblemas implements Serializable {
 
     private boolean EsValido(Problema problem) {
         return true;
-    }
+    } //falta implementar
 
 }
