@@ -1,4 +1,4 @@
-package src.POO;
+package POO;
 
 public class Peon {
     private final char simbolo = 'P';

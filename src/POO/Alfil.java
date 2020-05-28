@@ -1,4 +1,4 @@
-package src.POO;
+package POO;
 
 public class Alfil {
     private final char simbolo = 'A';

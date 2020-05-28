@@ -1,4 +1,4 @@
-package src.POO;
+package POO;
 
 public class Torre {
     private final char simbolo = 'T';

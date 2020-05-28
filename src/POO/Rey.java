@@ -1,4 +1,4 @@
-package src.POO;
+package POO;
 
 public class Rey {
     private final char simbolo = 'R';

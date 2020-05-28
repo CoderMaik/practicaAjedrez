@@ -1,4 +1,4 @@
-package src.POO;
+package POO;
 
 public abstract class Pieza {
     private char letra;

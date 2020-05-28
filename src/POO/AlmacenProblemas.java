@@ -1,4 +1,4 @@
-package src.POO;
+package POO;
 
 import java.io.*;
 import java.util.Iterator;
@@ -48,17 +48,17 @@ public class AlmacenProblemas implements Serializable {
         salida.close();
         return true;
     }
-    public boolean validarProblema (Problema problem){
-        if (!existeProblema(problem) && EsVaalido(problem)){
+
+    public boolean validarProblema(Problema problem) {
+        if (!existeProblema(problem) && EsValido(problem)) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
 
-    private boolean EsVaalido(Problema problem) {
-
+    private boolean EsValido(Problema problem) {
+        return true;
     }
 
 }

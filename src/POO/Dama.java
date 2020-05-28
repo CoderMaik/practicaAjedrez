@@ -1,4 +1,4 @@
-package src.POO;
+package POO;
 
 public class Dama {
     private final char simbolo = 'D';

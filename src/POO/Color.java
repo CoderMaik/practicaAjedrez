@@ -1,4 +1,4 @@
-package src.POO;
+package POO;
 
 public enum Color {
     BLANCO,
