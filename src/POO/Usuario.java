@@ -49,30 +49,18 @@ public class Usuario {
     public int newError() {
         return this.errores++;
     }
+
     private int updatePorcentajeExitos(){
         porcentaje_exito = problemas_resueltos / problemas_intentados * 100;
         return porcentaje_exito;
     }
 
-    public void verEstadisticas(){
-        /*System.out.println("Usuario: "+login);
-        System.out.println("Problemas intentados: "+problemas_intentados);
-        System.out.println("Problemas resueltos: "+problemas_resueltos);
-        System.out.println("Errores totales: "+errores);
-        System.out.println("Porcentaje de éxitos: "+updatePorcentajeExitos());*/
-        Clasificacion clas = new Clasificacion();
-        clas.listaOrdenadaPorcentajes();
-        clas.listaReordenada();
+    public void verEstadisticas(Usuario user){
+        System.out.println("USUARIO: "+user.getNombre());
+        System.out.println("Problemas intentados: "+user.getProblemas_intentados());
+        System.out.println("Probleas resueltos: "+user.getProblemas_resueltos());
+        System.out.println("Numero de errores totales: "+user.getErrores());
+        System.out.println("Porcentaje de exito: "+updatePorcentajeExitos());
     }
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Usuario u = (Usuario) obj;
-        return u.login.equals(this.login);
-    }
-}
+
+} // END USUARIO

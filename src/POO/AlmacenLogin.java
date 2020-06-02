@@ -1,7 +1,7 @@
 package POO;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+
 
 public class AlmacenLogin {
     private HashSet<Usuario> listaUsuarios;
