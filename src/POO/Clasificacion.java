@@ -3,62 +3,49 @@ package POO;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 
-public class Clasificacion {
-
-    private ArrayList<Usuario> ListaClasificacion;
-
-    public Clasificacion() {
-        //Método que pase el HashSet a ArrayList y lo meta en ListaClasificacion
+public class Clasificacion{
+    private Usuario[] listaClasificacion;
+    //Contrsuctor
+    public Clasificacion (Usuario[] lista ){
+        this.listaClasificacion = lista;
     }
 
-    public ArrayList<Usuario> getListaClasificacion() {
-        return ListaClasificacion;
+    // HashSet to ArrayList
+    private Usuario[] HashSet_ToArray(HashSet<Usuario> listaUsuarios){
+       listaUsuarios.toArray(listaClasificacion);
+       return listaClasificacion;
     }
 
-    public ArrayList<Usuario> ordenarPorcentaje() {
-        Collections.sort(ListaClasificacion, new Comparator<Usuario>() {
-            @Override
-            public int compare(Usuario u1, Usuario u2) {
-                return new Integer(u1.getPorcentaje_exito()).compareTo(new Integer(u2.getPorcentaje_exito()));
+    private Usuario[] ordenPorcentaje(HashSet<Usuario> listaUsuarios){
+        listaUsuarios.toArray(listaClasificacion);
+        int size = listaClasificacion.length;
+        for(int i = 0; i < size - 1; i++){
+            for (int j = i + 1; j < size; j++){
+                if (listaClasificacion[i].getPorcentaje_exito() > listaClasificacion[j].getPorcentaje_exito()){
+                Usuario aux = listaClasificacion[i];
+                listaClasificacion[i] = listaClasificacion[j];
+                listaClasificacion[j] = aux;
+                }
             }
-        });
-        return ListaClasificacion;
-    }
-
-    public void listaOrdenadaPorcentajes () {
-        ArrayList <Usuario> estadistica = ordenarPorcentaje();
-        for (Usuario u : estadistica) {
-                System.out.println("Usuario: " + u.getNombre());
-                System.out.println("Problemas intentados: " + u.getProblemas_intentados());
-                System.out.println("Problemas resueltos: " + u.getProblemas_resueltos());
-                System.out.println("Errores totales: " + u.getErrores());
-                System.out.println("Porcentaje de éxitos: " + u.getPorcentaje_exito());
-                System.out.println();
         }
+        return listaClasificacion;
     }
 
-    public ArrayList<Usuario> ordenarResueltos(){
-        Collections.sort(ListaClasificacion, new Comparator<Usuario>() {
-            @Override
-            public int compare(Usuario u1, Usuario u2) {
-                return new Integer(u1.getProblemas_resueltos()).compareTo(new Integer(u2.getProblemas_resueltos()));
+    private Usuario[] ordenProblemasResueltos (HashSet<Usuario> listaUsuarios){
+        listaUsuarios.toArray(listaClasificacion);
+        int size = listaClasificacion.length;
+        for(int i = 0; i < size - 1; i ++ ){
+            for(int j = i +1; j < size; j++){
+                if(listaClasificacion[i].getProblemas_resueltos() > listaClasificacion[j].getProblemas_resueltos()){
+                    Usuario aux = listaClasificacion[i];
+                    listaClasificacion[i] = listaClasificacion[j];
+                    listaClasificacion[j] = aux;
+
+                }
             }
-        });
-        return ListaClasificacion;
-    }
-
-    public void listaReordenada () {
-        ArrayList <Usuario> estadistica1 = ordenarPorcentaje();
-        for (Usuario u : estadistica1) {
-            System.out.println("Usuario: " + u.getNombre());
-            System.out.println("Problemas intentados: " + u.getProblemas_intentados());
-            System.out.println("Problemas resueltos: " + u.getProblemas_resueltos());
-            System.out.println("Errores totales: " + u.getErrores());
-            System.out.println("Porcentaje de éxitos: " + u.getPorcentaje_exito());
-            System.out.println();
         }
+        return listaClasificacion;
     }
-}
-
-
+}//END CLASS
