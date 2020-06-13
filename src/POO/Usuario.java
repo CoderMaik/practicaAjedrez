@@ -58,7 +58,7 @@ public class Usuario {
     public void verEstadisticas(Usuario user){
         System.out.println("USUARIO: "+user.getNombre());
         System.out.println("Problemas intentados: "+user.getProblemas_intentados());
-        System.out.println("Probleas resueltos: "+user.getProblemas_resueltos());
+        System.out.println("Problemas resueltos: "+user.getProblemas_resueltos());
         System.out.println("Numero de errores totales: "+user.getErrores());
         System.out.println("Porcentaje de exito: "+updatePorcentajeExitos());
     }

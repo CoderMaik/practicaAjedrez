@@ -4,13 +4,13 @@ import java.util.Iterator;
 
 
 public class AlmacenLogin {
-    private HashSet<Usuario> listaUsuarios;
+    private static HashSet<Usuario> listaUsuarios;
 
     public AlmacenLogin() {
         this.listaUsuarios = new HashSet<>();
     }
 
-    public HashSet<Usuario> getListaUsuarios() {
+    public static HashSet<Usuario> getListaUsuarios() {
         return listaUsuarios;
     }
 

@@ -1,14 +1,14 @@
 package Piezas;
 
+import POO.Casilla;
+import POO.Tablero;
+
 public class Peon extends Pieza {
     private final char simbolo = 'P';
-    private char letra = simbolo;
 
-    public Peon(Color color) {
-        super('P', color);
-    }
+    public Peon() {}
 
-    public boolean mover() {
+    public boolean mover(Casilla origen, Casilla destino) {
         throw new RuntimeException("Not implemented yet");
     }
 }

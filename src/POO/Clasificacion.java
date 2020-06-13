@@ -1,11 +1,11 @@
 package POO;
+
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
 
 public class Clasificacion{
     private Usuario[] listaClasificacion;
+    //private ArrayList<Usuario> listaDeMaik = new ArrayList<>(AlmacenLogin.getListaUsuarios());
     //Contrsuctor
     public Clasificacion (Usuario[] lista ){
         this.listaClasificacion = lista;

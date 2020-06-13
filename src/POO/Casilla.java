@@ -35,5 +35,4 @@ public class Casilla {
     public boolean isLibre() {
         return libre;
     }
-
 }

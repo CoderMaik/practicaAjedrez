@@ -1,14 +1,14 @@
 package Piezas;
 
+import POO.Casilla;
+import POO.Tablero;
+
 public class Alfil extends Pieza {
     private final char simbolo = 'A';
-    private char letra = simbolo;
 
-    public Alfil(Color color) {
-        super('A', color);
-    }
+    public Alfil() {}
 
-    public boolean mover() {
+    public boolean mover(Casilla origen, Casilla destino) {
         throw new RuntimeException("Not implemented yet");
     }
 }

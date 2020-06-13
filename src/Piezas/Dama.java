@@ -1,14 +1,14 @@
 package Piezas;
 
+import POO.Casilla;
+import POO.Tablero;
+
 public class Dama extends Pieza {
     private final char simbolo = 'D';
-    private char letra = simbolo;
 
-    public Dama(Color color) {
-        super('D', color);
-    }
+    public Dama() {}
 
-    public boolean mover() {
+    public boolean mover(Casilla origen, Casilla destino) {
         throw new RuntimeException("Not implemented yet");
     }
 }
