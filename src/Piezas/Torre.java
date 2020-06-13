@@ -1,11 +1,9 @@
 package Piezas;
 
 import POO.Casilla;
-import POO.Tablero;
 
 public class Torre extends Pieza {
     private final char simbolo = 'T';
-
     public Torre() {}
 
     public boolean mover(Casilla origen, Casilla destino) {

@@ -3,8 +3,8 @@ package POO;
 import Piezas.Pieza;
 
 public class Casilla {
-    private char coorX;
-    private int coorY;
+    private final char coorX;
+    private final int coorY;
     private boolean libre;
     private Pieza contenido;
 

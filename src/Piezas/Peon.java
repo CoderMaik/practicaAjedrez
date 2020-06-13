@@ -1,7 +1,6 @@
 package Piezas;
 
 import POO.Casilla;
-import POO.Tablero;
 
 public class Peon extends Pieza {
     private final char simbolo = 'P';
