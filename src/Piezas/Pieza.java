@@ -43,10 +43,6 @@ public abstract class Pieza {
         return (Tablero.getRowInt(origen.getCoorX()) > 0 && Tablero.getRowInt(origen.getCoorX()) < 8 && origen.getCoorY() < 8 && origen.getCoorY() > 0);
     }
 
-    protected boolean destinoValido(Casilla destino) {
-        return (inValido(destino) && destino.isLibre());
-    }
-
     //Getters and setters
     public Color getColor() {return color;}
 

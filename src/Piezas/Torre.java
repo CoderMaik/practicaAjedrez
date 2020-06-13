@@ -7,7 +7,7 @@ public class Torre extends Pieza {
     public Torre() {}
 
     public boolean mover(Casilla origen, Casilla destino) {
-        if(!origenValido(origen) || !destinoValido(destino))
+        if(!origenValido(origen) || !inValido(destino))
             return false;
         return submover(origen,destino);
     }

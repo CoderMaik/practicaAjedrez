@@ -16,7 +16,7 @@ public class Tablero {
     public Casilla getCasillaXY(int x, int y){
         return mapa[x][y];
     }
-
+    public Casilla[][] getMapa(){return mapa;}
     public static int getRowInt(char x) {
         switch (x) {
             case 'a':
