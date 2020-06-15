@@ -62,7 +62,8 @@ public class AlmacenProblemas implements Serializable {
         }
     }
 
-    public void AlmacenLoginTXT(File fichero) throws IOException {
+    // TEXTO
+    public void AlmacenProblemasTXT(File fichero) throws IOException {
         FileWriter fileOut = new FileWriter(fichero);
         BufferedWriter buffer = new BufferedWriter(fileOut);
         PrintWriter salida = new PrintWriter(buffer);
@@ -73,15 +74,17 @@ public class AlmacenProblemas implements Serializable {
     }
 
     public void leeAlmacenProblemasTXT(File fichero) throws IOException{
-        FileReader  fileIn = new FileReader(fichero);
-        BufferedReader  buffer = new BufferedReader (fileIn);
+        FileReader  file_in = new FileReader(fichero);
+        BufferedReader  buffer = new BufferedReader (file_in);
         String s = "";
         String texto = "";
         while((s = buffer.readLine()) != null)
             texto += s + "\n";
         buffer.close();
     }
-    public void escribeAlmacenLogin(String n) throws IOException{
+
+    // BINARIO
+    public void escribeAlmacenProblemas(String n) throws IOException{
         FileOutputStream fileOut=new FileOutputStream(n);
         ObjectOutputStream salida=new ObjectOutputStream(fileOut);
         for (Problema p: getListaProblemas())

@@ -66,6 +66,7 @@ public class AlmacenLogin {
             return false;
         }
     }
+    // TEXTO
     public void AlmacenLoginEnTXT(File fichero) throws IOException {
         FileWriter fileOut = new FileWriter(fichero);
         BufferedWriter buffer = new BufferedWriter(fileOut);
@@ -86,6 +87,7 @@ public class AlmacenLogin {
         buffer.close();
     }
 
+    // BINARIO
     public void escribeAlmacenLogin(String n) throws IOException{
         FileOutputStream fileOut=new FileOutputStream(n);
         ObjectOutputStream salida=new ObjectOutputStream(fileOut);
@@ -93,10 +95,10 @@ public class AlmacenLogin {
             salida.writeObject(u);
         salida.close();
     }
-    public void leerAlmacenProblemas (File fichero) throws IOException, ClassNotFoundException{
+    public void leerAlmacenLogin (File fichero) throws IOException, ClassNotFoundException{
         FileInputStream f = new FileInputStream (fichero);
         ObjectInputStream entrada = new ObjectInputStream (f);
-        Problema p = (Problema) entrada.readObject ();
+        Usuario u = (Usuario) entrada.readObject ();
         listaUsuarios = getListaUsuarios();
         entrada.close();
 
