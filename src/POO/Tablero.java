@@ -1,5 +1,7 @@
 package POO;
 
+import Piezas.Rey;
+
 public class Tablero {
     private Casilla[][] mapa;
     //Constructor vacio
