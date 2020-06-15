@@ -1,5 +1,6 @@
 package POO;
 
+import Piezas.Color;
 import Piezas.Pieza;
 
 public class Casilla {
@@ -32,7 +33,8 @@ public class Casilla {
     public int getCoorY() {
         return coorY;
     }
-    public boolean isLibre() {
+    public boolean esLibre() {
         return libre;
     }
+    public boolean esComible(Color color){return (color==contenido.getColor());}
 }

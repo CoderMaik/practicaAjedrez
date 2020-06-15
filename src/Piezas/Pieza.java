@@ -46,6 +46,12 @@ public abstract class Pieza {
     //Getters and setters
     public Color getColor() {return color;}
 
+    public Color getOpColor(){ //Devuelve el color opuesto
+        if (this.color == Color.BLANCO)
+            return Color.NEGRO;
+        else
+            return Color.BLANCO;
+    }
     public void setColor(Color color) {this.color = color;}
 
     public Tablero getTab() {return tab;}

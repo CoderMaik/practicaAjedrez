@@ -6,7 +6,7 @@ import java.util.HashSet;
 public class Clasificacion{
     private Usuario[] listaClasificacion;
     //private ArrayList<Usuario> listaDeMaik = new ArrayList<>(AlmacenLogin.getListaUsuarios());
-    //Contrsuctor
+    //Constructor
     public Clasificacion (Usuario[] lista ){
         this.listaClasificacion = lista;
     }
