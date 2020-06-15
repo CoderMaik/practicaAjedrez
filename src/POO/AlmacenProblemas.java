@@ -75,10 +75,25 @@ public class AlmacenProblemas implements Serializable {
     public void leeAlmacenProblemasTXT(File fichero) throws IOException{
         FileReader  fileIn = new FileReader(fichero);
         BufferedReader  buffer = new BufferedReader (fileIn);
-        String s="";
+        String s = "";
         String texto = "";
         while((s = buffer.readLine()) != null)
             texto += s + "\n";
         buffer.close();
+    }
+    public void escribeAlmacenLogin(String n) throws IOException{
+        FileOutputStream fileOut=new FileOutputStream(n);
+        ObjectOutputStream salida=new ObjectOutputStream(fileOut);
+        for (Problema p: getListaProblemas())
+            salida.writeObject(p);
+        salida.close();
+    }
+
+    public void leerAlmacenProblemas (File fichero) throws IOException, ClassNotFoundException{
+        FileInputStream f = new FileInputStream (fichero);
+        ObjectInputStream entrada = new ObjectInputStream (f);
+        Problema p = (Problema) entrada.readObject ();
+        this.listaProblemas = getListaProblemas();
+        entrada.close();
     }
 }

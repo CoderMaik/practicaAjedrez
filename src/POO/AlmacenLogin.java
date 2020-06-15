@@ -8,7 +8,7 @@ public class AlmacenLogin {
     private static HashSet<Usuario> listaUsuarios;
 
     public AlmacenLogin() {
-        this.listaUsuarios = new HashSet<>();
+        listaUsuarios = new HashSet<>();
     }
 
     public static HashSet<Usuario> getListaUsuarios() {
@@ -85,5 +85,26 @@ public class AlmacenLogin {
             texto += s + "\n";
         buffer.close();
     }
+
+    public void escribeAlmacenLogin(String n) throws IOException{
+        FileOutputStream fileOut=new FileOutputStream(n);
+        ObjectOutputStream salida=new ObjectOutputStream(fileOut);
+        for (Usuario u: getListaUsuarios())
+            salida.writeObject(u);
+        salida.close();
+    }
+    public void leerAlmacenProblemas (File fichero) throws IOException, ClassNotFoundException{
+        FileInputStream f = new FileInputStream (fichero);
+        ObjectInputStream entrada = new ObjectInputStream (f);
+        Problema p = (Problema) entrada.readObject ();
+        listaUsuarios = getListaUsuarios();
+        entrada.close();
+
+    }
+
+
+
+
+
 
 }
