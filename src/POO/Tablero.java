@@ -6,6 +6,9 @@ public class Tablero {
     public Tablero(){
         mapa = new Casilla[8][8];
     }
+    public Tablero(String map){
+        //constructor pasandole un tablero hecho
+    }
     public Casilla getCasilla(char x, int y) {
         int n = getRowInt(x);
         return mapa[n][y];
