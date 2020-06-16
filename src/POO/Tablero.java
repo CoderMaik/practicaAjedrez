@@ -21,16 +21,38 @@ public class Tablero {
         fichero = new File("");
         try (FileReader fileReader = new FileReader(fichero)) {
             int charLeido = fileReader.read(); // lo que lee el fichero es el caracter o -1 si hemos llegado al final
+            int columna = 0;
+            int fila = 8;
+            int index = 0;
             while (charLeido != -1) {
                 char caracter = ((char) charLeido);
                 // switch
-                charLeido = fileReader.read();
+                if (caracter == 'V') {
+                    mapa[fila][columna]= new Casilla();
+                }else if (caracter == ','){
+                    if (columna == 8){
+                        columna = 1;
+                        fila --;
+                    }else{
+                        columna ++;
+                    }
+                }else if(caracter == 'B'){
+                    mapa[fila][columna].getPieza().setColor(Color.BLANCO);
+                }else if(caracter =='N'){
+                    mapa[fila][columna].getPieza().setColor(Color.NEGRO);
+                }else{
+                    //Ver que pieza tengo que crear según lo que lea
+                    //Crear la pieza
+                    //Meterla en la casilla
+                    //Asociar a la pieza, la casilla y el tablero
+                }
+                index ++;
+                charLeido = fileReader.read(); // equivalente a i++
             }
         } catch (IOException ioEx) {
             // poner mensaje caso excepcion o devolver false
         }
     }
-
 
     public Casilla getCasilla(char x, int y) {
         int n = getRowInt(x);
