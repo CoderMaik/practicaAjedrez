@@ -14,6 +14,7 @@ public class Casilla {
         coorY = y;
     }
 
+
     public void addPieza (Pieza p){
         libre=false;
         this.contenido = p;
@@ -27,6 +28,7 @@ public class Casilla {
     public Pieza checkPieza(Casilla c){
         return c.contenido;
     }
+
     public char getCoorX() {
         return coorX;
     }

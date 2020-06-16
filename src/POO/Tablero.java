@@ -4,40 +4,34 @@ import Piezas.Rey;
 import POO.Casilla;
 import Piezas.Color;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class Tablero {
     private Casilla[][] mapa;
     //Constructor vacio
     public Tablero (){
         mapa = new Casilla[8][8];
     }
-    public Tablero(String map){
-        int columna = 0;
-        int fila = 8;
-        int index = 0;
-        while (!map.equals(null)){
-            if (map.charAt(index) == 'V') {
-                mapa[fila][columna].checkPieza(mapa[fila][columna]).setCas() = null;
-            }else if (map.charAt(index) == ','){
-                if (columna == 8){
-                    columna = 1;
-                    fila --;
-                }else{
-                    columna ++;
-                }
-            }else if ((map.charAt(index) == 'B') || (map.charAt(index) == 'N')){
-                if (map.charAt(index) == 'B'){
-                    mapa[fila][columna].checkPieza(mapa[fila][columna]).setColor('BLANCO');
-                }else {
-                    mapa[fila][columna].checkPieza(mapa[fila][columna]).setColor('NEGRO');
-                }
-            }else {
-                mapa[fila][columna].checkPieza(mapa[fila][columna]).setTab();
-                mapa[fila][columna].checkPieza(mapa[fila][columna]).setCas();
+
+    //poner Scanner para se introduzca la ruta del fichero
+    public Tablero(File fichero) throws IOException {
+        fichero = new File("");
+        try (FileReader fileReader = new FileReader(fichero)) {
+            int charLeido = fileReader.read(); // lo que lee el fichero es el caracter o -1 si hemos llegado al final
+            while (charLeido != -1) {
+                char caracter = ((char) charLeido);
+                // switch
+                charLeido = fileReader.read();
             }
-            index ++;
+        } catch (IOException ioEx) {
+            // poner mensaje caso excepcion o devolver false
         }
-        //constructor pasandole un tablero hecho
     }
+
+
     public Casilla getCasilla(char x, int y) {
         int n = getRowInt(x);
         return mapa[n][y];
