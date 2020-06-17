@@ -10,7 +10,8 @@ public abstract class Pieza {
 
     protected Pieza() {}
 
-    public static Pieza nuevaPieza(char c) {
+
+    public  Pieza nuevaPieza(char c) {
         switch (c) {
             case 'T' | 't':
                 return new Torre();
@@ -56,9 +57,9 @@ public abstract class Pieza {
 
     public Tablero getTab() {return tab;}
 
-    public void setTab(Tablero tab) {this.tab = tab;}
+    public void setTab(Casilla[][] tab) {this.tab = tab;}
 
-    public Casilla getCas() {return cas;}
+    public Casilla getCas(Casilla casilla) {return cas;}
 
     public void setCas(Casilla cas) {this.cas = cas;}
 }

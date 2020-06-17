@@ -29,6 +29,10 @@ public class Casilla {
         return c.contenido;
     }
 
+    public Pieza getContenido(){
+        return contenido;
+    }
+
     public char getCoorX() {
         return coorX;
     }
@@ -39,4 +43,5 @@ public class Casilla {
         return libre;
     }
     public boolean esComible(Color color){return (color==contenido.getColor());}
+
 }

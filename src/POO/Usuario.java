@@ -62,5 +62,4 @@ public class Usuario {
         System.out.println("Numero de errores totales: "+user.getErrores());
         System.out.println("Porcentaje de exito: "+updatePorcentajeExitos());
     }
-
 } // END USUARIO

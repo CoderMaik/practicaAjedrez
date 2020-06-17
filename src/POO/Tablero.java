@@ -1,5 +1,7 @@
 package POO;
 
+import Piezas.Caballo;
+import Piezas.Pieza;
 import Piezas.Rey;
 import POO.Casilla;
 import Piezas.Color;
@@ -16,7 +18,6 @@ public class Tablero {
         mapa = new Casilla[8][8];
     }
 
-    //poner Scanner para se introduzca la ruta del fichero
     public Tablero(File fichero) throws IOException {
         fichero = new File("");
         try (FileReader fileReader = new FileReader(fichero)) {
@@ -28,7 +29,7 @@ public class Tablero {
                 char caracter = ((char) charLeido);
                 // switch
                 if (caracter == 'V') {
-                    mapa[fila][columna]= new Casilla();
+                    mapa[fila][columna] = null; // no metemos pieza
                 }else if (caracter == ','){
                     if (columna == 8){
                         columna = 1;
@@ -37,16 +38,43 @@ public class Tablero {
                         columna ++;
                     }
                 }else if(caracter == 'B'){
-                    mapa[fila][columna].getPieza().setColor(Color.BLANCO);
+                    mapa[fila][columna].getContenido().setColor(Color.BLANCO);
                 }else if(caracter =='N'){
-                    mapa[fila][columna].getPieza().setColor(Color.NEGRO);
+                    mapa[fila][columna].getContenido().setColor(Color.NEGRO);
                 }else{
-                    //Ver que pieza tengo que crear según lo que lea
-                    //Crear la pieza
-                    //Meterla en la casilla
-                    //Asociar a la pieza, la casilla y el tablero
+                    switch (caracter){
+                        case 'C':
+                            Pieza caballo = new Caballo();
+                            mapa[fila][columna].addPieza(caballo);
+                            caballo.setCas(mapa[fila][columna]);
+                            caballo.setTab(mapa);
+                        case 'P':
+                            Pieza peon= new Caballo();
+                            mapa[fila][columna].addPieza(peon);
+                            peon.setCas(mapa[fila][columna]);
+                            peon.setTab(mapa);
+                        case 'D':
+                            Pieza dama = new Caballo();
+                            mapa[fila][columna].addPieza(dama);
+                            dama.setCas(mapa[fila][columna]);
+                            dama.setTab(mapa);
+                        case 'A':
+                            Pieza alfil = new Caballo();
+                            mapa[fila][columna].addPieza(alfil);
+                            alfil.setCas(mapa[fila][columna]);
+                            alfil.setTab(mapa);
+                        case 'R':
+                            Pieza rey = new Caballo();
+                            mapa[fila][columna].addPieza(rey);
+                            rey.setCas(mapa[fila][columna]);
+                            rey.setTab(mapa);
+                        case 'T':
+                            Pieza torre = new Caballo();
+                            mapa[fila][columna].addPieza(torre);
+                            torre.setCas(mapa[fila][columna]);
+                            torre.setTab(mapa);
+                    }
                 }
-                index ++;
                 charLeido = fileReader.read(); // equivalente a i++
             }
         } catch (IOException ioEx) {
