@@ -13,6 +13,7 @@ public class UserInterface extends javax.swing.JFrame {
         initComponents();
         listaUsuarios = new AlmacenLogin();
         listaProblemas = new AlmacenProblemas();
+        jPanelMenu.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -36,6 +37,11 @@ public class UserInterface extends javax.swing.JFrame {
         setAlwaysOnTop(true);
 
         jPasswordField.setText("jPasswordField1");
+        jPasswordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordFieldActionPerformed(evt);
+            }
+        });
 
         jNombreTextField.setText("...");
 
@@ -54,6 +60,11 @@ public class UserInterface extends javax.swing.JFrame {
         });
 
         jRadioLogin.setText("Login");
+        jRadioLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioLoginActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Usuario:");
 
@@ -147,40 +158,56 @@ public class UserInterface extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGap(0, 374, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGap(0, 334, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanelMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRadioRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioRegistroActionPerformed
-
+        if (jRadioLogin.isSelected())
+            jRadioLogin.setSelected(false);
     }//GEN-LAST:event_jRadioRegistroActionPerformed
 
     private void jAccederButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAccederButtonActionPerformed
-
+        /*this.getContentPane().removeAll();
+        this.getContentPane().add(jPanelMenu);*/
+        jPanelMenu.setVisible(true);
+        jPanelLogin.setVisible(false);
+        //this.dispose();
+        /*
         if (jNombreTextField.getText().isEmpty() || jPasswordField.getPassword()==null)
             JOptionPane.showMessageDialog(this,"Compruebe que ningún campo esté vacío","ERROR",JOptionPane.ERROR_MESSAGE);
         else if (jRadioRegistro.isSelected()){
             if(!(listaUsuarios.anadirUsuario(new Usuario(jNombreTextField.getText(),jPasswordField.getPassword().toString()))))
                 JOptionPane.showMessageDialog(this,"Ya existe una cuenta con ese nombre","ERROR",JOptionPane.ERROR_MESSAGE);
-            else
+            else {
                 //Iniciar sesión
-                throw new RuntimeException("Not implemented yet");
+            }
         } else if (jRadioLogin.isSelected()){
             if(!(listaUsuarios.existeUsuario(jNombreTextField.getText())))
                 JOptionPane.showMessageDialog(this,"No existe cuenta con ese nombre","ERROR",JOptionPane.ERROR_MESSAGE);
@@ -189,7 +216,7 @@ public class UserInterface extends javax.swing.JFrame {
             else 
                 //Iniciar sesión
                 throw new RuntimeException("Not implemented yet");
-        }
+        }*/
     }//GEN-LAST:event_jAccederButtonActionPerformed
 
     private void ioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ioButtonActionPerformed
@@ -197,8 +224,18 @@ public class UserInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_ioButtonActionPerformed
 
     private void jVueltaAtrasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jVueltaAtrasButtonActionPerformed
-        // TODO add your handling code here:
+        jPanelLogin.setVisible(true);
+        jPanelMenu.setVisible(false);
     }//GEN-LAST:event_jVueltaAtrasButtonActionPerformed
+
+    private void jPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordFieldActionPerformed
+
+    private void jRadioLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioLoginActionPerformed
+        if (jRadioRegistro.isSelected())
+            jRadioRegistro.setSelected(false);
+    }//GEN-LAST:event_jRadioLoginActionPerformed
 
     /**
      * @param args the command line arguments
