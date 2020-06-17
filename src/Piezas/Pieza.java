@@ -5,7 +5,7 @@ import POO.Tablero;
 
 public abstract class Pieza {
     protected Color color;
-    protected Tablero tab;
+    protected Casilla[][] tab;
     protected Casilla cas;
 
     protected Pieza() {}
@@ -55,7 +55,7 @@ public abstract class Pieza {
     }
     public void setColor(Color color) {this.color = color;}
 
-    public Tablero getTab() {return tab;}
+    public Casilla[][] getTab() {return tab;}
 
     public void setTab(Casilla[][] tab) {this.tab = tab;}
 
