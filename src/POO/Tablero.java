@@ -47,32 +47,32 @@ public class Tablero {
                             Pieza caballo = new Caballo();
                             mapa[fila][columna].addPieza(caballo);
                             caballo.setCas(mapa[fila][columna]);
-                            caballo.setTab(mapa);
+                            caballo.setTab(this);
                         case 'P':
                             Pieza peon= new Caballo();
                             mapa[fila][columna].addPieza(peon);
                             peon.setCas(mapa[fila][columna]);
-                            peon.setTab(mapa);
+                            peon.setTab(this);
                         case 'D':
                             Pieza dama = new Caballo();
                             mapa[fila][columna].addPieza(dama);
                             dama.setCas(mapa[fila][columna]);
-                            dama.setTab(mapa);
+                            dama.setTab(this);
                         case 'A':
                             Pieza alfil = new Caballo();
                             mapa[fila][columna].addPieza(alfil);
                             alfil.setCas(mapa[fila][columna]);
-                            alfil.setTab(mapa);
+                            alfil.setTab(this);
                         case 'R':
                             Pieza rey = new Caballo();
                             mapa[fila][columna].addPieza(rey);
                             rey.setCas(mapa[fila][columna]);
-                            rey.setTab(mapa);
+                            rey.setTab(this);
                         case 'T':
                             Pieza torre = new Caballo();
                             mapa[fila][columna].addPieza(torre);
                             torre.setCas(mapa[fila][columna]);
-                            torre.setTab(mapa);
+                            torre.setTab(this);
                     }
                 }
                 charLeido = fileReader.read(); // equivalente a i++

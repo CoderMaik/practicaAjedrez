@@ -33,7 +33,7 @@ public class AlmacenLogin {
             found = (aux.equals(u));
         }
         return found;
-    }
+    }//Hace falta crear método existeUsuario(username,password)
 
     public Usuario getUsuario(Usuario u) {
         Iterator<Usuario> it = getListaUsuarios().iterator();

@@ -5,13 +5,12 @@ import POO.Tablero;
 
 public abstract class Pieza {
     protected Color color;
-    protected Casilla[][] tab;
+    protected Tablero tab;
     protected Casilla cas;
 
     protected Pieza() {}
 
-
-    public  Pieza nuevaPieza(char c) {
+    public Pieza nuevaPieza(char c) {
         switch (c) {
             case 'T' | 't':
                 return new Torre();
@@ -55,9 +54,9 @@ public abstract class Pieza {
     }
     public void setColor(Color color) {this.color = color;}
 
-    public Casilla[][] getTab() {return tab;}
+    public Tablero getTab() {return tab;}
 
-    public void setTab(Casilla[][] tab) {this.tab = tab;}
+    public void setTab(Tablero tab) {this.tab = tab;}
 
     public Casilla getCas(Casilla casilla) {return cas;}
 
