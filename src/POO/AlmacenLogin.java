@@ -58,6 +58,10 @@ public class AlmacenLogin {
         }
         return null;
     }
+    
+    public boolean existeUsuario(String name){
+        return (!(getUsuario(name)==null));
+    }
 
     public boolean anadirUsuario(Usuario u) {
         if (!existeUsuario(u)) {
