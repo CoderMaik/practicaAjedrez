@@ -50,10 +50,10 @@ public class AlmacenProblemas implements Serializable {
     }
 
     private boolean EsValido(Problema problem) {
-        return true;
-    } //falta implementar
+        throw new RuntimeException("not implemented yet");
+    }
 
-    public void estadistiasProblemas(HashSet<Problema> problemas){
+    public void estadisticasProblemas(HashSet<Problema> problemas){
         problemas.toArray(listadoProblemas);
         int size = listadoProblemas.length;
         for (int i = 0; i < size; i++ ){

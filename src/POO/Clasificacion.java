@@ -1,50 +1,14 @@
 package POO;
 
+import POO.Comparators.*;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Collections;
 
 public class Clasificacion{
-    private Usuario[] listaClasificacion;
-    //private ArrayList<Usuario> listaDeMaik = new ArrayList<>(AlmacenLogin.getListaUsuarios());
-    //Constructor
-    public Clasificacion (Usuario[] lista ){
-        this.listaClasificacion = lista;
-    }
+    private ArrayList<Usuario> listaClasificacion;
 
-    // HashSet to ArrayList
-    private Usuario[] HashSet_ToArray(HashSet<Usuario> listaUsuarios){
-       listaUsuarios.toArray(listaClasificacion);
-       return listaClasificacion;
-    }
-
-    private Usuario[] ordenPorcentaje(HashSet<Usuario> listaUsuarios){
-        listaUsuarios.toArray(listaClasificacion);
-        int size = listaClasificacion.length;
-        for(int i = 0; i < size - 1; i++){
-            for (int j = i + 1; j < size; j++){
-                if (listaClasificacion[i].getPorcentaje_exito() > listaClasificacion[j].getPorcentaje_exito()){
-                Usuario aux = listaClasificacion[i];
-                listaClasificacion[i] = listaClasificacion[j];
-                listaClasificacion[j] = aux;
-                }
-            }
-        }
-        return listaClasificacion;
-    }
-
-    private Usuario[] ordenProblemasResueltos (HashSet<Usuario> listaUsuarios){
-        listaUsuarios.toArray(listaClasificacion);
-        int size = listaClasificacion.length;
-        for(int i = 0; i < size - 1; i ++ ){
-            for(int j = i +1; j < size; j++){
-                if(listaClasificacion[i].getProblemas_resueltos() > listaClasificacion[j].getProblemas_resueltos()){
-                    Usuario aux = listaClasificacion[i];
-                    listaClasificacion[i] = listaClasificacion[j];
-                    listaClasificacion[j] = aux;
-
-                }
-            }
-        }
-        return listaClasificacion;
-    }
-}//END CLASS
+    public Clasificacion (){this.listaClasificacion = new ArrayList<>(AlmacenLogin.getListaUsuarios());}
+    
+    public void ordenarPorcentaje(){Collections.sort(this.listaClasificacion, new PorcentajeExitosComparator());}
+    public void ordenarNumProblemas(){Collections.sort(this.listaClasificacion, new NumProblemasComparator());}
+}
