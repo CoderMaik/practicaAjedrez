@@ -11,4 +11,8 @@ public class Clasificacion{
     
     public void ordenarPorcentaje(){Collections.sort(this.listaClasificacion, new PorcentajeExitosComparator());}
     public void ordenarNumProblemas(){Collections.sort(this.listaClasificacion, new NumProblemasComparator());}
+    
+    public ArrayList<Usuario> getLista(){
+        return listaClasificacion;
+    }
 }

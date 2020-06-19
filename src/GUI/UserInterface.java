@@ -2,11 +2,15 @@
 package GUI;
 
 import POO.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.JOptionPane;
 
 public class UserInterface extends javax.swing.JFrame {
     private AlmacenLogin listaUsuarios;
     private AlmacenProblemas listaProblemas;
+    private Clasificacion clasificacion;
     private Usuario miUsuario;
    
     public UserInterface() {
@@ -251,11 +255,6 @@ public class UserInterface extends javax.swing.JFrame {
                 .addContainerGap(189, Short.MAX_VALUE))
         );
 
-        jListaClasificacion.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(jListaClasificacion);
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -293,8 +292,8 @@ public class UserInterface extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelClasificacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelClasificacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE))
                     .addGroup(jPanelClasificacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jVictoriasRadio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jProblemasRadio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -641,6 +640,7 @@ public class UserInterface extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this,"Ya existe una cuenta con ese nombre","ERROR",JOptionPane.ERROR_MESSAGE);
             else {
                 miUsuario=listaUsuarios.getUsuario(jNombreTextField.getText());
+                this.clasificacion = new Clasificacion();
                 jPanelMenu.setVisible(true);
                 jPanelLogin.setVisible(false);
             }
@@ -651,6 +651,7 @@ public class UserInterface extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this,"Contraseña incorrecta","ERROR",JOptionPane.ERROR_MESSAGE);
             else {
                 miUsuario=listaUsuarios.getUsuario(jNombreTextField.getText());
+                this.clasificacion = new Clasificacion();
                 jPanelMenu.setVisible(true);
                 jPanelLogin.setVisible(false);
             }
@@ -679,6 +680,8 @@ public class UserInterface extends javax.swing.JFrame {
     private void jProblemasRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jProblemasRadioActionPerformed
         if (jVictoriasRadio.isSelected())
             jVictoriasRadio.setSelected(false);
+        clasificacion.ordenarNumProblemas();
+        mostrarClasificacion();
     }//GEN-LAST:event_jProblemasRadioActionPerformed
 
     private void jVolverClasificacionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jVolverClasificacionButtonActionPerformed
@@ -743,11 +746,22 @@ public class UserInterface extends javax.swing.JFrame {
     private void jVictoriasRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jVictoriasRadioActionPerformed
         if (jProblemasRadio.isSelected())
             jProblemasRadio.setSelected(false);
+        clasificacion.ordenarPorcentaje();
+        mostrarClasificacion();
     }//GEN-LAST:event_jVictoriasRadioActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
+    private void mostrarClasificacion(){
+        jListaClasificacion.setListData(clasificacionToString());
+    }
+    private String[] clasificacionToString(){
+        String ls[] = new String[clasificacion.getLista().size()+1];
+        ls[0]="Nombre - Problemas intentados - Problemas resueltos - Errores totales - Porcentaje éxito";
+        ArrayList<Usuario> list = new ArrayList<>(clasificacion.getLista());
+        for (int i=0; i<list.size();i++){
+            ls[i+1]=list.get(i).toString();
+        }
+        return ls;
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

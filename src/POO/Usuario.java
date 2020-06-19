@@ -54,12 +54,8 @@ public class Usuario {
         porcentaje_exito = problemas_resueltos / problemas_intentados * 100;
         return porcentaje_exito;
     }
-
-    public void verEstadisticas(Usuario user){
-        System.out.println("USUARIO: "+user.getNombre());
-        System.out.println("Problemas intentados: "+user.getProblemas_intentados());
-        System.out.println("Problemas resueltos: "+user.getProblemas_resueltos());
-        System.out.println("Numero de errores totales: "+user.getErrores());
-        System.out.println("Porcentaje de exito: "+updatePorcentajeExitos());
+    @Override
+    public String toString(){
+        return login+"  "+problemas_intentados+" \t"+problemas_resueltos+" \t"+errores+"\t"+porcentaje_exito;
     }
 } // END USUARIO
