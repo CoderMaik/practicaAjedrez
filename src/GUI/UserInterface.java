@@ -57,6 +57,14 @@ public class UserInterface extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
+        jPanelIO = new javax.swing.JPanel();
+        jVolverIOButton = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jButton4 = new javax.swing.JButton();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Pantalla de acceso");
@@ -350,7 +358,7 @@ public class UserInterface extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("ESTADÍSTICAS DE LOS PROBLEMAS");
+        jLabel6.setText("ESTADÍSTICAS PERSONALES");
 
         jVolverPersonalStatsButton.setText("Volver");
         jVolverPersonalStatsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -442,6 +450,77 @@ public class UserInterface extends javax.swing.JFrame {
                 .addGap(120, 120, 120))
         );
 
+        jVolverIOButton.setText("Volver");
+        jVolverIOButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jVolverIOButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("IMPORTAR / EXPORTAR DATOS BINARIOS");
+
+        jRadioButton1.setText("Importar");
+
+        jRadioButton2.setText("Exportar");
+
+        jButton4.setText("Hecho");
+
+        jTextField2.setText("Introduzca la ruta...");
+
+        jLabel9.setText("Ruta:");
+
+        javax.swing.GroupLayout jPanelIOLayout = new javax.swing.GroupLayout(jPanelIO);
+        jPanelIO.setLayout(jPanelIOLayout);
+        jPanelIOLayout.setHorizontalGroup(
+            jPanelIOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelIOLayout.createSequentialGroup()
+                .addGroup(jPanelIOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelIOLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jVolverIOButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE))
+                    .addGroup(jPanelIOLayout.createSequentialGroup()
+                        .addGroup(jPanelIOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelIOLayout.createSequentialGroup()
+                                .addGap(97, 97, 97)
+                                .addGroup(jPanelIOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanelIOLayout.createSequentialGroup()
+                                        .addComponent(jRadioButton2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jRadioButton1))
+                                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanelIOLayout.createSequentialGroup()
+                                .addGap(57, 57, 57)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(jPanelIOLayout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(jLabel9)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanelIOLayout.setVerticalGroup(
+            jPanelIOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelIOLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelIOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jVolverIOButton, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE))
+                .addGap(59, 59, 59)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanelIOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton2)
+                    .addComponent(jRadioButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4)
+                .addContainerGap(83, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -477,6 +556,11 @@ public class UserInterface extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jPanelSubirProblema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanelIO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -510,6 +594,11 @@ public class UserInterface extends javax.swing.JFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jPanelSubirProblema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanelIO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
@@ -548,7 +637,8 @@ public class UserInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_jAccederButtonActionPerformed
 
     private void ioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ioButtonActionPerformed
-        // TODO add your handling code here:
+        jPanelLogin.setVisible(false);
+        jPanelIO.setVisible(true);
     }//GEN-LAST:event_ioButtonActionPerformed
 
     private void jMenuCerrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCerrarButtonActionPerformed
@@ -613,6 +703,11 @@ public class UserInterface extends javax.swing.JFrame {
         jPanelSubirProblema.setVisible(true);
     }//GEN-LAST:event_jMenuSubirProblemaButtonActionPerformed
 
+    private void jVolverIOButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jVolverIOButtonActionPerformed
+        jPanelLogin.setVisible(true);
+        jPanelIO.setVisible(false);
+    }//GEN-LAST:event_jVolverIOButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -653,6 +748,7 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JButton jAccederButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -660,6 +756,8 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jListaClasificacion;
     private javax.swing.JList<String> jListaClasificacion1;
     private javax.swing.JList<String> jListaClasificacion2;
@@ -672,6 +770,7 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JButton jMenuSubirProblemaButton;
     private javax.swing.JTextField jNombreTextField;
     private javax.swing.JPanel jPanelClasificacion;
+    private javax.swing.JPanel jPanelIO;
     private javax.swing.JPanel jPanelLogin;
     private javax.swing.JPanel jPanelMenu;
     private javax.swing.JPanel jPanelPersonalStats;
@@ -680,6 +779,8 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelSubirProblema;
     private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JRadioButton jProblemasRadio;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioLogin;
     private javax.swing.JRadioButton jRadioRegistro;
     private javax.swing.JScrollPane jScrollPane1;
@@ -687,8 +788,10 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JRadioButton jVictoriasRadio;
     private javax.swing.JButton jVolverClasificacionButton;
+    private javax.swing.JButton jVolverIOButton;
     private javax.swing.JButton jVolverPersonalStatsButton;
     private javax.swing.JButton jVolverStatsButton;
     private javax.swing.JButton jVolverStatsButton1;
