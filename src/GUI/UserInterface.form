@@ -463,6 +463,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Ordenar por porcentaje de victorias"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jVictoriasRadioActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -634,7 +637,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="jButton1" min="-2" pref="71" max="-2" attributes="0"/>
+                          <Component id="jVolverSubirProblemaButton" min="-2" pref="71" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jLabel7" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -647,7 +650,7 @@
                                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jButton2" min="-2" pref="80" max="-2" attributes="0"/>
+                                  <Component id="jSubirButton" min="-2" pref="80" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="155" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -661,13 +664,13 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jButton1" pref="54" max="32767" attributes="0"/>
+                      <Component id="jVolverSubirProblemaButton" pref="54" max="32767" attributes="0"/>
                       <Component id="jLabel7" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="86" max="32767" attributes="0"/>
                   <Component id="jTextField1" min="-2" pref="48" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                  <Component id="jSubirButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -681,15 +684,15 @@
             <Property name="horizontalTextPosition" type="int" value="0"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="jVolverSubirProblemaButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Volver"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jVolverSubirProblemaButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="jSubirButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Subir"/>
           </Properties>
@@ -723,16 +726,16 @@
                                   <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jRadioButton2" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jExportRadio" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jRadioButton1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jImportRadio" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="jButton4" min="-2" pref="176" max="-2" attributes="0"/>
+                                      <Component id="jIOButton" min="-2" pref="176" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                                  <Component id="jTextField2" min="-2" pref="250" max="-2" attributes="0"/>
+                                  <Component id="jIOTextField" min="-2" pref="250" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -758,14 +761,14 @@
                   <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                   <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTextField2" min="-2" max="-2" attributes="0"/>
+                  <Component id="jIOTextField" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jRadioButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jRadioButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jExportRadio" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jImportRadio" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButton4" min="-2" max="-2" attributes="0"/>
+                  <Component id="jIOButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="83" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -786,22 +789,28 @@
             <Property name="text" type="java.lang.String" value="IMPORTAR / EXPORTAR DATOS BINARIOS"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="jRadioButton1">
+        <Component class="javax.swing.JRadioButton" name="jImportRadio">
           <Properties>
             <Property name="text" type="java.lang.String" value="Importar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jImportRadioActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="jRadioButton2">
+        <Component class="javax.swing.JRadioButton" name="jExportRadio">
           <Properties>
             <Property name="text" type="java.lang.String" value="Exportar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jExportRadioActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton4">
+        <Component class="javax.swing.JButton" name="jIOButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Hecho"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField2">
+        <Component class="javax.swing.JTextField" name="jIOTextField">
           <Properties>
             <Property name="text" type="java.lang.String" value="Introduzca la ruta..."/>
           </Properties>
