@@ -640,7 +640,7 @@
                           <EmptySpace min="0" pref="35" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jTextField1" min="-2" pref="301" max="-2" attributes="0"/>
+                                  <Component id="jRutaProblemaTextField" min="-2" pref="301" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
@@ -662,7 +662,7 @@
                       <Component id="jLabel7" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="86" max="32767" attributes="0"/>
-                  <Component id="jTextField1" min="-2" pref="48" max="-2" attributes="0"/>
+                  <Component id="jRutaProblemaTextField" min="-2" pref="48" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jSubirButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
@@ -690,13 +690,16 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Subir"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jSubirButtonActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="jRutaProblemaTextField">
           <Properties>
             <Property name="text" type="java.lang.String" value="Escribir ruta del problema...."/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRutaProblemaTextFieldActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

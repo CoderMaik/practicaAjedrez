@@ -2,6 +2,7 @@
 package GUI;
 
 import POO.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -65,7 +66,7 @@ public class UserInterface extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jVolverSubirProblemaButton = new javax.swing.JButton();
         jSubirButton = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        jRutaProblemaTextField = new javax.swing.JTextField();
         jPanelIO = new javax.swing.JPanel();
         jVolverIOButton = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
@@ -415,11 +416,16 @@ public class UserInterface extends javax.swing.JFrame {
         });
 
         jSubirButton.setText("Subir");
-
-        jTextField1.setText("Escribir ruta del problema....");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jSubirButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jSubirButtonActionPerformed(evt);
+            }
+        });
+
+        jRutaProblemaTextField.setText("Escribir ruta del problema....");
+        jRutaProblemaTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRutaProblemaTextFieldActionPerformed(evt);
             }
         });
 
@@ -439,7 +445,7 @@ public class UserInterface extends javax.swing.JFrame {
                         .addGap(0, 35, Short.MAX_VALUE)
                         .addGroup(jPanelSubirProblemaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSubirProblemaLayout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jRutaProblemaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(32, 32, 32))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSubirProblemaLayout.createSequentialGroup()
                                 .addComponent(jSubirButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -453,7 +459,7 @@ public class UserInterface extends javax.swing.JFrame {
                     .addComponent(jVolverSubirProblemaButton, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jRutaProblemaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jSubirButton)
                 .addGap(120, 120, 120))
@@ -719,9 +725,9 @@ public class UserInterface extends javax.swing.JFrame {
         jPanelSubirProblema.setVisible(false);
     }//GEN-LAST:event_jVolverSubirProblemaButtonActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jRutaProblemaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRutaProblemaTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jRutaProblemaTextFieldActionPerformed
 
     private void jMenuSubirProblemaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSubirProblemaButtonActionPerformed
         jPanelMenu.setVisible(false);
@@ -749,6 +755,12 @@ public class UserInterface extends javax.swing.JFrame {
         clasificacion.ordenarPorcentaje();
         mostrarClasificacion();
     }//GEN-LAST:event_jVictoriasRadioActionPerformed
+
+    private void jSubirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSubirButtonActionPerformed
+        listaProblemas.addProblema(new Problema(new File(jRutaProblemaTextField.getText())));
+        JOptionPane.showMessageDialog(this,"YUPI PROBLEMA AÑADIDO","CHUPICHUPI",JOptionPane.INFORMATION_MESSAGE);
+        jRutaProblemaTextField.setText("");
+    }//GEN-LAST:event_jSubirButtonActionPerformed
     private void mostrarClasificacion(){
         jListaClasificacion.setListData(clasificacionToString());
     }
@@ -833,12 +845,12 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JRadioButton jProblemasRadio;
     private javax.swing.JRadioButton jRadioLogin;
     private javax.swing.JRadioButton jRadioRegistro;
+    private javax.swing.JTextField jRutaProblemaTextField;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton jSubirButton;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JRadioButton jVictoriasRadio;
     private javax.swing.JButton jVolverClasificacionButton;
     private javax.swing.JButton jVolverIOButton;
