@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 public class UserInterface extends javax.swing.JFrame {
     private AlmacenLogin listaUsuarios;
     private AlmacenProblemas listaProblemas;
+    private Usuario miUsuario;
    
     public UserInterface() {
         initComponents();
@@ -14,6 +15,9 @@ public class UserInterface extends javax.swing.JFrame {
         listaProblemas = new AlmacenProblemas();
         jPanelMenu.setVisible(false);
         jPanelClasificacion.setVisible(false);
+        jPanelPersonalStats.setVisible(false);
+        jPanelIO.setVisible(false);
+        jPanelSubirProblema.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -636,6 +640,7 @@ public class UserInterface extends javax.swing.JFrame {
             if(!(listaUsuarios.anadirUsuario(new Usuario(jNombreTextField.getText(),jPasswordField.getPassword().toString()))))
                 JOptionPane.showMessageDialog(this,"Ya existe una cuenta con ese nombre","ERROR",JOptionPane.ERROR_MESSAGE);
             else {
+                miUsuario=listaUsuarios.getUsuario(jNombreTextField.getText());
                 jPanelMenu.setVisible(true);
                 jPanelLogin.setVisible(false);
             }
@@ -644,9 +649,11 @@ public class UserInterface extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this,"No existe cuenta con ese nombre","ERROR",JOptionPane.ERROR_MESSAGE);
             else if (!(listaUsuarios.getUsuario(jNombreTextField.getText()).getPwd().equals(jPasswordField.getPassword().toString())))
                 JOptionPane.showMessageDialog(this,"Contraseña incorrecta","ERROR",JOptionPane.ERROR_MESSAGE);
-            else 
+            else {
+                miUsuario=listaUsuarios.getUsuario(jNombreTextField.getText());
                 jPanelMenu.setVisible(true);
                 jPanelLogin.setVisible(false);
+            }
         }
     }//GEN-LAST:event_jAccederButtonActionPerformed
 
