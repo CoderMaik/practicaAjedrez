@@ -9,7 +9,6 @@ public class Usuario {
     private int problemas_resueltos;
     private int errores;
     private int porcentaje_exito;
-    private ArrayList<Usuario> listaPersonalStats;
 
     public Usuario (String nombre, String password){
         this.login=nombre;
@@ -56,10 +55,6 @@ public class Usuario {
     private int updatePorcentajeExitos(){
         porcentaje_exito = problemas_resueltos / problemas_intentados * 100;
         return porcentaje_exito;
-    }
-    
-    public ArrayList<Usuario> getLista(){
-        return listaPersonalStats;
     }
     
     @Override

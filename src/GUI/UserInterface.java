@@ -869,12 +869,13 @@ public class UserInterface extends javax.swing.JFrame {
     }
     
     private String[] estadisticasToString(){
-        String personalStats [] = new String[miUsuario.getLista().size()+1];
+        String personalStats [] = new String[6]; //Tamaño fijo : atributos + 1
         personalStats[0]="Nombre - Problemas intentados - Problemas resueltos - Errores totales - Porcentaje éxito";
-        ArrayList<Usuario> list = new ArrayList<>(miUsuario.getLista());
-        for (int i=0; i<list.size();i++){
-            personalStats[i+1]=list.get(i).toString();
-        }
+        personalStats[1]= miUsuario.getNombre();
+        personalStats[2]= (String.valueOf(miUsuario.getProblemas_intentados()));
+        personalStats[3]= (String.valueOf(miUsuario.getProblemas_resueltos()));
+        personalStats[4]= (String.valueOf(miUsuario.getErrores()));
+        personalStats[5]= (String.valueOf(miUsuario.getPorcentaje_exito()));
         return personalStats;
     }
     
