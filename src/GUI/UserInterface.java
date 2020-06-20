@@ -573,6 +573,11 @@ public class UserInterface extends javax.swing.JFrame {
         jLabel10.setText("Introduzca la solución correcta:");
 
         jComprobarButton.setText("Comprobar");
+        jComprobarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComprobarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelPartidaLayout = new javax.swing.GroupLayout(jPanelPartida);
         jPanelPartida.setLayout(jPanelPartidaLayout);
@@ -597,11 +602,11 @@ public class UserInterface extends javax.swing.JFrame {
             jPanelPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPartidaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jVueltaPartidaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelPartidaLayout.createSequentialGroup()
+                .addGroup(jPanelPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPartidaLayout.createSequentialGroup()
                         .addGap(8, 8, 8)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jVueltaPartidaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
@@ -847,10 +852,29 @@ public class UserInterface extends javax.swing.JFrame {
 
     private void jMenuJugarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuJugarButtonActionPerformed
         jPanelMenu.setVisible(false);
-        problemaActivo = listaProblemas.problemAleatorio();//Elegir problema aleatorio y cargarlo
+        try{
+            problemaActivo = listaProblemas.problemAleatorio(miUsuario);//Elegir problema aleatorio y cargarlo
+            miUsuario.problemaIntentado(problemaActivo);
+            jPanelPartida.setVisible(true);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this,e.getMessage(),"LO SENTIMOS",JOptionPane.WARNING_MESSAGE);
+            jPanelMenu.setVisible(true);
+        }
         //FALTA MOSTRAR EL TABLERO EN EL jProblemaTextArea con jProblemaTextArea.setText(tablero.toString())
-        jPanelPartida.setVisible(true);
     }//GEN-LAST:event_jMenuJugarButtonActionPerformed
+
+    private void jComprobarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComprobarButtonActionPerformed
+        if(problemaActivo.checkSol(jSolTextField.getText())){
+            JOptionPane.showMessageDialog(this,"SOLUCION CORRECTA","FELICIDADES",JOptionPane.INFORMATION_MESSAGE);
+            miUsuario.problemaResuelto(problemaActivo);
+            jPanelMenu.setVisible(true);
+            jPanelPartida.setVisible(false);
+        }else{
+            JOptionPane.showMessageDialog(this,"SOLUCION INCORRECTA","INTENTELO DE NUEVO",JOptionPane.WARNING_MESSAGE);
+            miUsuario.problemaFallido();
+            jSolTextField.setText("");
+        }           
+    }//GEN-LAST:event_jComprobarButtonActionPerformed
     private void mostrarClasificacion(){
         jListaClasificacion.setListData(clasificacionToString());
     }

@@ -92,6 +92,9 @@ public class Problema {
             System.out.println(ioEx.getMessage());
         }
     }
+    public boolean checkSol(String s){
+        return (s.equals(this.jugada_ganadora));
+    }
 
     public int getResuelto_por() {
         return resuelto_por;
