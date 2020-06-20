@@ -157,17 +157,17 @@ public class UserInterface extends javax.swing.JFrame {
             jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLoginLayout.createSequentialGroup()
                 .addGap(84, 84, 84)
-                .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jNombreTextField)
+                .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelLoginLayout.createSequentialGroup()
                         .addGap(8, 8, 8)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jNombreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPasswordField)
+                .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelLoginLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -359,11 +359,6 @@ public class UserInterface extends javax.swing.JFrame {
                 .addContainerGap(58, Short.MAX_VALUE))
         );
 
-        jListaClasificacion3.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane4.setViewportView(jListaClasificacion3);
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -442,7 +437,7 @@ public class UserInterface extends javax.swing.JFrame {
                         .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSubirProblemaLayout.createSequentialGroup()
-                        .addGap(0, 35, Short.MAX_VALUE)
+                        .addGap(0, 31, Short.MAX_VALUE)
                         .addGroup(jPanelSubirProblemaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSubirProblemaLayout.createSequentialGroup()
                                 .addComponent(jRutaProblemaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -458,7 +453,7 @@ public class UserInterface extends javax.swing.JFrame {
                 .addGroup(jPanelSubirProblemaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jVolverSubirProblemaButton, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addComponent(jRutaProblemaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jSubirButton)
@@ -718,6 +713,7 @@ public class UserInterface extends javax.swing.JFrame {
     private void jMenuPersonalStatsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuPersonalStatsButtonActionPerformed
         jPanelMenu.setVisible(false);
         jPanelPersonalStats.setVisible(true);
+        mostrarEstadisticas();
     }//GEN-LAST:event_jMenuPersonalStatsButtonActionPerformed
 
     private void jVolverSubirProblemaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jVolverSubirProblemaButtonActionPerformed
@@ -774,6 +770,20 @@ public class UserInterface extends javax.swing.JFrame {
         return ls;
     }
     
+    private void mostrarEstadisticas(){
+        jListaClasificacion3.setListData(estadisticasToString());
+    }
+    
+    private String[] estadisticasToString(){
+        String personalStats [] = new String[miUsuario.getLista().size()+1];
+        personalStats[0]="Nombre - Problemas intentados - Problemas resueltos - Errores totales - Porcentaje éxito";
+        ArrayList<Usuario> list = new ArrayList<>(miUsuario.getLista());
+        for (int i=0; i<list.size();i++){
+            personalStats[i+1]=list.get(i).toString();
+        }
+        return personalStats;
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -817,14 +827,12 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jListaClasificacion;
     private javax.swing.JList<String> jListaClasificacion1;
-    private javax.swing.JList<String> jListaClasificacion2;
     private javax.swing.JList<String> jListaClasificacion3;
     private javax.swing.JButton jMenuCerrarButton;
     private javax.swing.JButton jMenuClasificacionButton;
@@ -839,7 +847,6 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelMenu;
     private javax.swing.JPanel jPanelPersonalStats;
     private javax.swing.JPanel jPanelStats;
-    private javax.swing.JPanel jPanelStats1;
     private javax.swing.JPanel jPanelSubirProblema;
     private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JRadioButton jProblemasRadio;
@@ -848,7 +855,6 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JTextField jRutaProblemaTextField;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton jSubirButton;
     private javax.swing.JRadioButton jVictoriasRadio;
@@ -856,7 +862,6 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JButton jVolverIOButton;
     private javax.swing.JButton jVolverPersonalStatsButton;
     private javax.swing.JButton jVolverStatsButton;
-    private javax.swing.JButton jVolverStatsButton1;
     private javax.swing.JButton jVolverSubirProblemaButton;
     // End of variables declaration//GEN-END:variables
 }

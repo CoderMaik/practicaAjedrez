@@ -1,5 +1,7 @@
 package POO;
 
+import java.util.ArrayList;
+
 public class Usuario {
     private String login;
     private String pwd;
@@ -7,6 +9,7 @@ public class Usuario {
     private int problemas_resueltos;
     private int errores;
     private int porcentaje_exito;
+    private ArrayList<Usuario> listaPersonalStats;
 
     public Usuario (String nombre, String password){
         this.login=nombre;
@@ -54,6 +57,11 @@ public class Usuario {
         porcentaje_exito = problemas_resueltos / problemas_intentados * 100;
         return porcentaje_exito;
     }
+    
+    public ArrayList<Usuario> getLista(){
+        return listaPersonalStats;
+    }
+    
     @Override
     public String toString(){
         return login+"  "+problemas_intentados+" \t"+problemas_resueltos+" \t"+errores+"\t"+porcentaje_exito;
