@@ -4,8 +4,6 @@ package GUI;
 import POO.*;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 import javax.swing.JOptionPane;
 
 public class UserInterface extends javax.swing.JFrame {
@@ -13,6 +11,7 @@ public class UserInterface extends javax.swing.JFrame {
     private AlmacenProblemas listaProblemas;
     private Clasificacion clasificacion;
     private Usuario miUsuario;
+    private Problema problemaActivo;
    
     public UserInterface() {
         initComponents();
@@ -23,8 +22,8 @@ public class UserInterface extends javax.swing.JFrame {
         jPanelPersonalStats.setVisible(false);
         jPanelIO.setVisible(false);
         jPanelSubirProblema.setVisible(false);
+        jPanelStats.setVisible(false);
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -75,6 +74,14 @@ public class UserInterface extends javax.swing.JFrame {
         jIOButton = new javax.swing.JButton();
         jIOTextField = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        jPanelPartida = new javax.swing.JPanel();
+        jVueltaPartidaButton = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jProblemaTextArea = new javax.swing.JTextArea();
+        jSolTextField = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jComprobarButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Pantalla de acceso");
@@ -215,6 +222,11 @@ public class UserInterface extends javax.swing.JFrame {
         });
 
         jMenuJugarButton.setText("JUGAR");
+        jMenuJugarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuJugarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelMenuLayout = new javax.swing.GroupLayout(jPanelMenu);
         jPanelMenu.setLayout(jPanelMenuLayout);
@@ -541,6 +553,66 @@ public class UserInterface extends javax.swing.JFrame {
                 .addContainerGap(83, Short.MAX_VALUE))
         );
 
+        jVueltaPartidaButton.setText("Volver");
+        jVueltaPartidaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jVueltaPartidaButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("RETO ALEATORIO DE MASTERCHESS");
+
+        jProblemaTextArea.setEditable(false);
+        jProblemaTextArea.setColumns(20);
+        jProblemaTextArea.setRows(5);
+        jScrollPane3.setViewportView(jProblemaTextArea);
+
+        jLabel10.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel10.setText("Introduzca la solución correcta:");
+
+        jComprobarButton.setText("Comprobar");
+
+        javax.swing.GroupLayout jPanelPartidaLayout = new javax.swing.GroupLayout(jPanelPartida);
+        jPanelPartida.setLayout(jPanelPartidaLayout);
+        jPanelPartidaLayout.setHorizontalGroup(
+            jPanelPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelPartidaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jVueltaPartidaButton)
+                .addGap(37, 37, 37)
+                .addGroup(jPanelPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelPartidaLayout.createSequentialGroup()
+                        .addGroup(jPanelPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jSolTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(18, 18, 18)
+                        .addComponent(jComprobarButton)))
+                .addContainerGap(99, Short.MAX_VALUE))
+        );
+        jPanelPartidaLayout.setVerticalGroup(
+            jPanelPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelPartidaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jVueltaPartidaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelPartidaLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jSolTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComprobarButton))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -581,6 +653,11 @@ public class UserInterface extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jPanelIO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanelPartida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -619,6 +696,11 @@ public class UserInterface extends javax.swing.JFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jPanelIO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanelPartida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
@@ -757,6 +839,18 @@ public class UserInterface extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this,"YUPI PROBLEMA AÑADIDO","CHUPICHUPI",JOptionPane.INFORMATION_MESSAGE);
         jRutaProblemaTextField.setText("");
     }//GEN-LAST:event_jSubirButtonActionPerformed
+
+    private void jVueltaPartidaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jVueltaPartidaButtonActionPerformed
+        jPanelMenu.setVisible(true);
+        jPanelPartida.setVisible(false);
+    }//GEN-LAST:event_jVueltaPartidaButtonActionPerformed
+
+    private void jMenuJugarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuJugarButtonActionPerformed
+        jPanelMenu.setVisible(false);
+        problemaActivo = listaProblemas.problemAleatorio();//Elegir problema aleatorio y cargarlo
+        //FALTA MOSTRAR EL TABLERO EN EL jProblemaTextArea con jProblemaTextArea.setText(tablero.toString())
+        jPanelPartida.setVisible(true);
+    }//GEN-LAST:event_jMenuJugarButtonActionPerformed
     private void mostrarClasificacion(){
         jListaClasificacion.setListData(clasificacionToString());
     }
@@ -819,14 +913,17 @@ public class UserInterface extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ioButton;
     private javax.swing.JButton jAccederButton;
+    private javax.swing.JButton jComprobarButton;
     private javax.swing.JRadioButton jExportRadio;
     private javax.swing.JButton jIOButton;
     private javax.swing.JTextField jIOTextField;
     private javax.swing.JRadioButton jImportRadio;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -845,17 +942,21 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelIO;
     private javax.swing.JPanel jPanelLogin;
     private javax.swing.JPanel jPanelMenu;
+    private javax.swing.JPanel jPanelPartida;
     private javax.swing.JPanel jPanelPersonalStats;
     private javax.swing.JPanel jPanelStats;
     private javax.swing.JPanel jPanelSubirProblema;
     private javax.swing.JPasswordField jPasswordField;
+    private javax.swing.JTextArea jProblemaTextArea;
     private javax.swing.JRadioButton jProblemasRadio;
     private javax.swing.JRadioButton jRadioLogin;
     private javax.swing.JRadioButton jRadioRegistro;
     private javax.swing.JTextField jRutaProblemaTextField;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTextField jSolTextField;
     private javax.swing.JButton jSubirButton;
     private javax.swing.JRadioButton jVictoriasRadio;
     private javax.swing.JButton jVolverClasificacionButton;
@@ -863,5 +964,6 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JButton jVolverPersonalStatsButton;
     private javax.swing.JButton jVolverStatsButton;
     private javax.swing.JButton jVolverSubirProblemaButton;
+    private javax.swing.JButton jVueltaPartidaButton;
     // End of variables declaration//GEN-END:variables
 }

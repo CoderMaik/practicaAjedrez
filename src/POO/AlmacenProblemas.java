@@ -1,20 +1,21 @@
 package POO;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.HashSet;
 
 public class AlmacenProblemas implements Serializable {
-    private HashSet<Problema> listaProblemas;
+    private ArrayList<Problema> listaProblemas;
     private Problema [] listadoProblemas; // Para pasar a Array
 
     public AlmacenProblemas(){
-        this.listaProblemas = new HashSet<>();
+        this.listaProblemas = new ArrayList<>();
     }
 
     public boolean existeProblema (Problema p){
         boolean found = false;
-        Iterator<Problema> it = getListaProblemas().iterator();
+        Iterator<Problema> it = listaProblemas.iterator();
         Problema aux;
         while ((!found) && it.hasNext()) {
             aux = it.next();
@@ -23,20 +24,20 @@ public class AlmacenProblemas implements Serializable {
         return found;
     }
 
-    public HashSet<Problema> getListaProblemas() {
+    public ArrayList<Problema> getListaProblemas() {
         return listaProblemas;
     }
 
     public boolean addProblema(Problema p) {
         if (!existeProblema(p))
-            return this.getListaProblemas().add(p);
+            return this.listaProblemas.add(p);
         else
             return false;
     }
 
     public boolean borrarProblema(Problema p) {
         if (!existeProblema(p))
-            return getListaProblemas().remove(p);
+            return listaProblemas.remove(p);
         else
             return false;
     }
@@ -53,14 +54,31 @@ public class AlmacenProblemas implements Serializable {
         throw new RuntimeException("not implemented yet");
     }
 
-    public void estadisticasProblemas(HashSet<Problema> problemas){
-        problemas.toArray(listadoProblemas);
-        int size = listadoProblemas.length;
-        for (int i = 0; i < size; i++ ){
-            System.out.println("LISTADO DE PROBLEMAS: ");
-            System.out.println();
-        }
+    
+    public Problema problemAleatorio (){
+        return listaProblemas.get((int) Math.floor( Math.random()*10+1));
     }
+        /*Lo dejo comentado para saber las soluciones a los problemas pero no sirve
+            case 1:
+                jugada_ganadora = "Td8++";
+            case 2:
+                jugada_ganadora = "Cg6++";
+            case 3:
+                jugada_ganadora = "fxg8=C++";
+            case 4:
+                jugada_ganadora = "f8=D++";
+            case 5:
+                jugada_ganadora = "dxe8=C++";
+            case 6:
+                jugada_ganadora= "Dc6++";
+            case 7:
+                jugada_ganadora = "Cd7++ ";
+            case 8:
+                jugada_ganadora = "Cxe6++";
+            case 9:
+                jugada_ganadora = "h7++";
+            case 10:
+                jugada_ganadora = "TxC7++";*/
     
     // BINARIO
     public void escribeAlmacenProblemas(String n) throws IOException{
