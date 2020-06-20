@@ -54,12 +54,12 @@ public class UserInterface extends javax.swing.JFrame {
         jVictoriasRadio = new javax.swing.JRadioButton();
         jPanelStats = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jListaClasificacion1 = new javax.swing.JList<>();
+        jListaStats = new javax.swing.JList<>();
         jLabel4 = new javax.swing.JLabel();
         jVolverStatsButton = new javax.swing.JButton();
         jPanelPersonalStats = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jListaClasificacion3 = new javax.swing.JList<>();
+        jListaPersonalStats = new javax.swing.JList<>();
         jLabel6 = new javax.swing.JLabel();
         jVolverPersonalStatsButton = new javax.swing.JButton();
         jPanelSubirProblema = new javax.swing.JPanel();
@@ -316,12 +316,12 @@ public class UserInterface extends javax.swing.JFrame {
                 .addGap(42, 42, 42))
         );
 
-        jListaClasificacion1.setModel(new javax.swing.AbstractListModel<String>() {
+        jListaStats.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(jListaClasificacion1);
+        jScrollPane2.setViewportView(jListaStats);
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -359,7 +359,7 @@ public class UserInterface extends javax.swing.JFrame {
                 .addContainerGap(58, Short.MAX_VALUE))
         );
 
-        jScrollPane4.setViewportView(jListaClasificacion3);
+        jScrollPane4.setViewportView(jListaPersonalStats);
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -437,7 +437,7 @@ public class UserInterface extends javax.swing.JFrame {
                         .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSubirProblemaLayout.createSequentialGroup()
-                        .addGap(0, 31, Short.MAX_VALUE)
+                        .addGap(0, 35, Short.MAX_VALUE)
                         .addGroup(jPanelSubirProblemaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSubirProblemaLayout.createSequentialGroup()
                                 .addComponent(jRutaProblemaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -453,7 +453,7 @@ public class UserInterface extends javax.swing.JFrame {
                 .addGroup(jPanelSubirProblemaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jVolverSubirProblemaButton, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addComponent(jRutaProblemaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jSubirButton)
@@ -771,7 +771,7 @@ public class UserInterface extends javax.swing.JFrame {
     }
     
     private void mostrarEstadisticas(){
-        jListaClasificacion3.setListData(estadisticasToString());
+        jListaPersonalStats.setListData(estadisticasToString());
     }
     
     private String[] estadisticasToString(){
@@ -832,8 +832,8 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jListaClasificacion;
-    private javax.swing.JList<String> jListaClasificacion1;
-    private javax.swing.JList<String> jListaClasificacion3;
+    private javax.swing.JList<String> jListaPersonalStats;
+    private javax.swing.JList<String> jListaStats;
     private javax.swing.JButton jMenuCerrarButton;
     private javax.swing.JButton jMenuClasificacionButton;
     private javax.swing.JButton jMenuJugarButton;

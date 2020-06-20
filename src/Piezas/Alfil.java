@@ -6,7 +6,7 @@ public class Alfil extends Pieza {
     private final char simbolo = 'A';
 
     public Alfil() {}
-
+    
     public boolean mover(Casilla origen, Casilla destino) {
         if(!origenValido(origen) || !inValido(destino) || !movValido(origen,destino))
             return false;

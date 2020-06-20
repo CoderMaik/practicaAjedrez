@@ -18,7 +18,6 @@ public class Problema {
     public Problema(File fichero) {
         this.resuelto_por = 0;
         this.porcentaje_exito = 0;
-        fichero = new File("");
         try (BufferedReader br = new BufferedReader(new FileReader(fichero))) {
             int charLeido = br.read();
             tab = new Tablero();

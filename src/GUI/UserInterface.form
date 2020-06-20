@@ -503,7 +503,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JList" name="jListaClasificacion1">
+            <Component class="javax.swing.JList" name="jListaStats">
               <Properties>
                 <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                   <StringArray count="5">
@@ -580,7 +580,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JList" name="jListaClasificacion3">
+            <Component class="javax.swing.JList" name="jListaPersonalStats">
               <Properties>
                 <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                   <StringArray count="0"/>
@@ -631,7 +631,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="31" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="35" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jRutaProblemaTextField" min="-2" pref="301" max="-2" attributes="0"/>
@@ -655,7 +655,7 @@
                       <Component id="jVolverSubirProblemaButton" pref="54" max="32767" attributes="0"/>
                       <Component id="jLabel7" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="90" max="32767" attributes="0"/>
+                  <EmptySpace pref="86" max="32767" attributes="0"/>
                   <Component id="jRutaProblemaTextField" min="-2" pref="48" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jSubirButton" min="-2" max="-2" attributes="0"/>
