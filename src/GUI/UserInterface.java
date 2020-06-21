@@ -12,6 +12,7 @@ public class UserInterface extends javax.swing.JFrame {
     private Clasificacion clasificacion;
     private Usuario miUsuario;
     private Problema problemaActivo;
+    private Tablero tablero;
    
     public UserInterface() {
         initComponents();

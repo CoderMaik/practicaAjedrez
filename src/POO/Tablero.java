@@ -1,5 +1,7 @@
 package POO;
 
+import Piezas.Color;
+
 public class Tablero {
 
     private Casilla[][] mapa;
@@ -66,5 +68,25 @@ public class Tablero {
             default:
                 return 'x';
         }
+    }
+    @Override
+    public String toString(){
+        String tab ="";
+        for (int fila = 0; fila<8; fila++){
+            for (int columna = 0; columna<8; columna++){
+                if (mapa[fila][columna].getContenido() == null){
+                    tab += "V ,";
+                }else {
+                    tab += mapa[fila][columna].getContenido().getLetra();
+                    if (mapa[fila][columna].getContenido().getColor() == Color.BLANCO){
+                        tab += "B ,";
+                    }else{
+                        tab += "N ,";
+                    }
+                }
+            }
+            tab += "/n";
+        }
+        return tab;
     }
 }
