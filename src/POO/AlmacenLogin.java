@@ -70,31 +70,11 @@ public class AlmacenLogin {
             return false;
         }
     }
-    // TEXTO
-    public void AlmacenLoginEnTXT(File fichero) throws IOException {
-        FileWriter fileOut = new FileWriter(fichero);
-        BufferedWriter buffer = new BufferedWriter(fileOut);
-        PrintWriter salida = new PrintWriter(buffer);
-
-        for (Usuario usuario : getListaUsuarios())
-            salida.println(usuario);
-        salida.close();
-    }
-
-    public void leeAlmacenLoginDeTXT(File fichero) throws IOException{
-        FileReader fileIn = new FileReader(fichero);
-        BufferedReader  buffer = new BufferedReader (fileIn);
-        String s="";
-        String texto="";
-        while((s = buffer.readLine()) != null)
-            texto += s + "\n";
-        buffer.close();
-    }
 
     // BINARIO
     public void escribeAlmacenLogin(String n) throws IOException{
-        FileOutputStream fileOut=new FileOutputStream(n);
-        ObjectOutputStream salida=new ObjectOutputStream(fileOut);
+        FileOutputStream fileOut = new FileOutputStream(n);
+        ObjectOutputStream salida = new ObjectOutputStream(fileOut);
         for (Usuario u: getListaUsuarios())
             salida.writeObject(u);
         salida.close();

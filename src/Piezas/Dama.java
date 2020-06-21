@@ -6,6 +6,9 @@ public class Dama extends Pieza {
     private final char simbolo = 'D';
 
     public Dama() {}
+    public char getLetra (){
+        return this.simbolo;
+    }
 
     public boolean mover(Casilla origen, Casilla destino) {
         if(!origenValido(origen) || !inValido(destino) || !movValido(origen,destino))

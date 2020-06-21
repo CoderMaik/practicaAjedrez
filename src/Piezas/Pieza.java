@@ -61,4 +61,5 @@ public abstract class Pieza {
     public Casilla getCas(Casilla casilla) {return cas;}
 
     public void setCas(Casilla cas) {this.cas = cas;}
+    abstract public char getLetra ();
 }
