@@ -19,6 +19,32 @@ public class Usuario {
         this.problemas_resueltos = 0;
         this.errores = 0;
     }
+    public int newError() {
+        return this.errores++;
+    }
+    public void problemaIntentado(Problema p){
+        if(!this.lista_problemas_intentados.contains(p)){
+            this.problemas_intentados++;
+            updatePorcentajeExitos();
+            this.lista_problemas_intentados.add(p);
+        }
+    }
+    public void problemaFallido(){
+        this.errores++;
+    }
+    public void problemaResuelto(Problema p){
+        this.problemas_resueltos++;
+        updatePorcentajeExitos();
+        this.lista_problemas_resueltos.add(p);
+    }
+    private void updatePorcentajeExitos(){
+        porcentaje_exito = problemas_resueltos / problemas_intentados * 100;
+    }
+    
+    @Override
+    public String toString(){
+        return login+"  "+problemas_intentados+" \t"+problemas_resueltos+" \t"+errores+"\t"+porcentaje_exito;
+    }
     //Getters y Setters
     public String getNombre() {
         return login;
@@ -52,31 +78,5 @@ public class Usuario {
     }
     public int getPorcentaje_exito() {
         return this.porcentaje_exito;
-    }
-    public int newError() {
-        return this.errores++;
-    }
-    public void problemaIntentado(Problema p){
-        if(!this.lista_problemas_intentados.contains(p)){
-            this.problemas_intentados++;
-            updatePorcentajeExitos();
-            this.lista_problemas_intentados.add(p);
-        }
-    }
-    public void problemaFallido(){
-        this.errores++;
-    }
-    public void problemaResuelto(Problema p){
-        this.problemas_resueltos++;
-        updatePorcentajeExitos();
-        this.lista_problemas_resueltos.add(p);
-    }
-    private void updatePorcentajeExitos(){
-        porcentaje_exito = problemas_resueltos / problemas_intentados * 100;
-    }
-    
-    @Override
-    public String toString(){
-        return login+"  "+problemas_intentados+" \t"+problemas_resueltos+" \t"+errores+"\t"+porcentaje_exito;
     }
 } // END USUARIO

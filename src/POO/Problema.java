@@ -167,7 +167,7 @@ public class Problema {
                     if (contPiezasT > 32){
                         throw new IOException("Formato incorrecto");
                     }
-                    if(!comrobarSizeTablero(tab)){
+                    if(!comprobarSizeTablero(tab)){
                         throw new IOException("Formato incorrecto");
                     }
                     fila--; //ya termino, fila = -1
@@ -180,7 +180,7 @@ public class Problema {
         }
     }
 
-    public boolean comrobarSizeTablero(Tablero tab){
+    public boolean comprobarSizeTablero(Tablero tab){
         int size = tab.getMapa().length;
         boolean columnas = false;
         for(int i = 0; i < size + 1; i ++ ) {
@@ -190,12 +190,7 @@ public class Problema {
                 return false;
             }
         }
-        if ((tab.getMapa().length == 8) && (columnas = true)) {
-            return  true;
-            }
-        else{
-            return false;
-        }
+        return (tab.getMapa().length == 8) && (columnas = true);
     }
 
     public boolean checkSol(String s){

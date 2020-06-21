@@ -1,8 +1,8 @@
 package POO;
+
 import java.io.*;
 import java.util.HashSet;
 import java.util.Iterator;
-
 
 public class AlmacenLogin {
     private static HashSet<Usuario> listaUsuarios;
@@ -15,9 +15,9 @@ public class AlmacenLogin {
         return listaUsuarios;
     }
 
-    public boolean setListaUsuarios(HashSet<Usuario> listaUsuarios) {
+    public boolean setListaUsuarios(HashSet<Usuario> lista) {
         if (listaUsuarios != null) {
-            this.listaUsuarios = listaUsuarios;
+            listaUsuarios = lista;
             return true;
         } else {
             return false;
@@ -64,11 +64,7 @@ public class AlmacenLogin {
     }
 
     public boolean anadirUsuario(Usuario u) {
-        if (!existeUsuario(u)) {
-            return true;
-        } else {
-            return false;
-        }
+        return !existeUsuario(u);
     }
 
     public void escribeAlmacenLogin(String n) throws IOException{
