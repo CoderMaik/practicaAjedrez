@@ -71,34 +71,21 @@ public class AlmacenLogin {
         }
     }
 
-    // BINARIO
     public void escribeAlmacenLogin(String n) throws IOException{
         FileOutputStream fileOut = new FileOutputStream(n);
         ObjectOutputStream salida = new ObjectOutputStream(fileOut);
-        for (Usuario u: getListaUsuarios())
-            salida.writeObject(u);
+        salida.writeObject(listaUsuarios);
         salida.close();
     }
 
-
-    // SERIALIZAR
-    private boolean leerAlmacenLogin (String nameFile) throws FileNotFoundException,IOException, ClassNotFoundException {
+    public boolean leerAlmacenLogin (String nameFile) throws IOException, ClassNotFoundException {
         try {
             FileInputStream fichero = new FileInputStream(nameFile);
             ObjectInputStream input = new ObjectInputStream(fichero);
-
-            Object aux = null;
-            while ((aux = input.readObject()) != null) {
-                if (aux instanceof Usuario)
-                    this.anadirUsuario((Usuario) aux);
-            }
+            listaUsuarios = (HashSet<Usuario>)input.readObject();
             input.close();
-        } catch (EOFException finFile) {
             return true;
-        } catch (IOException noEncontrado) {
-            return false;
+        } catch (ClassNotFoundException | IOException noEncontrado) { return false;
         }
-        return true;
     }
-
 }

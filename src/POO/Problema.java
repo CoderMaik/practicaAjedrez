@@ -22,6 +22,12 @@ public class Problema {
     public Problema(File fichero) throws IOException {
         this.resuelto_por = 0;
         this.porcentaje_exito = 0;
+        boolean rey_blanco = false;
+        boolean rey_negro = false;
+        int cPeonesBlancos = 0;
+        int cPeonesNegros = 0;
+        int contPiezasT = 0;
+
         try (BufferedReader br = new BufferedReader(new FileReader(fichero))) {
             int charLeido = br.read();
             tab = new Tablero();
@@ -45,6 +51,7 @@ public class Problema {
                             caballo.setCas(tab.getMapa()[fila][columna]);
                             caballo.setTab(tab);
                             caracter = ((char) br.read());
+                            contPiezasT += 1;
                             switch (caracter) {
                                 case 'B':
                                     tab.getMapa()[fila][columna].getContenido().setColor(Color.BLANCO);
@@ -61,12 +68,15 @@ public class Problema {
                             peon.setCas(tab.getMapa()[fila][columna]);
                             peon.setTab(tab);
                             caracter = ((char) br.read());
+                            contPiezasT += 1;
                             switch (caracter) {
                                 case 'B':
                                     tab.getMapa()[fila][columna].getContenido().setColor(Color.BLANCO);
+                                    cPeonesBlancos += 1;
                                     break;
                                 case 'N':
                                     tab.getMapa()[fila][columna].getContenido().setColor(Color.NEGRO);
+                                    cPeonesNegros += 1;
                                     break;
                                 default:
                                     throw new IOException("Formato incorrecto");
@@ -77,6 +87,7 @@ public class Problema {
                             dama.setCas(tab.getMapa()[fila][columna]);
                             dama.setTab(tab);
                             caracter = ((char) br.read());
+                            contPiezasT += 1;
                             switch (caracter) {
                                 case 'B':
                                     tab.getMapa()[fila][columna].getContenido().setColor(Color.BLANCO);
@@ -93,6 +104,7 @@ public class Problema {
                             alfil.setCas(tab.getMapa()[fila][columna]);
                             alfil.setTab(tab);
                             caracter = ((char) br.read());
+                            contPiezasT += 1;
                             switch (caracter) {
                                 case 'B':
                                     tab.getMapa()[fila][columna].getContenido().setColor(Color.BLANCO);
@@ -109,12 +121,15 @@ public class Problema {
                             rey.setCas(tab.getMapa()[fila][columna]);
                             rey.setTab(tab);
                             caracter = ((char) br.read());
+                            contPiezasT += 1;
                             switch (caracter) {
                                 case 'B':
                                     tab.getMapa()[fila][columna].getContenido().setColor(Color.BLANCO);
+                                    rey_blanco = true;
                                     break;
                                 case 'N':
                                     tab.getMapa()[fila][columna].getContenido().setColor(Color.NEGRO);
+                                    rey_negro = true;
                                     break;
                                 default:
                                     throw new IOException("Formato incorrecto");
@@ -125,6 +140,7 @@ public class Problema {
                             torre.setCas(tab.getMapa()[fila][columna]);
                             torre.setTab(tab);
                             caracter = ((char) br.read());
+                            contPiezasT += 1;
                             switch (caracter) {
                                 case 'B':
                                     tab.getMapa()[fila][columna].getContenido().setColor(Color.BLANCO);
@@ -142,6 +158,18 @@ public class Problema {
                 } else {
                     //ULTIMA FILA matches solucion 
                     jugada_ganadora = br.readLine();
+                    if(!rey_blanco && !rey_negro){
+                        throw new IOException("Formato incorrecto");
+                    }
+                    if ((cPeonesBlancos > 8) && (cPeonesNegros > 8)){
+                        throw new IOException("Formato incorrecto");
+                    }
+                    if (contPiezasT > 32){
+                        throw new IOException("Formato incorrecto");
+                    }
+                    if(!comrobarSizeTablero(tab)){
+                        throw new IOException("Formato incorrecto");
+                    }
                     fila--; //ya termino, fila = -1
                 }
             }
@@ -151,6 +179,25 @@ public class Problema {
             System.out.println(ioEx.getMessage());
         }
     }
+
+    public boolean comrobarSizeTablero(Tablero tab){
+        int size = tab.getMapa().length;
+        boolean columnas = false;
+        for(int i = 0; i < size + 1; i ++ ) {
+            if (tab.getMapa()[i].length == 8) {
+                columnas = true;
+            } else {
+                return false;
+            }
+        }
+        if ((tab.getMapa().length == 8) && (columnas = true)) {
+            return  true;
+            }
+        else{
+            return false;
+        }
+    }
+
     public boolean checkSol(String s){
         return (s.equals(this.jugada_ganadora));
     }
