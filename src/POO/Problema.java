@@ -160,10 +160,13 @@ public class Problema {
                     if(!rey_blanco && !rey_negro){
                         throw new IOException("Formato incorrecto");
                     }
-                    if ((cPeonesBlancos> 8) && (cPeonesNegros> 8)){
+                    if ((cPeonesBlancos > 8) && (cPeonesNegros > 8)){
                         throw new IOException("Formato incorrecto");
                     }
                     if (contPiezasT > 32){
+                        throw new IOException("Formato incorrecto");
+                    }
+                    if(!comrobarSizeTablero(tab)){
                         throw new IOException("Formato incorrecto");
                     }
                     fila--; //ya termino, fila = -1
@@ -175,6 +178,26 @@ public class Problema {
             System.out.println(ioEx.getMessage());
         }
     }
+
+    public boolean comrobarSizeTablero(Tablero tab){
+        int size = tab.getMapa().length;
+        boolean columnas = false;
+        boolean valido = false;
+        for(int i = 0; i < size + 1; i ++ ) {
+            if (tab.getMapa()[i].length == 8) {
+                columnas = true;
+            } else {
+                columnas = false;
+            }
+        }
+        if ((tab.getMapa().length == 8) && (columnas = true)) {
+            return  true;
+            }
+        else{
+            return false;
+        }
+    }
+
     public boolean checkSol(String s){
         return (s.equals(this.jugada_ganadora));
     }
