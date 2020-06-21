@@ -5,9 +5,6 @@ import POO.Casilla;
 public class Torre extends Pieza {
     private final char simbolo = 'T';
     public Torre() {}
-    public char getLetra (){
-        return this.simbolo;
-    }
 
     public boolean mover(Casilla origen, Casilla destino) {
         if(!origenValido(origen) || !inValido(destino) || !movValido(origen,destino))
@@ -37,32 +34,6 @@ public class Torre extends Pieza {
     private boolean movValido(Casilla origen, Casilla destino){
         return(!origen.equals(destino) && origen.getCoorX()-destino.getCoorX()==0 || origen.getCoorY()-destino.getCoorY()==0);
     }
-    /*
-    contador columna = 0
-    contador fila = 0
-    contador index = 0
-
-    while(string[index] == null){
-        string[index]
-        if string[index] = V
-
-        else if string[index] = ,
-            if columna = 8
-                columna = 1
-                fila + 1
-            else
-                columna + 1
-        else if string[index] = B / N
-            tablero[fila][columna].setColor( B/N )
-        else
-            new pieza( del tipo string[index])
-            tablero[fila][columna] <- pieza
-        index + 1
-    }
-     */
-
-
-
-
-
+    
+    public char getLetra (){return this.simbolo;}
 }

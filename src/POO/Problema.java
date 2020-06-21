@@ -15,6 +15,11 @@ public class Problema {
     private String jugada_ganadora;
     private Tablero tab;
     
+    public Problema(){
+        this.resuelto_por = 0;
+        this.porcentaje_exito = 0;
+    }
+    
     public Problema(File fichero) {
         this.resuelto_por = 0;
         this.porcentaje_exito = 0;
@@ -94,6 +99,9 @@ public class Problema {
     }
     public boolean checkSol(String s){
         return (s.equals(this.jugada_ganadora));
+    }
+    public Tablero getTablero(){
+        return this.tab;
     }
 
     public int getResuelto_por() {

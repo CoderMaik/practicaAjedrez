@@ -3,11 +3,9 @@ package POO;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.HashSet;
 
 public class AlmacenProblemas implements Serializable {
     private ArrayList<Problema> listaProblemas;
-    private Problema [] listadoProblemas; // Para pasar a Array
 
     public AlmacenProblemas(){
         this.listaProblemas = new ArrayList<>();

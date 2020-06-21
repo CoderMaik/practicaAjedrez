@@ -12,7 +12,6 @@ public class UserInterface extends javax.swing.JFrame {
     private Clasificacion clasificacion;
     private Usuario miUsuario;
     private Problema problemaActivo;
-    private Tablero tablero;
    
     public UserInterface() {
         initComponents();
@@ -856,7 +855,7 @@ public class UserInterface extends javax.swing.JFrame {
         try{
             problemaActivo = listaProblemas.problemAleatorio(miUsuario);//Elegir problema aleatorio y cargarlo
             miUsuario.problemaIntentado(problemaActivo);
-            //FALTA MOSTRAR EL TABLERO EN EL jProblemaTextArea con jProblemaTextArea.setText(tablero.toString())
+            jProblemaTextArea.setText(problemaActivo.getTablero().toString());
             jPanelPartida.setVisible(true);
         }catch(Exception e){
             JOptionPane.showMessageDialog(this,e.getMessage(),"LO SENTIMOS",JOptionPane.WARNING_MESSAGE);
