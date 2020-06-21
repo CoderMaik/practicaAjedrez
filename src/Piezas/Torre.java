@@ -5,6 +5,9 @@ import POO.Casilla;
 public class Torre extends Pieza {
     private final char simbolo = 'T';
     public Torre() {}
+    public char getLetra (){
+        return this.simbolo;
+    }
 
     public boolean mover(Casilla origen, Casilla destino) {
         if(!origenValido(origen) || !inValido(destino) || !movValido(origen,destino))

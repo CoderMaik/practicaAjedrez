@@ -6,6 +6,9 @@ public class Rey extends Pieza {
     private final char simbolo = 'R';
 
     public Rey() {}
+    public char getLetra (){
+        return this.simbolo;
+    }
 
     public boolean mover(Casilla origen, Casilla destino) {
         if (!inValido(destino) || !origenValido(origen) || !movValido(origen,destino) || (!destino.esLibre() && !destino.esComible(this.getOpColor())))

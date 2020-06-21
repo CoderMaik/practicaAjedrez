@@ -6,6 +6,9 @@ public class Peon extends Pieza {
     private final char simbolo = 'P';
 
     public Peon() {}
+    public char getLetra (){
+        return this.simbolo;
+    }
 
     public boolean mover(Casilla origen, Casilla destino) {
         if (!inValido(destino) || !origenValido(origen))
