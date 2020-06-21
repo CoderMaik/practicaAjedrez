@@ -3,6 +3,7 @@ package GUI;
 
 import POO.*;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -74,6 +75,11 @@ public class UserInterface extends javax.swing.JFrame {
         jIOButton = new javax.swing.JButton();
         jIOTextField = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        jExportRadio1 = new javax.swing.JRadioButton();
+        jIOButton1 = new javax.swing.JButton();
+        jIOTextField1 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jImportRadio1 = new javax.swing.JRadioButton();
         jPanelPartida = new javax.swing.JPanel();
         jVueltaPartidaButton = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -497,41 +503,82 @@ public class UserInterface extends javax.swing.JFrame {
         });
 
         jIOButton.setText("Hecho");
+        jIOButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jIOButtonActionPerformed(evt);
+            }
+        });
 
         jIOTextField.setText("Introduzca la ruta...");
+        jIOTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jIOTextFieldActionPerformed(evt);
+            }
+        });
 
-        jLabel9.setText("Ruta:");
+        jLabel9.setText("PROBLEMAS:");
+
+        jExportRadio1.setText("Exportar");
+        jExportRadio1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jExportRadio1ActionPerformed(evt);
+            }
+        });
+
+        jIOButton1.setText("Hecho");
+        jIOButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jIOButton1ActionPerformed(evt);
+            }
+        });
+
+        jIOTextField1.setText("Introduzca la ruta...");
+        jIOTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jIOTextField1ActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setText("USUARIOS:");
+
+        jImportRadio1.setText("Importar");
+        jImportRadio1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jImportRadio1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelIOLayout = new javax.swing.GroupLayout(jPanelIO);
         jPanelIO.setLayout(jPanelIOLayout);
         jPanelIOLayout.setHorizontalGroup(
             jPanelIOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelIOLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanelIOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelIOLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jVolverIOButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE))
+                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanelIOLayout.createSequentialGroup()
                         .addGroup(jPanelIOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(jIOTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanelIOLayout.createSequentialGroup()
-                                .addGap(97, 97, 97)
-                                .addGroup(jPanelIOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanelIOLayout.createSequentialGroup()
-                                        .addComponent(jExportRadio)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jImportRadio))
-                                    .addComponent(jIOButton, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jExportRadio)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jImportRadio))
+                            .addComponent(jIOButton, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanelIOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addComponent(jIOTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanelIOLayout.createSequentialGroup()
-                                .addGap(57, 57, 57)
-                                .addComponent(jIOTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jExportRadio1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jImportRadio1))
+                            .addComponent(jIOButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanelIOLayout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(jLabel9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelIOLayout.setVerticalGroup(
             jPanelIOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -540,17 +587,29 @@ public class UserInterface extends javax.swing.JFrame {
                 .addGroup(jPanelIOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jVolverIOButton, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE))
-                .addGap(59, 59, 59)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jIOTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanelIOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jExportRadio)
-                    .addComponent(jImportRadio))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jIOButton)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addGap(51, 51, 51)
+                .addGroup(jPanelIOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelIOLayout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jIOTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelIOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jExportRadio)
+                            .addComponent(jImportRadio))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jIOButton))
+                    .addGroup(jPanelIOLayout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jIOTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelIOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jExportRadio1)
+                            .addComponent(jImportRadio1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jIOButton1)))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
 
         jVueltaPartidaButton.setText("Volver");
@@ -570,7 +629,7 @@ public class UserInterface extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jProblemaTextArea);
 
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel10.setText("Introduzca la solución correcta:");
+        jLabel10.setText("Introduzca la solución (PGN):");
 
         jComprobarButton.setText("Comprobar");
         jComprobarButton.addActionListener(new java.awt.event.ActionListener() {
@@ -840,8 +899,12 @@ public class UserInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_jVictoriasRadioActionPerformed
 
     private void jSubirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSubirButtonActionPerformed
-        listaProblemas.addProblema(new Problema(new File(jRutaProblemaTextField.getText())));
-        JOptionPane.showMessageDialog(this,"YUPI PROBLEMA AÑADIDO","CHUPICHUPI",JOptionPane.INFORMATION_MESSAGE);
+        try{
+            listaProblemas.addProblema(new Problema(new File(jRutaProblemaTextField.getText())));
+            JOptionPane.showMessageDialog(this,"YUPI PROBLEMA AÑADIDO","CHUPICHUPI",JOptionPane.INFORMATION_MESSAGE);
+        }catch(IOException e){
+            JOptionPane.showMessageDialog(this,e.getMessage(),"ERROR DE CARGA",JOptionPane.ERROR_MESSAGE);
+        }
         jRutaProblemaTextField.setText("");
     }//GEN-LAST:event_jSubirButtonActionPerformed
 
@@ -875,6 +938,45 @@ public class UserInterface extends javax.swing.JFrame {
             jSolTextField.setText("");
         }           
     }//GEN-LAST:event_jComprobarButtonActionPerformed
+
+    private void jIOTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jIOTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jIOTextFieldActionPerformed
+
+    private void jIOButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jIOButtonActionPerformed
+        if (jImportRadio.isSelected()){
+            try{
+                listaProblemas.leerAlmacenProblemas(jIOTextField.getText());
+            }catch(IOException i){
+                JOptionPane.showMessageDialog(this,"Error de lectura: "+i.getMessage(),"UPS...",JOptionPane.ERROR_MESSAGE);
+            }catch(ClassNotFoundException c){
+                JOptionPane.showMessageDialog(this,"Error de lectura: "+c.getMessage(),"UPS...",JOptionPane.ERROR_MESSAGE);
+            }
+        }else if(jExportRadio.isSelected()){
+            try{
+                listaProblemas.escribeAlmacenProblemas(jIOTextField.getText());
+            }catch(IOException i){
+                JOptionPane.showMessageDialog(this,"Error de escritura: "+i.getMessage(),"UPS...",JOptionPane.ERROR_MESSAGE);
+            }
+        }else
+            JOptionPane.showMessageDialog(this,"Seleccione una opción","UPS...",JOptionPane.WARNING_MESSAGE);
+    }//GEN-LAST:event_jIOButtonActionPerformed
+
+    private void jExportRadio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExportRadio1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jExportRadio1ActionPerformed
+
+    private void jIOButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jIOButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jIOButton1ActionPerformed
+
+    private void jIOTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jIOTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jIOTextField1ActionPerformed
+
+    private void jImportRadio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jImportRadio1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jImportRadio1ActionPerformed
     private void mostrarClasificacion(){
         jListaClasificacion.setListData(clasificacionToString());
     }
@@ -940,11 +1042,16 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JButton jAccederButton;
     private javax.swing.JButton jComprobarButton;
     private javax.swing.JRadioButton jExportRadio;
+    private javax.swing.JRadioButton jExportRadio1;
     private javax.swing.JButton jIOButton;
+    private javax.swing.JButton jIOButton1;
     private javax.swing.JTextField jIOTextField;
+    private javax.swing.JTextField jIOTextField1;
     private javax.swing.JRadioButton jImportRadio;
+    private javax.swing.JRadioButton jImportRadio1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

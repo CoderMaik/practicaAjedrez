@@ -72,7 +72,7 @@ public class Tablero {
     @Override
     public String toString(){
         String tab ="";
-        for (int fila = 0; fila<8; fila++){
+        for (int fila = 8; fila>0; fila--){
             for (int columna = 0; columna<8; columna++){
                 if (mapa[fila][columna].getContenido() == null){
                     tab += "V ,";

@@ -1,8 +1,7 @@
 package POO;
 
 import Piezas.Caballo;
-import Piezas.Color;
-import Piezas.Pieza;
+import Piezas.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -20,7 +19,7 @@ public class Problema {
         this.porcentaje_exito = 0;
     }
     
-    public Problema(File fichero) {
+    public Problema(File fichero) throws IOException {
         this.resuelto_por = 0;
         this.porcentaje_exito = 0;
         try (BufferedReader br = new BufferedReader(new FileReader(fichero))) {
@@ -40,48 +39,102 @@ public class Problema {
                                 fila--;
                             } else 
                                 columna++;
-                        case 'B':
-                            tab.getMapa()[fila][columna].getContenido().setColor(Color.BLANCO);
-                            break;
-                        case 'N':
-                            tab.getMapa()[fila][columna].getContenido().setColor(Color.NEGRO);
-                            break;
                         case 'C':
                             Pieza caballo = new Caballo();
                             tab.getMapa()[fila][columna].addPieza(caballo);
                             caballo.setCas(tab.getMapa()[fila][columna]);
                             caballo.setTab(tab);
-                            break;
+                            caracter = ((char) br.read());
+                            switch (caracter) {
+                                case 'B':
+                                    tab.getMapa()[fila][columna].getContenido().setColor(Color.BLANCO);
+                                    break;
+                                case 'N':
+                                    tab.getMapa()[fila][columna].getContenido().setColor(Color.NEGRO);
+                                    break;
+                                default:
+                                    throw new IOException("Formato incorrecto");
+                            }break;
                         case 'P':
-                            Pieza peon = new Caballo();
+                            Pieza peon = new Peon();
                             tab.getMapa()[fila][columna].addPieza(peon);
                             peon.setCas(tab.getMapa()[fila][columna]);
                             peon.setTab(tab);
-                            break;
+                            caracter = ((char) br.read());
+                            switch (caracter) {
+                                case 'B':
+                                    tab.getMapa()[fila][columna].getContenido().setColor(Color.BLANCO);
+                                    break;
+                                case 'N':
+                                    tab.getMapa()[fila][columna].getContenido().setColor(Color.NEGRO);
+                                    break;
+                                default:
+                                    throw new IOException("Formato incorrecto");
+                            }break;
                         case 'D':
-                            Pieza dama = new Caballo();
+                            Pieza dama = new Dama();
                             tab.getMapa()[fila][columna].addPieza(dama);
                             dama.setCas(tab.getMapa()[fila][columna]);
                             dama.setTab(tab);
-                            break;
+                            caracter = ((char) br.read());
+                            switch (caracter) {
+                                case 'B':
+                                    tab.getMapa()[fila][columna].getContenido().setColor(Color.BLANCO);
+                                    break;
+                                case 'N':
+                                    tab.getMapa()[fila][columna].getContenido().setColor(Color.NEGRO);
+                                    break;
+                                default:
+                                    throw new IOException("Formato incorrecto");
+                            }break;
                         case 'A':
-                            Pieza alfil = new Caballo();
+                            Pieza alfil = new Alfil();
                             tab.getMapa()[fila][columna].addPieza(alfil);
                             alfil.setCas(tab.getMapa()[fila][columna]);
                             alfil.setTab(tab);
-                            break;
+                            caracter = ((char) br.read());
+                            switch (caracter) {
+                                case 'B':
+                                    tab.getMapa()[fila][columna].getContenido().setColor(Color.BLANCO);
+                                    break;
+                                case 'N':
+                                    tab.getMapa()[fila][columna].getContenido().setColor(Color.NEGRO);
+                                    break;
+                                default:
+                                    throw new IOException("Formato incorrecto");
+                            }break;
                         case 'R':
-                            Pieza rey = new Caballo();
+                            Pieza rey = new Rey();
                             tab.getMapa()[fila][columna].addPieza(rey);
                             rey.setCas(tab.getMapa()[fila][columna]);
                             rey.setTab(tab);
-                            break;
+                            caracter = ((char) br.read());
+                            switch (caracter) {
+                                case 'B':
+                                    tab.getMapa()[fila][columna].getContenido().setColor(Color.BLANCO);
+                                    break;
+                                case 'N':
+                                    tab.getMapa()[fila][columna].getContenido().setColor(Color.NEGRO);
+                                    break;
+                                default:
+                                    throw new IOException("Formato incorrecto");
+                            }break;
                         case 'T':
-                            Pieza torre = new Caballo();
+                            Pieza torre = new Torre();
                             tab.getMapa()[fila][columna].addPieza(torre);
                             torre.setCas(tab.getMapa()[fila][columna]);
                             torre.setTab(tab);
-                            break;
+                            caracter = ((char) br.read());
+                            switch (caracter) {
+                                case 'B':
+                                    tab.getMapa()[fila][columna].getContenido().setColor(Color.BLANCO);
+                                    break;
+                                case 'N':
+                                    tab.getMapa()[fila][columna].getContenido().setColor(Color.NEGRO);
+                                    break;
+                                default:
+                                    throw new IOException("Formato incorrecto");
+                            }break;
                         default:
                             throw new IOException("Error al leer contenido");
                     }
@@ -127,5 +180,15 @@ public class Problema {
     public void setJugada_ganadora(String jugada_ganadora) {
         this.jugada_ganadora = jugada_ganadora;
     }
-
+    
+    private boolean checkJaqueMate(String s){
+        throw new RuntimeException("nbot implemented yet");
+    }
+/*Formato PGN
+    Letra de pieza
+    Columna(solo aparece si hay varias piezas que puedan mover ahí)
+    x (aparece solo si se come una pieza)
+    Casilla destino
+    ++ (jaquemate)
+    */
 }
