@@ -855,12 +855,12 @@ public class UserInterface extends javax.swing.JFrame {
         try{
             problemaActivo = listaProblemas.problemAleatorio(miUsuario);//Elegir problema aleatorio y cargarlo
             miUsuario.problemaIntentado(problemaActivo);
+            //FALTA MOSTRAR EL TABLERO EN EL jProblemaTextArea con jProblemaTextArea.setText(tablero.toString())
             jPanelPartida.setVisible(true);
         }catch(Exception e){
             JOptionPane.showMessageDialog(this,e.getMessage(),"LO SENTIMOS",JOptionPane.WARNING_MESSAGE);
             jPanelMenu.setVisible(true);
-        }
-        //FALTA MOSTRAR EL TABLERO EN EL jProblemaTextArea con jProblemaTextArea.setText(tablero.toString())
+        }      
     }//GEN-LAST:event_jMenuJugarButtonActionPerformed
 
     private void jComprobarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComprobarButtonActionPerformed
