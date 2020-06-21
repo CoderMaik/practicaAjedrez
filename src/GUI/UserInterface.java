@@ -947,10 +947,8 @@ public class UserInterface extends javax.swing.JFrame {
         if (jImportRadio.isSelected()){
             try{
                 listaProblemas.leerAlmacenProblemas(jIOTextField.getText());
-            }catch(IOException i){
+            }catch(IOException | ClassNotFoundException i){
                 JOptionPane.showMessageDialog(this,"Error de lectura: "+i.getMessage(),"UPS...",JOptionPane.ERROR_MESSAGE);
-            }catch(ClassNotFoundException c){
-                JOptionPane.showMessageDialog(this,"Error de lectura: "+c.getMessage(),"UPS...",JOptionPane.ERROR_MESSAGE);
             }
         }else if(jExportRadio.isSelected()){
             try{

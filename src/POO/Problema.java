@@ -26,7 +26,7 @@ public class Problema {
             int charLeido = br.read();
             tab = new Tablero();
             int columna = 0;
-            int fila = 8;
+            int fila = 7;
             while (charLeido != -1 || fila>=0) {
                 char caracter = ((char) charLeido);
                 if (fila != 0) {
@@ -35,7 +35,7 @@ public class Problema {
                             tab.getMapa()[fila][columna] = null; // no metemos pieza
                         case ',':
                             if (columna == 8) {
-                                columna = 1;
+                                columna = 0;
                                 fila--;
                             } else 
                                 columna++;
@@ -140,6 +140,7 @@ public class Problema {
                     }
                     charLeido = br.read();
                 } else {
+                    //ULTIMA FILA matches solucion 
                     jugada_ganadora = br.readLine();
                     fila--; //ya termino, fila = -1
                 }
@@ -181,8 +182,91 @@ public class Problema {
         this.jugada_ganadora = jugada_ganadora;
     }
     
-    private boolean checkJaqueMate(String s){
-        throw new RuntimeException("nbot implemented yet");
+    private boolean checkMov(String s) throws Exception{
+        //NO SE PUEDEN USAR SWITCH CON EL MATCHER
+        char c; //letra de Pieza
+        Casilla destino;
+        Casilla origen;
+        Pieza comida;
+        Pieza p;
+        if(s.matches("[a-h][1-8]++")){ //MOVER PEON 
+            c = 'P';
+            destino = tab.getCasilla(s.charAt(0), Character.getNumericValue(s.charAt(1)));
+            p = tab.moveR(c,destino);
+            if(!saveStatus(destino,p))
+                throw new RuntimeException("not implemented yet"); //MOV NO VALIDO 
+            else
+                throw new RuntimeException("not implemented yet"); //CHICKEN WINNER
+        }else if(s.matches("[a-h]x[a-h][1-8]++")){ //PEON COMER
+            c = 'P';
+            destino =tab.getCasilla(s.charAt(2), Character.getNumericValue(s.charAt(3)));
+            p = tab.moveR(c,destino,s.charAt(0));
+            if(!saveStatus(destino,p))
+                throw new RuntimeException("not implemented yet"); //MOV NO VALIDO 
+            else
+                throw new RuntimeException("not implemented yet"); //CHICKEN WINNER
+        }else if(s.matches("[ACDRT][a-h][1-8]++")){ //MOVER PIEZA 
+            c = s.charAt(0);
+            destino = tab.getCasilla(s.charAt(1), Character.getNumericValue(s.charAt(2)));
+            p = tab.moveR(c,destino);
+            if(!saveStatus(destino,p))
+                throw new RuntimeException("not implemented yet"); //MOV NO VALIDO 
+            else
+                throw new RuntimeException("not implemented yet"); //CHICKEN WINNER
+        }else if(s.matches("[ACDRT]x[a-h][1-8]++")){ // COMER PIEZA
+            c = s.charAt(0);
+            destino = tab.getCasilla(s.charAt(2), Character.getNumericValue(s.charAt(3)));
+            p = tab.moveR(c,destino);
+            if(!saveStatus(destino,p))
+                throw new RuntimeException("not implemented yet"); //MOV NO VALIDO 
+            else
+                throw new RuntimeException("not implemented yet"); //CHICKEN WINNER
+        }else if(s.matches("[ACDRT][a-h]x[a-h][1-8]++")){ // COMER PIEZA VARIOS
+            c = s.charAt(0);
+            destino = tab.getCasilla(s.charAt(3),Character.getNumericValue(s.charAt(4)));
+            p = tab.moveR(c,destino,s.charAt(1));
+            if(!saveStatus(destino,p))
+                throw new RuntimeException("not implemented yet"); //MOV NO VALIDO 
+            else
+                throw new RuntimeException("not implemented yet"); //CHICKEN WINNER
+        }else if(s.matches("[ACDRT][a-h][a-h][1-8]++")){ //MOVER PIEZA VARIOS
+            c = s.charAt(0);
+            destino = tab.getCasilla(s.charAt(3),Character.getNumericValue(s.charAt(4)));
+            p = tab.moveR(c,destino,s.charAt(1));
+            if(!saveStatus(destino,p))
+                throw new RuntimeException("not implemented yet"); //MOV NO VALIDO 
+            else
+                throw new RuntimeException("not implemented yet"); //CHICKEN WINNER
+        }else
+            return false;
+        //return true;
+    }
+    public boolean saveStatus(Casilla destino, Pieza p){
+        Casilla origen;
+        Pieza comida;
+        if(p!=null){
+                //ASEGURARME DE QUE COMO FALTA!!!!!!!!!!
+                //Guardar estado actual
+               origen = p.getCas();
+               comida = destino.getContenido();
+               //Mover pieza
+               p.getCas().removePieza();
+               p.setCas(destino);
+               destino.addPieza(p);
+               //comprobar jaquemate
+               if(!checkMate()){
+                   p.getCas().addPieza(comida);
+                   p.setCas(origen);
+                   origen.addPieza(p);
+                   return false;
+               }else
+                   //CHICKEN WINNER
+                   return true;
+            }else
+                return false;
+    }
+    public boolean checkMate(){
+        throw new RuntimeException("not implemented yet");
     }
 /*Formato PGN
     Letra de pieza

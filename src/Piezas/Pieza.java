@@ -29,7 +29,7 @@ public abstract class Pieza {
         }
     }
 
-    protected abstract boolean mover(Casilla origen, Casilla destino);
+    public abstract boolean mover(Casilla origen, Casilla destino);
 
     /*protected boolean movValido(String mov) { USELESS??
         return mov.matches("[a-h][1-8]");
@@ -58,7 +58,7 @@ public abstract class Pieza {
 
     public void setTab(Tablero tab) {this.tab = tab;}
 
-    public Casilla getCas(Casilla casilla) {return cas;}
+    public Casilla getCas() {return cas;}
 
     public void setCas(Casilla cas) {this.cas = cas;}
     public abstract char getLetra ();

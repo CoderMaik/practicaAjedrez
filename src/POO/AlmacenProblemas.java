@@ -41,11 +41,7 @@ public class AlmacenProblemas implements Serializable {
     }
 
     public boolean validarProblema(Problema problem) {
-        if (!existeProblema(problem) && EsValido(problem)) {
-            return true;
-        } else {
-            return false;
-        }
+        return !existeProblema(problem) && EsValido(problem);
     }
 
     private boolean EsValido(Problema problem) {
@@ -99,7 +95,7 @@ public class AlmacenProblemas implements Serializable {
             this.listaProblemas=(ArrayList<Problema>)input.readObject();
             input.close();
             return true;
-        } catch (ClassNotFoundException noEncontrado) { return false;
-        } catch (IOException excepcionIO){ return false;}
+        } catch (ClassNotFoundException | IOException noEncontrado) { return false;
+        }
     }
 }
