@@ -186,8 +186,6 @@ public class Problema {
         //NO SE PUEDEN USAR SWITCH CON EL MATCHER
         char c; //letra de Pieza
         Casilla destino;
-        Casilla origen;
-        Pieza comida;
         Pieza p;
         if(s.matches("[a-h][1-8]++")){ //MOVER PEON 
             c = 'P';
