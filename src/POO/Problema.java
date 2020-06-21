@@ -182,12 +182,11 @@ public class Problema {
     public boolean comrobarSizeTablero(Tablero tab){
         int size = tab.getMapa().length;
         boolean columnas = false;
-        boolean valido = false;
         for(int i = 0; i < size + 1; i ++ ) {
             if (tab.getMapa()[i].length == 8) {
                 columnas = true;
             } else {
-                columnas = false;
+                return false;
             }
         }
         if ((tab.getMapa().length == 8) && (columnas = true)) {
