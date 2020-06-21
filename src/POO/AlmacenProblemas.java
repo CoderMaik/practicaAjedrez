@@ -84,7 +84,6 @@ public class AlmacenProblemas implements Serializable {
             case 10:
                 jugada_ganadora = "TxC7++";*/
     
-    // BINARIO
     public void escribeAlmacenProblemas(String n) throws IOException{
         FileOutputStream fileOut=new FileOutputStream(n);
         ObjectOutputStream salida=new ObjectOutputStream(fileOut);

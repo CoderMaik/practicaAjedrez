@@ -71,8 +71,6 @@ public class AlmacenLogin {
         }
     }
 
-    // BINARIO
-
     public void escribeAlmacenLogin(String n) throws IOException{
         FileOutputStream fileOut = new FileOutputStream(n);
         ObjectOutputStream salida = new ObjectOutputStream(fileOut);
