@@ -6,9 +6,6 @@ public class Caballo extends Pieza {
     private final char simbolo = 'C';
 
     public Caballo() {}
-    public char getLetra (){
-        return this.simbolo;
-    }
 
     public boolean mover(Casilla o, Casilla d) {
        int movH = d.getCoorX()-o.getCoorX();
@@ -64,4 +61,5 @@ public class Caballo extends Pieza {
         return (Math.abs(d.getCoorX()-o.getCoorX())==2 && Math.abs(d.getCoorY()-o.getCoorY())==1)
                 ||(Math.abs(d.getCoorX()-o.getCoorX())==1 && Math.abs(d.getCoorY()-o.getCoorY())==2);
     }
+    public char getLetra (){return this.simbolo;}
 }
