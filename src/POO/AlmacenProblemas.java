@@ -95,11 +95,22 @@ public class AlmacenProblemas implements Serializable {
         salida.close();
     }
 
-    public void leerAlmacenProblemas (File fichero) throws IOException, ClassNotFoundException{
-        FileInputStream f = new FileInputStream (fichero);
-        ObjectInputStream entrada = new ObjectInputStream (f);
-        Problema p = (Problema) entrada.readObject ();
-        this.listaProblemas = getListaProblemas();
-        entrada.close();
+    private boolean leerAlmacenProblemas (String nameFile) throws FileNotFoundException,IOException, ClassNotFoundException {
+        try {
+            FileInputStream fichero = new FileInputStream(nameFile);
+            ObjectInputStream input = new ObjectInputStream(fichero);
+
+            Object aux = null;
+            while ((aux = input.readObject()) != null) {
+                if (aux instanceof Problema)
+                    this.addProblema((Problema) aux);
+            }
+            input.close();
+        } catch (EOFException finFile) {
+            return true;
+        } catch (IOException noEncontrado) {
+            return false;
+        }
+        return true;
     }
 }

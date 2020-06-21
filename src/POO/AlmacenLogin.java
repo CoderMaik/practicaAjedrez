@@ -58,7 +58,7 @@ public class AlmacenLogin {
         }
         return null;
     }
-    
+
     public boolean existeUsuario(String name){
         return (!(getUsuario(name)==null));
     }
@@ -79,34 +79,26 @@ public class AlmacenLogin {
             salida.writeObject(u);
         salida.close();
     }
-    public void leerAlmacenLogin (File fichero) throws IOException, ClassNotFoundException{
-        FileInputStream f = new FileInputStream (fichero);
-        ObjectInputStream entrada = new ObjectInputStream (f);
-        Usuario u = (Usuario) entrada.readObject ();
-        listaUsuarios = getListaUsuarios();
-        entrada.close();
-    }
 
-    // SERIALIZAR ALMACENLOGIN (no es definitivo)
-    /*private boolean serializarAL(String n) throws FileNotFoundException,IOException, ClassNotFoundException{
-        try{
-        FileInputStream fichero = new FileInputStream(n);
-        ObjectInputStream input = new ObjectInputStream(fichero);
 
-        Object aux = null;
-        while ((aux = input.readObject()) !=null)
-        {
-            if (aux instanceof AlmacenLogin)
-                this.anadirUsuario((AlmacenLogin)aux);
+    // SERIALIZAR
+    private boolean leerAlmacenLogin (String nameFile) throws FileNotFoundException,IOException, ClassNotFoundException {
+        try {
+            FileInputStream fichero = new FileInputStream(nameFile);
+            ObjectInputStream input = new ObjectInputStream(fichero);
 
+            Object aux = null;
+            while ((aux = input.readObject()) != null) {
+                if (aux instanceof Usuario)
+                    this.anadirUsuario((Usuario) aux);
+            }
+            input.close();
+        } catch (EOFException finFile) {
+            return true;
+        } catch (IOException noEncontrado) {
+            return false;
         }
-        entrada.close();
-        }
-        catch (EOFException finFile){ return true;}
-        catch (FileNotFoundException noEncontrado){ return false;}
-        catch (IOException e){ return false;}
         return true;
-      }
-     */
+    }
 
 }
