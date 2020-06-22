@@ -31,10 +31,6 @@ public abstract class Pieza {
 
     public abstract boolean mover(Casilla origen, Casilla destino);
 
-    /*protected boolean movValido(String mov) { USELESS??
-        return mov.matches("[a-h][1-8]");
-    }*/
-
     protected boolean origenValido(Casilla origen) {
         return (origen.equals(cas) && inValido(origen));
     }

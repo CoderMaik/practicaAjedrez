@@ -158,18 +158,11 @@ public class Problema {
                 } else {
                     //ULTIMA FILA matches solucion 
                     jugada_ganadora = br.readLine();
-                    if(!rey_blanco && !rey_negro){
-                        throw new IOException("Formato incorrecto");
-                    }
-                    if ((cPeonesBlancos > 8) && (cPeonesNegros > 8)){
-                        throw new IOException("Formato incorrecto");
-                    }
-                    if (contPiezasT > 32){
-                        throw new IOException("Formato incorrecto");
-                    }
-                    if(!comprobarSizeTablero(tab)){
-                        throw new IOException("Formato incorrecto");
-                    }
+                    if((!rey_blanco && !rey_negro)
+                            ||(cPeonesBlancos > 8) && (cPeonesNegros > 8)
+                            ||(contPiezasT > 32)
+                            ||(!comprobarSizeTablero(tab)))
+                        throw new IOException("Formato incorrecto");                    
                     fila--; //ya termino, fila = -1
                 }
             }
@@ -233,59 +226,39 @@ public class Problema {
             c = 'P';
             destino = tab.getCasilla(s.charAt(0), Character.getNumericValue(s.charAt(1)));
             p = tab.moveR(c,destino);
-            if(!saveStatus(destino,p))
-                throw new RuntimeException("not implemented yet"); //MOV NO VALIDO 
-            else
-                throw new RuntimeException("not implemented yet"); //CHICKEN WINNER
+            return saveStatus(destino,p);
         }else if(s.matches("[a-h]x[a-h][1-8]++")){ //PEON COMER
             c = 'P';
             destino =tab.getCasilla(s.charAt(2), Character.getNumericValue(s.charAt(3)));
             p = tab.moveR(c,destino,s.charAt(0));
-            if(!saveStatus(destino,p))
-                throw new RuntimeException("not implemented yet"); //MOV NO VALIDO 
-            else
-                throw new RuntimeException("not implemented yet"); //CHICKEN WINNER
+            return !((!destino.esLibre() && !destino.esComible(Color.NEGRO)) || !saveStatus(destino,p));
         }else if(s.matches("[ACDRT][a-h][1-8]++")){ //MOVER PIEZA 
             c = s.charAt(0);
             destino = tab.getCasilla(s.charAt(1), Character.getNumericValue(s.charAt(2)));
             p = tab.moveR(c,destino);
-            if(!saveStatus(destino,p))
-                throw new RuntimeException("not implemented yet"); //MOV NO VALIDO 
-            else
-                throw new RuntimeException("not implemented yet"); //CHICKEN WINNER
+            return saveStatus(destino,p);
         }else if(s.matches("[ACDRT]x[a-h][1-8]++")){ // COMER PIEZA
             c = s.charAt(0);
             destino = tab.getCasilla(s.charAt(2), Character.getNumericValue(s.charAt(3)));
             p = tab.moveR(c,destino);
-            if(!saveStatus(destino,p))
-                throw new RuntimeException("not implemented yet"); //MOV NO VALIDO 
-            else
-                throw new RuntimeException("not implemented yet"); //CHICKEN WINNER
+            return saveStatus(destino,p);
         }else if(s.matches("[ACDRT][a-h]x[a-h][1-8]++")){ // COMER PIEZA VARIOS
             c = s.charAt(0);
             destino = tab.getCasilla(s.charAt(3),Character.getNumericValue(s.charAt(4)));
             p = tab.moveR(c,destino,s.charAt(1));
-            if(!saveStatus(destino,p))
-                throw new RuntimeException("not implemented yet"); //MOV NO VALIDO 
-            else
-                throw new RuntimeException("not implemented yet"); //CHICKEN WINNER
+            return saveStatus(destino,p);
         }else if(s.matches("[ACDRT][a-h][a-h][1-8]++")){ //MOVER PIEZA VARIOS
             c = s.charAt(0);
             destino = tab.getCasilla(s.charAt(3),Character.getNumericValue(s.charAt(4)));
             p = tab.moveR(c,destino,s.charAt(1));
-            if(!saveStatus(destino,p))
-                throw new RuntimeException("not implemented yet"); //MOV NO VALIDO 
-            else
-                throw new RuntimeException("not implemented yet"); //CHICKEN WINNER
+            return saveStatus(destino,p);
         }else
             return false;
-        //return true;
     }
     public boolean saveStatus(Casilla destino, Pieza p){
         Casilla origen;
         Pieza comida;
         if(p!=null){
-                //ASEGURARME DE QUE COMO FALTA!!!!!!!!!!
                 //Guardar estado actual
                origen = p.getCas();
                comida = destino.getContenido();
@@ -295,13 +268,18 @@ public class Problema {
                destino.addPieza(p);
                //comprobar jaquemate
                if(!checkMate()){
+                   //Volver al estado original
                    p.getCas().addPieza(comida);
                    p.setCas(origen);
                    origen.addPieza(p);
                    return false;
-               }else
-                   //CHICKEN WINNER
+               }else{ //CHICKEN WINNER
+                   //Volver al estado original
+                   p.getCas().addPieza(comida);
+                   p.setCas(origen);
+                   origen.addPieza(p);
                    return true;
+               }
             }else
                 return false;
     }
