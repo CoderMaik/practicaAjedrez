@@ -14,12 +14,12 @@ public class Problema {
     private double porcentaje_exito;
     private String jugada_ganadora;
     private Tablero tab;
-    
+
     public Problema(){
         this.resuelto_por = new HashSet<>();
         this.porcentaje_exito = 0;
     }
-    
+
     public Problema(File fichero) throws IOException {
         this.resuelto_por = new HashSet<>();
         this.porcentaje_exito = 0;
@@ -44,7 +44,7 @@ public class Problema {
                             if (columna == 8) {
                                 columna = 0;
                                 fila--;
-                            } else 
+                            } else
                                 columna++;
                         case 'C':
                             Pieza caballo = new Caballo();
@@ -157,13 +157,13 @@ public class Problema {
                     }
                     charLeido = br.read();
                 } else {
-                    //ULTIMA FILA matches solucion 
+                    //ULTIMA FILA matches solucion
                     jugada_ganadora = br.readLine();
                     if((!rey_blanco && !rey_negro)
                             ||(cPeonesBlancos > 8) && (cPeonesNegros > 8)
                             ||(contPiezasT > 32)
                             ||(!comprobarSizeTablero(tab)))
-                        throw new IOException("Formato incorrecto");                    
+                        throw new IOException("Formato incorrecto");
                     fila--; //ya termino, fila = -1
                 }
             }
@@ -193,10 +193,13 @@ public class Problema {
         return this.tab;
     }
 
-    public HashSet<Usuario> getResuelto_por() {
-        return resuelto_por;
+    public void setTab(Tablero tab) {
+        this.tab = tab;
     }
 
+    public HashSet<Usuario> getResuelto_por() {return resuelto_por;}
+    
+    public HashSet<Usuario> getIntentado_por(){return this.intentado_por;}
     public void setResuelto_por(HashSet<Usuario> resuelto_por) {
         this.resuelto_por = resuelto_por;
     }
@@ -216,15 +219,13 @@ public class Problema {
     public void setJugada_ganadora(String jugada_ganadora) {
         this.jugada_ganadora = jugada_ganadora;
     }
-    public HashSet<Usuario> getIntentado_por(){
-        return this.intentado_por; 
-    }
+
     private boolean checkMov(String s) throws Exception{
         //NO SE PUEDEN USAR SWITCH CON EL MATCHER
         char c; //letra de Pieza
         Casilla destino;
         Pieza p;
-        if(s.matches("[a-h][1-8]++")){ //MOVER PEON 
+        if(s.matches("[a-h][1-8]++")){ //MOVER PEON
             c = 'P';
             destino = tab.getCasilla(s.charAt(0), Character.getNumericValue(s.charAt(1)));
             p = tab.moveR(c,destino);
@@ -234,7 +235,7 @@ public class Problema {
             destino =tab.getCasilla(s.charAt(2), Character.getNumericValue(s.charAt(3)));
             p = tab.moveR(c,destino,s.charAt(0));
             return !((!destino.esLibre() && !destino.esComible(Color.NEGRO)) || !saveStatus(destino,p));
-        }else if(s.matches("[ACDRT][a-h][1-8]++")){ //MOVER PIEZA 
+        }else if(s.matches("[ACDRT][a-h][1-8]++")){ //MOVER PIEZA
             c = s.charAt(0);
             destino = tab.getCasilla(s.charAt(1), Character.getNumericValue(s.charAt(2)));
             p = tab.moveR(c,destino);
@@ -282,8 +283,8 @@ public class Problema {
                    origen.addPieza(p);
                    return true;
                }
-            }else
-                return false;
+        }else
+            return false;
     }
     public boolean checkMate(){
         throw new RuntimeException("not implemented yet");
