@@ -23,7 +23,7 @@ public class Usuario {
             p.getIntentado_por().add(this);
             this.problemas_intentados++;
             updatePorcentajeExitos();
-            //p.updatePorcentajeExitos();
+            p.updatePorcentajeExitos();
         }
     }
     public void problemaFallido(Problema p){
@@ -35,7 +35,7 @@ public class Usuario {
             p.getResuelto_por().add(this);
             this.problemas_resueltos++;
             updatePorcentajeExitos();
-            //p.updatePorcentajeExitos();
+            p.updatePorcentajeExitos();
         }
     }
     private void updatePorcentajeExitos(){
