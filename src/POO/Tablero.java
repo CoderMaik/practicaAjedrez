@@ -6,7 +6,7 @@ import Piezas.Pieza;
 public class Tablero {
 
     private Casilla[][] mapa;
-    
+
     //Constructor vacio
     public Tablero() {
         mapa = new Casilla[8][8];
@@ -83,11 +83,11 @@ public class Tablero {
     public Pieza moveR(char pieza,Casilla destino,char colOrigen){ //MOVER PEON COMIENDO O PIEZA CON VARIAS POSIBILIDADES
         int colInt = Character.getNumericValue(colOrigen);
         Pieza p;
-            for (int fil=7;fil>=0;fil--){
-                p = this.mapa[fil][colInt].getContenido();
-                if(p.getLetra()==pieza && p.getColor().equals(Color.BLANCO) && p.mover(this.getCasillaXY(fil,colInt),destino))
-                    return p;
-            }return null;
+        for (int fil=7;fil>=0;fil--){
+            p = this.mapa[fil][colInt].getContenido();
+            if(p.getLetra()==pieza && p.getColor().equals(Color.BLANCO) && p.mover(this.getCasillaXY(fil,colInt),destino))
+                return p;
+        }return null;
     }
     @Override
     public String toString(){

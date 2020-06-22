@@ -13,12 +13,12 @@ public class Problema {
     private double porcentaje_exito;
     private String jugada_ganadora;
     private Tablero tab;
-    
+
     public Problema(){
         this.resuelto_por = 0;
         this.porcentaje_exito = 0;
     }
-    
+
     public Problema(File fichero) throws IOException {
         this.resuelto_por = 0;
         this.porcentaje_exito = 0;
@@ -43,7 +43,7 @@ public class Problema {
                             if (columna == 8) {
                                 columna = 0;
                                 fila--;
-                            } else 
+                            } else
                                 columna++;
                         case 'C':
                             Pieza caballo = new Caballo();
@@ -156,13 +156,13 @@ public class Problema {
                     }
                     charLeido = br.read();
                 } else {
-                    //ULTIMA FILA matches solucion 
+                    //ULTIMA FILA matches solucion
                     jugada_ganadora = br.readLine();
                     if((!rey_blanco && !rey_negro)
                             ||(cPeonesBlancos > 8) && (cPeonesNegros > 8)
                             ||(contPiezasT > 32)
                             ||(!comprobarSizeTablero(tab)))
-                        throw new IOException("Formato incorrecto");                    
+                        throw new IOException("Formato incorrecto");
                     fila--; //ya termino, fila = -1
                 }
             }
@@ -193,6 +193,10 @@ public class Problema {
         return this.tab;
     }
 
+    public void setTab(Tablero tab) {
+        this.tab = tab;
+    }
+
     public int getResuelto_por() {
         return resuelto_por;
     }
@@ -216,13 +220,13 @@ public class Problema {
     public void setJugada_ganadora(String jugada_ganadora) {
         this.jugada_ganadora = jugada_ganadora;
     }
-    
+
     private boolean checkMov(String s) throws Exception{
         //NO SE PUEDEN USAR SWITCH CON EL MATCHER
         char c; //letra de Pieza
         Casilla destino;
         Pieza p;
-        if(s.matches("[a-h][1-8]++")){ //MOVER PEON 
+        if(s.matches("[a-h][1-8]++")){ //MOVER PEON
             c = 'P';
             destino = tab.getCasilla(s.charAt(0), Character.getNumericValue(s.charAt(1)));
             p = tab.moveR(c,destino);
@@ -232,7 +236,7 @@ public class Problema {
             destino =tab.getCasilla(s.charAt(2), Character.getNumericValue(s.charAt(3)));
             p = tab.moveR(c,destino,s.charAt(0));
             return !((!destino.esLibre() && !destino.esComible(Color.NEGRO)) || !saveStatus(destino,p));
-        }else if(s.matches("[ACDRT][a-h][1-8]++")){ //MOVER PIEZA 
+        }else if(s.matches("[ACDRT][a-h][1-8]++")){ //MOVER PIEZA
             c = s.charAt(0);
             destino = tab.getCasilla(s.charAt(1), Character.getNumericValue(s.charAt(2)));
             p = tab.moveR(c,destino);
@@ -259,29 +263,29 @@ public class Problema {
         Casilla origen;
         Pieza comida;
         if(p!=null){
-                //Guardar estado actual
-               origen = p.getCas();
-               comida = destino.getContenido();
-               //Mover pieza
-               p.getCas().removePieza();
-               p.setCas(destino);
-               destino.addPieza(p);
-               //comprobar jaquemate
-               if(!checkMate()){
-                   //Volver al estado original
-                   p.getCas().addPieza(comida);
-                   p.setCas(origen);
-                   origen.addPieza(p);
-                   return false;
-               }else{ //CHICKEN WINNER
-                   //Volver al estado original
-                   p.getCas().addPieza(comida);
-                   p.setCas(origen);
-                   origen.addPieza(p);
-                   return true;
-               }
-            }else
+            //Guardar estado actual
+            origen = p.getCas();
+            comida = destino.getContenido();
+            //Mover pieza
+            p.getCas().removePieza();
+            p.setCas(destino);
+            destino.addPieza(p);
+            //comprobar jaquemate
+            if(!checkMate()){
+                //Volver al estado original
+                p.getCas().addPieza(comida);
+                p.setCas(origen);
+                origen.addPieza(p);
                 return false;
+            }else{ //CHICKEN WINNER
+                //Volver al estado original
+                p.getCas().addPieza(comida);
+                p.setCas(origen);
+                origen.addPieza(p);
+                return true;
+            }
+        }else
+            return false;
     }
     public boolean checkMate(){
         throw new RuntimeException("not implemented yet");
