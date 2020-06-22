@@ -50,13 +50,8 @@ public class AlmacenProblemas implements Serializable {
 
     
     public Problema problemAleatorio (Usuario u) throws Exception {
-        if(u.getListaResueltos().size()==this.listaProblemas.size())
-            throw new Exception("Ha resuelto todos los problemas");
-        while(true){
-            Problema p = listaProblemas.get((int) Math.floor( Math.random()*10+1));
-            if(!u.getListaResueltos().contains(p))
-                return p;
-        }
+            Problema p = listaProblemas.get((int) Math.floor( Math.random()*listaProblemas.size()+1));
+            return p;
     }
         /*Lo dejo comentado para saber las soluciones a los problemas pero no sirve
             case 1:

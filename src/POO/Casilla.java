@@ -26,7 +26,14 @@ public class Casilla {
         this.contenido = null; //Creo que es opcional
         libre = true;
     }
-
+    /*public int amenazado(){ //Devuelve el numero de piezas amenazando la casilla
+        int cont=0;
+        for(int fil=7;fil>=0;fil--){
+            for(int col=0;col<8;col++){
+                
+            }
+        }
+    }*/
     public Pieza getContenido() {return this.contenido;}
     public char getCoorX() {return coorX;}
     public int getCoorY() {return coorY;}

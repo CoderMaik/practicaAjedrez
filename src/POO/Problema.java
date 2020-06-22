@@ -6,21 +6,22 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashSet;
 
 public class Problema {
-
-    private int resuelto_por;
+    private HashSet<Usuario> intentado_por;
+    private HashSet<Usuario> resuelto_por;
     private double porcentaje_exito;
     private String jugada_ganadora;
     private Tablero tab;
     
     public Problema(){
-        this.resuelto_por = 0;
+        this.resuelto_por = new HashSet<>();
         this.porcentaje_exito = 0;
     }
     
     public Problema(File fichero) throws IOException {
-        this.resuelto_por = 0;
+        this.resuelto_por = new HashSet<>();
         this.porcentaje_exito = 0;
         boolean rey_blanco = false;
         boolean rey_negro = false;
@@ -185,7 +186,6 @@ public class Problema {
         }
         return (tab.getMapa().length == 8) && (columnas = true);
     }
-
     public boolean checkSol(String s){
         return (s.equals(this.jugada_ganadora));
     }
@@ -193,11 +193,11 @@ public class Problema {
         return this.tab;
     }
 
-    public int getResuelto_por() {
+    public HashSet<Usuario> getResuelto_por() {
         return resuelto_por;
     }
 
-    public void setResuelto_por(int resuelto_por) {
+    public void setResuelto_por(HashSet<Usuario> resuelto_por) {
         this.resuelto_por = resuelto_por;
     }
 
@@ -216,7 +216,9 @@ public class Problema {
     public void setJugada_ganadora(String jugada_ganadora) {
         this.jugada_ganadora = jugada_ganadora;
     }
-    
+    public HashSet<Usuario> getIntentado_por(){
+        return this.intentado_por; 
+    }
     private boolean checkMov(String s) throws Exception{
         //NO SE PUEDEN USAR SWITCH CON EL MATCHER
         char c; //letra de Pieza
@@ -267,13 +269,13 @@ public class Problema {
                p.setCas(destino);
                destino.addPieza(p);
                //comprobar jaquemate
-               if(!checkMate()){
+               if(!checkMate()){ //NO GANADOR
                    //Volver al estado original
                    p.getCas().addPieza(comida);
                    p.setCas(origen);
                    origen.addPieza(p);
                    return false;
-               }else{ //CHICKEN WINNER
+               }else{ //GANADOR
                    //Volver al estado original
                    p.getCas().addPieza(comida);
                    p.setCas(origen);
@@ -292,5 +294,16 @@ public class Problema {
     x (aparece solo si se come una pieza)
     Casilla destino
     ++ (jaquemate)
-    */
+    
+  Condiciones de jaque mate:
+    Si el rey tiene escapatoria return false
+        si no: miro las casillas amenazadas por una sola figura
+            si me puedo comer a alguna de esas figuras lo hago y
+                 si reyEscapatoria && miRey.casilla.amenazado=0 entonces return false
+                 si no entonces vuelvo atrás
+            identifico la linea de visión que tienen
+                 si puedo bloquearla con alguna pieza lo hago y 
+                    si reyEscapatoria && miRey.casilla.amenazado=0 entonces return false
+                    si no entonces vuelvo atrás
+    return true*/
 }

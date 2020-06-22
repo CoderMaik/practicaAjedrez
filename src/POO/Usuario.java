@@ -1,14 +1,10 @@
 package POO;
 
-import java.util.HashSet;
-
 public class Usuario {
     private String login;
     private String pwd;
     private int problemas_intentados;
-    private HashSet<Problema> lista_problemas_intentados;
     private int problemas_resueltos;
-    private HashSet<Problema> lista_problemas_resueltos;
     private int errores;
     private int porcentaje_exito;
 
@@ -23,19 +19,24 @@ public class Usuario {
         return this.errores++;
     }
     public void problemaIntentado(Problema p){
-        if(!this.lista_problemas_intentados.contains(p)){
+        if(!p.getIntentado_por().contains(this)){
+            p.getIntentado_por().add(this);
             this.problemas_intentados++;
             updatePorcentajeExitos();
-            this.lista_problemas_intentados.add(p);
+            //p.updatePorcentajeExitos();
         }
     }
-    public void problemaFallido(){
-        this.errores++;
+    public void problemaFallido(Problema p){
+        if(!p.getResuelto_por().contains(this))
+            this.errores++;
     }
     public void problemaResuelto(Problema p){
-        this.problemas_resueltos++;
-        updatePorcentajeExitos();
-        this.lista_problemas_resueltos.add(p);
+        if(!p.getResuelto_por().contains(this)){
+            p.getResuelto_por().add(this);
+            this.problemas_resueltos++;
+            updatePorcentajeExitos();
+            //p.updatePorcentajeExitos();
+        }
     }
     private void updatePorcentajeExitos(){
         porcentaje_exito = problemas_resueltos / problemas_intentados * 100;
@@ -69,9 +70,6 @@ public class Usuario {
     }
     public void setProblemas_resueltos(int problemas_resueltos) {
         this.problemas_resueltos = problemas_resueltos;
-    }
-    public HashSet<Problema> getListaResueltos(){
-        return this.lista_problemas_resueltos;
     }
     public int getErrores() {
         return errores;

@@ -18,5 +18,8 @@ public class Rey extends Pieza {
                 Math.abs(destino.getCoorX()-origen.getCoorX())<=1 &&
                     Math.abs(destino.getCoorY()-origen.getCoorY())<=1);
     }
+    public boolean reyEscapatoria(){
+        throw new RuntimeException("not implemented yet");
+    }
     public char getLetra (){return this.simbolo;}
 }

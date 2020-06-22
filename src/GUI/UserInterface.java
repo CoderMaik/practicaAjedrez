@@ -935,7 +935,7 @@ public class UserInterface extends javax.swing.JFrame {
             jPanelPartida.setVisible(false);
         }else{
             JOptionPane.showMessageDialog(this,"SOLUCION INCORRECTA","INTENTELO DE NUEVO",JOptionPane.WARNING_MESSAGE);
-            miUsuario.problemaFallido();
+            miUsuario.problemaFallido(problemaActivo);
             jSolTextField.setText("");
         }
     }
