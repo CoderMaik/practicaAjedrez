@@ -781,10 +781,7 @@ public class UserInterface extends javax.swing.JFrame {
     private void jAccederButtonActionPerformed(java.awt.event.ActionEvent evt) {
         if (jNombreTextField.getText().isEmpty() || jPasswordField.getPassword()==null)
             JOptionPane.showMessageDialog(this,"Compruebe que ningún campo esté vacío","ERROR",JOptionPane.ERROR_MESSAGE);
-        else if ("admin".equals(jNombreTextField.getText())){ //Para hacer pruebas sin cargar usuario
-            jPanelMenu.setVisible(true);
-            jPanelLogin.setVisible(false);
-        } else if (jRadioRegistro.isSelected()){
+        else if (jRadioRegistro.isSelected()){
             if(!(listaUsuarios.anadirUsuario(new Usuario(jNombreTextField.getText(),jPasswordField.getPassword().toString()))))
                 JOptionPane.showMessageDialog(this,"Ya existe una cuenta con ese nombre","ERROR",JOptionPane.ERROR_MESSAGE);
             else {
