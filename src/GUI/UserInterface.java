@@ -24,6 +24,7 @@ public class UserInterface extends javax.swing.JFrame {
         jPanelIO.setVisible(false);
         jPanelSubirProblema.setVisible(false);
         jPanelStats.setVisible(false);
+        jPanelPartida.setVisible(false);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
