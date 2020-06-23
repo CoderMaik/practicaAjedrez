@@ -101,131 +101,131 @@ public class AlmacenProblemas implements Serializable {
 
                 Tablero tablero_1 = new Tablero();
                 Pieza pieza = new Rey();
-                Casilla casilla_1 = new Casilla('g', 1);
+                Casilla casilla_1 = new Casilla('g', 8);
                 pieza.setColor(Color.NEGRO);
                 pieza.setTab(tablero_1);
                 casilla_1.addPieza(pieza);
-                tablero_1.getMapa()['g'][1] = casilla_1;
+                tablero_1.getMapa()['g'][8] = casilla_1;
 
                 Pieza p_2 = new Peon();
-                Casilla c_2 = new Casilla('a', 2);
+                Casilla c_2 = new Casilla('a', 7);
                 p_2.setCas(c_2);
                 p_2.setColor(Color.NEGRO);
                 p_2.setTab(tablero_1);
                 c_2.addPieza(p_2);
-                tablero_1.getMapa()['a'][2] = c_2;
+                tablero_1.getMapa()['a'][7] = c_2;
 
                 Pieza p_3 = new Peon();
-                Casilla c_3 = new Casilla('c', 2);
+                Casilla c_3 = new Casilla('c', 7);
                 p_3.setCas(c_3);
                 p_3.setColor(Color.NEGRO);
                 p_3.setTab(tablero_1);
                 c_3.addPieza(p_3);
-                tablero_1.getMapa()['c'][2] = c_3;
+                tablero_1.getMapa()['c'][7] = c_3;
 
                 Pieza p_4 = new Torre();
-                Casilla c_4 = new Casilla('f',2);
+                Casilla c_4 = new Casilla('f',7);
                 p_4.setCas(c_4);
                 p_4.setColor(Color.NEGRO);
                 p_4.setTab(tablero_1);
                 c_4.addPieza(p_4);
-                tablero_1.getMapa()['f'][2] = c_4;
+                tablero_1.getMapa()['f'][7] = c_4;
 
                 Pieza p_5 = new Peon();
-                Casilla c_5 = new Casilla('g', 2);
+                Casilla c_5 = new Casilla('g', 7);
                 p_5.setCas(c_5);
                 p_5.setColor(Color.NEGRO);
                 p_5.setTab(tablero_1);
                 c_5.addPieza(p_5);
-                tablero_1.getMapa()['g'][2] = c_5;
+                tablero_1.getMapa()['g'][7] = c_5;
 
                 Pieza p_6 = new Peon();
-                Casilla c_6 = new Casilla('h', 2);
+                Casilla c_6 = new Casilla('h', 7);
                 p_6.setCas(c_6);
                 p_6.setColor(Color.NEGRO);
                 p_6.setTab(tablero_1);
                 c_6.addPieza(p_6);
-                tablero_1.getMapa()['h'][2] = c_6;
+                tablero_1.getMapa()['h'][7] = c_6;
 
                 Pieza p_7 = new Dama();
-                Casilla c_7 = new Casilla('b', 3);
+                Casilla c_7 = new Casilla('b', 6);
                 p_7.setCas(c_7);
                 p_7.setColor(Color.NEGRO);
                 p_7.setTab(tablero_1);
                 c_7.addPieza(p_7);
-                tablero_1.getMapa()['b'][3] = c_7;
+                tablero_1.getMapa()['b'][6] = c_7;
 
                 Pieza p_8 = new Peon();
-                Casilla c_8 = new Casilla('c', 4);
+                Casilla c_8 = new Casilla('c', 5);
                 p_8.setCas(c_8);
                 p_8.setColor(Color.NEGRO);
                 p_8.setTab(tablero_1);
                 c_8.addPieza(p_8);
-                tablero_1.getMapa()['c'][4] = c_8;
+                tablero_1.getMapa()['c'][5] = c_8;
 
                 Pieza p_9 = new Peon();
-                Casilla c_9 = new Casilla('e', 5);
+                Casilla c_9 = new Casilla('e', 4);
                 p_9.setCas(c_9);
                 p_9.setColor(Color.BLANCO);
                 p_9.setTab(tablero_1);
                 c_9.addPieza(p_9);
-                tablero_1.getMapa()['e'][5] = c_9;
+                tablero_1.getMapa()['e'][4] = c_9;
 
                 Pieza p_10 = new Peon();
-                Casilla c_10 = new Casilla('a', 6);
+                Casilla c_10 = new Casilla('a', 3);
                 p_10.setCas(c_10);
                 p_10.setColor(Color.BLANCO);
                 p_10.setTab(tablero_1);
                 c_10.addPieza(p_10);
-                tablero_1.getMapa()['a'][6] = c_10;
+                tablero_1.getMapa()['a'][3] = c_10;
 
                 Pieza p_11 = new Dama();
-                Casilla c_11 = new Casilla('b', 6);
+                Casilla c_11 = new Casilla('b', 3);
                 p_11.setCas(c_11);
                 p_11.setColor(Color.BLANCO);
                 p_11.setTab(tablero_1);
                 c_11.addPieza(p_11);
-                tablero_1.getMapa()['b'][6] = c_11;
+                tablero_1.getMapa()['b'][3] = c_11;
 
                 Pieza p_12 = new Peon();
-                Casilla c_12 = new Casilla('b', 7);
+                Casilla c_12 = new Casilla('b', 2);
                 p_12.setCas(c_12);
                 p_12.setColor(Color.BLANCO);
                 p_12.setTab(tablero_1);
                 c_12.addPieza(p_12);
-                tablero_1.getMapa()['b'][7] = c_12;
+                tablero_1.getMapa()['b'][2] = c_12;
 
                 Pieza p_13 = new Peon();
-                Casilla c_13 = new Casilla('g', 7);
+                Casilla c_13 = new Casilla('g', 2);
                 p_13.setCas(c_13);
                 p_13.setColor(Color.BLANCO);
                 p_13.setTab(tablero_1);
                 c_13.addPieza(p_13);
-                tablero_1.getMapa()['g'][7] = c_13;
+                tablero_1.getMapa()['g'][2] = c_13;
 
                 Pieza p_14 = new Peon();
-                Casilla c_14 = new Casilla('h', 7);
+                Casilla c_14 = new Casilla('h', 2);
                 p_14.setCas(c_14);
                 p_14.setColor(Color.BLANCO);
                 p_14.setTab(tablero_1);
                 c_14.addPieza(p_14);
-                tablero_1.getMapa()['h'][7] = c_14;
+                tablero_1.getMapa()['h'][2] = c_14;
 
                 Pieza p_15 = new Torre();
-                Casilla c_15 = new Casilla('d', 8);
+                Casilla c_15 = new Casilla('d', 1);
                 p_15.setCas(c_15);
                 p_15.setColor(Color.BLANCO);
                 p_15.setTab(tablero_1);
                 c_15.addPieza(p_15);
-                tablero_1.getMapa()['d'][8] = c_15;
+                tablero_1.getMapa()['d'][1] = c_15;
 
                 Pieza p_16 = new Rey();
-                Casilla c_16 = new Casilla('h', 8);
+                Casilla c_16 = new Casilla('h', 1);
                 p_16.setCas(c_16);
                 p_16.setColor(Color.BLANCO);
                 p_16.setTab(tablero_1);
                 c_16.addPieza(p_16);
-                tablero_1.getMapa()['h'][8] = c_16;
+                tablero_1.getMapa()['h'][1] = c_16;
 
                 Problema p = new Problema();
                 p.setTab(tablero_1);
@@ -235,116 +235,116 @@ public class AlmacenProblemas implements Serializable {
 //PROBLEMA 2
                 Tablero tablero_2 = new Tablero();
                 Pieza pi_1 = new Torre();
-                Casilla ca_1 = new Casilla('a', 1);
+                Casilla ca_1 = new Casilla('a', 8);
                 pi_1.setCas(ca_1);
                 pi_1.setColor(Color.NEGRO);
                 pi_1.setTab(tablero_2);
                 ca_1.addPieza(pi_1);
-                tablero_2.getMapa()['a'][1] = ca_1;
+                tablero_2.getMapa()['a'][8] = ca_1;
 
                 Pieza pi_2 = new Caballo();
-                Casilla ca_2 = new Casilla('b', 1);
+                Casilla ca_2 = new Casilla('b', 8);
                 pi_2.setCas(ca_2);
                 pi_2.setColor(Color.NEGRO);
                 pi_2.setTab(tablero_2);
                 ca_2.addPieza(pi_2);
-                tablero_2.getMapa()['b'][1] = ca_2;
+                tablero_2.getMapa()['b'][8] = ca_2;
 
                 Pieza pi_3 = new Alfil();
-                Casilla ca_3 = new Casilla('a', 1);
+                Casilla ca_3 = new Casilla('c', 8);
                 pi_3.setCas(ca_3);
                 pi_3.setColor(Color.NEGRO);
                 pi_3.setTab(tablero_2);
                 ca_3.addPieza(pi_3);
-                tablero_2.getMapa()['a'][1] = ca_3;
+                tablero_2.getMapa()['c'][8] = ca_3;
 
                 Pieza pi_4 = new Rey();
-                Casilla ca_4 = new Casilla('a', 2);
+                Casilla ca_4 = new Casilla('h', 8);
                 pi_4.setCas(ca_4);
                 pi_4.setColor(Color.NEGRO);
                 pi_4.setTab(tablero_2);
                 ca_4.addPieza(pi_4);
-                tablero_2.getMapa()['a'][2] = ca_4;
+                tablero_2.getMapa()['h'][8] = ca_4;
 
                 Pieza pi_5 = new Peon();
-                Casilla ca_5 = new Casilla('g', 2);
+                Casilla ca_5 = new Casilla('a', 7);
                 pi_5.setCas(ca_5);
                 pi_5.setColor(Color.NEGRO);
                 pi_5.setTab(tablero_2);
                 ca_5.addPieza(pi_5);
-                tablero_2.getMapa()['g'][2] = ca_5;
+                tablero_2.getMapa()['a'][7] = ca_5;
 
                 Pieza pi_14 = new Peon();
-                Casilla ca_14 = new Casilla('h', 2);
+                Casilla ca_14 = new Casilla('g', 7);
                 pi_14.setCas(ca_14);
                 pi_14.setColor(Color.NEGRO);
                 pi_14.setTab(tablero_2);
                 ca_14.addPieza(pi_14);
-                tablero_2.getMapa()['h'][2] = ca_14;
+                tablero_2.getMapa()['g'][7] = ca_14;
 
                 Pieza pi_6 = new Peon();
-                Casilla ca_6 = new Casilla('h', 2);
+                Casilla ca_6 = new Casilla('h', 7);
                 pi_6.setCas(ca_6);
                 pi_6.setColor(Color.NEGRO);
                 pi_6.setTab(tablero_2);
                 ca_6.addPieza(pi_6);
-                tablero_2.getMapa()['h'][2] = ca_6;
+                tablero_2.getMapa()['h'][7] = ca_6;
 
                 Pieza pi_7 = new Caballo();
-                Casilla ca_7 = new Casilla('h', 4);
+                Casilla ca_7 = new Casilla('e', 5);
                 pi_7.setCas(ca_7);
                 pi_7.setColor(Color.BLANCO);
                 pi_7.setTab(tablero_2);
                 ca_7.addPieza(pi_7);
-                tablero_2.getMapa()['h'][4] = ca_7;
+                tablero_2.getMapa()['e'][5] = ca_7;
 
                 Pieza pi_8 = new Alfil();
-                Casilla ca_8 = new Casilla('b', 6);
+                Casilla ca_8 = new Casilla('b', 3);
                 pi_8.setCas(ca_8);
                 pi_8.setColor(Color.BLANCO);
                 pi_8.setTab(tablero_2);
                 ca_8.addPieza(pi_8);
-                tablero_2.getMapa()['b'][6] = ca_8;
+                tablero_2.getMapa()['b'][3] = ca_8;
 
                 Pieza pi_9 = new Peon();
-                Casilla ca_9 = new Casilla('a', 7);
+                Casilla ca_9 = new Casilla('a', 2);
                 pi_9.setCas(ca_9);
                 pi_9.setColor(Color.BLANCO);
                 pi_9.setTab(tablero_2);
                 ca_9.addPieza(pi_9);
-                tablero_2.getMapa()['a'][7] = ca_9;
+                tablero_2.getMapa()['a'][2] = ca_9;
 
                 Pieza pi_10 = new Peon();
-                Casilla ca_10 = new Casilla('b', 7);
+                Casilla ca_10 = new Casilla('b', 2);
                 pi_10.setCas(ca_10);
                 pi_10.setColor(Color.BLANCO);
                 pi_10.setTab(tablero_2);
                 ca_10.addPieza(pi_10);
-                tablero_2.getMapa()['b'][7] = ca_10;
+                tablero_2.getMapa()['b'][2] = ca_10;
 
                 Pieza pi_11 = new Peon();
-                Casilla ca_11 = new Casilla('c', 7);
+                Casilla ca_11 = new Casilla('c', 2);
                 pi_11.setCas(ca_11);
                 pi_11.setColor(Color.BLANCO);
                 pi_11.setTab(tablero_2);
                 ca_11.addPieza(pi_11);
-                tablero_2.getMapa()['c'][7] = ca_11;
+                tablero_2.getMapa()['c'][2] = ca_11;
 
                 Pieza pi_12 = new Rey();
-                Casilla ca_12 = new Casilla('c', 8);
+                Casilla ca_12 = new Casilla('c', 1);
                 pi_12.setCas(ca_12);
                 pi_12.setColor(Color.BLANCO);
                 pi_12.setTab(tablero_2);
                 ca_12.addPieza(pi_12);
-                tablero_2.getMapa()['c'][8] = ca_12;
+                tablero_2.getMapa()['c'][1] = ca_12;
 
                 Pieza pi_13 = new Torre();
-                Casilla ca_13 = new Casilla('h', 8);
+                Casilla ca_13 = new Casilla('h', 1);
                 pi_13.setCas(ca_13);
                 pi_13.setColor(Color.BLANCO);
                 pi_13.setTab(tablero_2);
                 ca_13.addPieza(pi_13);
-                tablero_2.getMapa()['h'][8] = ca_13;
+                tablero_2.getMapa()['h'][1] = ca_13;
 
                 Problema po = new Problema();
                 po.setTab(tablero_2);
@@ -355,52 +355,52 @@ public class AlmacenProblemas implements Serializable {
                 Tablero tablero_3 = new Tablero();
 
                 Pieza pie_1 = new Torre();
-                Casilla cas_1 = new Casilla('g', 1);
+                Casilla cas_1 = new Casilla('g', 8);
                 pie_1.setCas(cas_1);
                 pie_1.setColor(Color.NEGRO);
                 pie_1.setTab(tablero_3);
                 cas_1.addPieza(pie_1);
-                tablero_3.getMapa()['g'][1] = cas_1;
+                tablero_3.getMapa()['g'][8] = cas_1;
 
                 Pieza pie_2 = new Dama();
-                Casilla cas_2 = new Casilla('c', 2);
+                Casilla cas_2 = new Casilla('c', 7);
                 pie_2.setCas(cas_2);
                 pie_2.setColor(Color.BLANCO);
                 pie_2.setTab(tablero_3);
                 cas_2.addPieza(pie_2);
-                tablero_3.getMapa()['c'][2] = cas_2;
+                tablero_3.getMapa()['c'][7] = cas_2;
 
                 Pieza pie_3 = new Peon();
-                Casilla cas_3 = new Casilla('f', 2);
+                Casilla cas_3 = new Casilla('f', 7);
                 pie_3.setCas(cas_3);
                 pie_3.setColor(Color.BLANCO);
                 pie_3.setTab(tablero_3);
                 cas_3.addPieza(pie_3);
-                tablero_3.getMapa()['f'][2] = cas_3;
+                tablero_3.getMapa()['f'][7] = cas_3;
 
                 Pieza pie_4 = new Rey();
-                Casilla cas_4 = new Casilla('f', 3);
+                Casilla cas_4 = new Casilla('f', 6);
                 pie_4.setCas(cas_4);
                 pie_4.setColor(Color.NEGRO);
                 pie_4.setTab(tablero_3);
                 cas_4.addPieza(pie_4);
-                tablero_3.getMapa()['f'][3] = cas_4;
+                tablero_3.getMapa()['f'][6] = cas_4;
 
                 Pieza pie_5 = new Peon();
-                Casilla cas_5 = new Casilla('f', 4);
+                Casilla cas_5 = new Casilla('f', 5);
                 pie_5.setCas(cas_5);
                 pie_5.setColor(Color.BLANCO);
                 pie_5.setTab(tablero_3);
                 cas_5.addPieza(pie_5);
-                tablero_3.getMapa()['f'][4] = cas_5;
+                tablero_3.getMapa()['f'][5] = cas_5;
 
                 Pieza pie_6 = new Rey();
-                Casilla cas_6 = new Casilla('f', 5);
+                Casilla cas_6 = new Casilla('f', 4);
                 pie_6.setCas(cas_6);
                 pie_6.setColor(Color.BLANCO);
                 pie_6.setTab(tablero_3);
                 cas_6.addPieza(pie_6);
-                tablero_3.getMapa()['f'][5] = cas_6;
+                tablero_3.getMapa()['f'][4] = cas_6;
 
                 Problema pob = new Problema();
                 pob.setTab(tablero_3);
@@ -409,53 +409,53 @@ public class AlmacenProblemas implements Serializable {
 //PROBLEMA 4
                 Tablero tablero_4 = new Tablero();
                     Pieza piez_1 = new Peon();
-                    Casilla casi_1 = new Casilla('d', 2);
+                    Casilla casi_1 = new Casilla('d', 7);
                     piez_1.setCas(casi_1);
                     piez_1.setColor(Color.NEGRO);
                     piez_1.setTab(tablero_4);
                     casi_1.addPieza(piez_1);
-                    tablero_4.getMapa()['d'][2] = casi_1;
+                    tablero_4.getMapa()['d'][7] = casi_1;
 
 
                     Pieza piez_2 = new Rey();
-                    Casilla casi_2 = new Casilla('e', 2);
+                    Casilla casi_2 = new Casilla('e', 7);
                     piez_2.setCas(casi_2);
                     piez_2.setColor(Color.NEGRO);
                     piez_2.setTab(tablero_4);
                     casi_2.addPieza(piez_2);
-                    tablero_4.getMapa()['e'][2] = casi_2;
+                    tablero_4.getMapa()['e'][7] = casi_2;
 
                     Pieza piez_3 = new Peon();
-                    Casilla casi_3 = new Casilla('f', 2);
+                    Casilla casi_3 = new Casilla('f', 7);
                     piez_3.setCas(casi_3);
                     piez_3.setColor(Color.BLANCO);
                     piez_3.setTab(tablero_4);
                     casi_3.addPieza(piez_3);
-                    tablero_4.getMapa()['f'][2] = casi_3;
+                    tablero_4.getMapa()['f'][7] = casi_3;
 
                     Pieza piez_4 = new Peon();
-                    Casilla casi_4 = new Casilla('e', 3);
+                    Casilla casi_4 = new Casilla('e', 6);
                     piez_4.setCas(casi_4);
                     piez_4.setColor(Color.NEGRO);
                     piez_4.setTab(tablero_4);
                     casi_4.addPieza(piez_4);
-                    tablero_4.getMapa()['e'][3] = casi_4;
+                    tablero_4.getMapa()['e'][6] = casi_4;
 
                     Pieza piez_5 = new Rey();
-                    Casilla casi_5 = new Casilla('d', 6);
+                    Casilla casi_5 = new Casilla('d', 3);
                     piez_5.setCas(casi_5);
                     piez_5.setColor(Color.BLANCO);
                     piez_5.setTab(tablero_4);
                     casi_5.addPieza(piez_5);
-                    tablero_4.getMapa()['d'][6] = casi_5;
+                    tablero_4.getMapa()['d'][3] = casi_5;
 
                     Pieza piez_6 = new Torre();
-                    Casilla casi_6 = new Casilla('f', 8);
+                    Casilla casi_6 = new Casilla('f', 1);
                     piez_6.setCas(casi_6);
                     piez_6.setColor(Color.BLANCO);
                     piez_6.setTab(tablero_4);
                     casi_6.addPieza(piez_6);
-                    tablero_4.getMapa()['f'][8] = casi_6;
+                    tablero_4.getMapa()['f'][1] = casi_6;
 
                     Problema pobl = new Problema();
                     pobl.setTab(tablero_4);
@@ -480,12 +480,12 @@ public class AlmacenProblemas implements Serializable {
                 tablero_5.getMapa()['e'][8] = c_52;
 
                 Pieza p_53 = new Torre();
-                Casilla c_53 = new Casilla('c', 2);
+                Casilla c_53 = new Casilla('c', 8);
                 p_53.setCas(c_53);
                 p_53.setColor(Color.NEGRO);
                 p_53.setTab(tablero_5);
                 c_53.addPieza(p_53);
-                tablero_5.getMapa()['c'][2] = c_53;
+                tablero_5.getMapa()['c'][8] = c_53;
 
                 Pieza p_54 = new Torre();
                 Casilla c_54 = new Casilla('a', 7);
@@ -783,61 +783,61 @@ public class AlmacenProblemas implements Serializable {
      //PROBLEMA 10
                 Tablero tablero_10 = new Tablero();
                 Pieza pieza_1 = new Rey();
-                Casilla casil_1 = new Casilla('c', 1);
+                Casilla casil_1 = new Casilla('c', 8);
                 pieza_1.setCas(casil_1);
                 pieza_1.setColor(Color.NEGRO);
                 pieza_1.setTab(tablero_10);
                 casil_1.addPieza(pieza_1);
-                tablero_10.getMapa()['c'][1] = casil_1;
+                tablero_10.getMapa()['c'][8] = casil_1;
 
                 Pieza pieza_2 = new Torre();
-                Casilla casil_2 = new Casilla('d', 1);
+                Casilla casil_2 = new Casilla('d', 8);
                 pieza_2.setCas(casil_2);
                 pieza_2.setColor(Color.NEGRO);
                 pieza_2.setTab(tablero_10);
                 casil_2.addPieza(pieza_2);
-                tablero_10.getMapa()['d'][1] = casil_2;
+                tablero_10.getMapa()['d'][8] = casil_2;
 
                 Pieza pieza_3 = new Peon();
-                Casilla casil_3 = new Casilla('c', 2);
+                Casilla casil_3 = new Casilla('c', 7);
                 pieza_3.setCas(casil_3);
                 pieza_3.setColor(Color.NEGRO);
                 pieza_3.setTab(tablero_10);
                 casil_3.addPieza(pieza_3);
-                tablero_10.getMapa()['c'][2] = casil_3;
+                tablero_10.getMapa()['c'][7] = casil_3;
 
                 Pieza pieza_4 = new Torre();
-                Casilla casil_4 = new Casilla('g', 2);
+                Casilla casil_4 = new Casilla('g', 7);
                 pieza_4.setCas(casil_4);
                 pieza_4.setColor(Color.BLANCO);
                 pieza_4.setTab(tablero_10);
                 casil_4.addPieza(pieza_4);
-                tablero_10.getMapa()['g'][2] = casil_4;
+                tablero_10.getMapa()['g'][7] = casil_4;
 
                 Pieza pieza_5 = new Peon();
-                Casilla casil_5 = new Casilla('d', 3);
+                Casilla casil_5 = new Casilla('d', 6);
                 pieza_5.setCas(casil_5);
                 pieza_5.setColor(Color.BLANCO);
                 pieza_5.setTab(tablero_10);
                 casil_5.addPieza(pieza_5);
-                tablero_10.getMapa()['d'][3] = casil_5;
+                tablero_10.getMapa()['d'][6] = casil_5;
 
                 Pieza pieza_6 = new Torre();
-                Casilla casil_6 = new Casilla('b', 8);
+                Casilla casil_6 = new Casilla('b', 1);
                 pieza_6.setCas(casil_6);
                 pieza_6.setColor(Color.BLANCO);
                 pieza_6.setTab(tablero_10);
                 casil_6.addPieza(pieza_6);
-                tablero_10.getMapa()['b'][8] = casil_6;
+                tablero_10.getMapa()['b'][1] = casil_6;
 
 
                 Pieza pieza_7 = new Rey();
-                Casilla casil_7 = new Casilla('g', 8);
+                Casilla casil_7 = new Casilla('g', 1);
                 pieza_7.setCas(casil_7);
                 pieza_7.setColor(Color.BLANCO);
                 pieza_7.setTab(tablero_10);
                 casil_7.addPieza(pieza_7);
-                tablero_10.getMapa()['g'][8] = casil_7;
+                tablero_10.getMapa()['g'][1] = casil_7;
 
                 Problema prob = new Problema();
                 prob.setTab(tablero_10);
