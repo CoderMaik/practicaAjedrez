@@ -17,10 +17,12 @@ public class Problema {
 
     public Problema(){
         this.resuelto_por = new HashSet<>();
+        this.intentado_por = new HashSet<>();
         this.porcentaje_exito = 0;
     }
 
     public Problema(File fichero) throws IOException {
+        this.intentado_por = new HashSet<>();
         this.resuelto_por = new HashSet<>();
         this.porcentaje_exito = 0;
         boolean rey_blanco = false;

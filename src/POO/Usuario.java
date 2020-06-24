@@ -46,7 +46,7 @@ public class Usuario {
             p.updatePorcentajeExitos();
         }
     }
-    private void updatePorcentajeExitos(){
+    public void updatePorcentajeExitos(){
         porcentaje_exito = problemas_resueltos / problemas_intentados * 100;
     }
     
