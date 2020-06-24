@@ -203,6 +203,10 @@ public class Problema {
     public void setResuelto_por(HashSet<Usuario> resuelto_por) {
         this.resuelto_por = resuelto_por;
     }
+    
+    public void updatePorcentajeExitos(){
+        this.porcentaje_exito = (resuelto_por.size() / intentado_por.size()) * 100;
+    }
 
     public double getPorcentaje_exito() {
         return porcentaje_exito;
