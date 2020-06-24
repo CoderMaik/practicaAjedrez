@@ -6,6 +6,7 @@ import POO.*;
 import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -28,6 +29,7 @@ public class UserInterface extends javax.swing.JFrame {
         jPanelIO.setVisible(false);
         jPanelSubirProblema.setVisible(false);
         jStatsPlayButton.setVisible(false);
+        jResetStatsButton.setVisible(false);
         jPanelStats.setVisible(false);
         jPanelPartida.setVisible(false);
     }
@@ -72,8 +74,10 @@ public class UserInterface extends javax.swing.JFrame {
         listaProblemas.getListaProblemas().get(4).getResuelto_por().add(u4);
         listaProblemas.getListaProblemas().get(6).getResuelto_por().add(u4);
         u4.updatePorcentajeExitos();
-        for (int i = 0; i < listaProblemas.getListaProblemas().size(); i++)       
-            listaProblemas.getListaProblemas().get(i).updatePorcentajeExitos();
+        for (int i = 0; i < listaProblemas.getListaProblemas().size(); i++) {
+            if(!listaProblemas.getListaProblemas().get(i).getIntentado_por().isEmpty())
+                listaProblemas.getListaProblemas().get(i).updatePorcentajeExitos();        
+        }      
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -108,6 +112,7 @@ public class UserInterface extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jVolverStatsButton = new javax.swing.JButton();
         jStatsPlayButton = new javax.swing.JButton();
+        jResetStatsButton = new javax.swing.JButton();
         jPanelPersonalStats = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jListaPersonalStats = new javax.swing.JList<>();
@@ -395,7 +400,7 @@ public class UserInterface extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("ESTADÍSTICAS DE LOS PROBLEMAS");
 
-        jVolverStatsButton.setText("Volver");
+        jVolverStatsButton.setText("Menú");
         jVolverStatsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jVolverStatsButtonActionPerformed(evt);
@@ -409,22 +414,28 @@ public class UserInterface extends javax.swing.JFrame {
             }
         });
 
+        jResetStatsButton.setText("Volver");
+        jResetStatsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jResetStatsButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelStatsLayout = new javax.swing.GroupLayout(jPanelStats);
         jPanelStats.setLayout(jPanelStatsLayout);
         jPanelStatsLayout.setHorizontalGroup(
             jPanelStatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelStatsLayout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jVolverStatsButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelStatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanelStatsLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jResetStatsButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jStatsPlayButton))
-                    .addGroup(jPanelStatsLayout.createSequentialGroup()
-                        .addComponent(jVolverStatsButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelStatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2))))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(42, 42, 42))
         );
         jPanelStatsLayout.setVerticalGroup(
@@ -437,7 +448,9 @@ public class UserInterface extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jStatsPlayButton)
+                .addGroup(jPanelStatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jStatsPlayButton)
+                    .addComponent(jResetStatsButton))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -844,6 +857,7 @@ public class UserInterface extends javax.swing.JFrame {
                        jListaStats.setListData(mostrarProblema(index));
                        problemaActivo=listaProblemas.getListaProblemas().get(index);
                        jStatsPlayButton.setVisible(true);
+                       jResetStatsButton.setVisible(true);
                    }else if (index>1){
                        jListaStats.setListData(estadisticasToString(listaUsuarios.getUsuario(s)));
                    }
@@ -863,6 +877,11 @@ public class UserInterface extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jStatsPlayButtonActionPerformed
 
+    private void jResetStatsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jResetStatsButtonActionPerformed
+        jListaStats.setListData(estadisticasProblemas());
+        jResetStatsButton.setVisible(false);
+    }//GEN-LAST:event_jResetStatsButtonActionPerformed
+
     private void jRadioRegistroActionPerformed(java.awt.event.ActionEvent evt) {
         if (jRadioLogin.isSelected())
             jRadioLogin.setSelected(false);
@@ -881,7 +900,6 @@ public class UserInterface extends javax.swing.JFrame {
                 jPanelLogin.setVisible(false);
             }
         } else if (jRadioLogin.isSelected()){
-            System.out.println(jPasswordField.getText());
             if(!(listaUsuarios.existeUsuario(jNombreTextField.getText())))
                 JOptionPane.showMessageDialog(this,"No existe cuenta con ese nombre","ERROR",JOptionPane.ERROR_MESSAGE);
             else if (!(listaUsuarios.getUsuario(jNombreTextField.getText()).getPwd().equals(jPasswordField.getText())))
@@ -1120,9 +1138,10 @@ public class UserInterface extends javax.swing.JFrame {
         int tamaño = p.getResuelto_por().size();
         String back[] = new String[tamaño+2];
         back[0]="Resuelto por: "+tamaño+" usuarios.";
-        DecimalFormat formatter = new DecimalFormat("#0.00");
+        NumberFormat formatter = new DecimalFormat("#0.00");
         back[1]="Porcentaje de éxito= "+formatter.format(p.getPorcentaje_exito())+" %.";
-        int i = 2;
+        back[2]="Usuarios que lo han resuelto: ";
+        int i = 3;
         for (Usuario u : p.getResuelto_por()){
             back[i] = u.getNombre();
             i++;
@@ -1207,6 +1226,7 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JRadioButton jProblemasRadio;
     private javax.swing.JRadioButton jRadioLogin;
     private javax.swing.JRadioButton jRadioRegistro;
+    private javax.swing.JButton jResetStatsButton;
     private javax.swing.JTextField jRutaProblemaTextField;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

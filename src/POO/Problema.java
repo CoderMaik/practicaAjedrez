@@ -207,7 +207,7 @@ public class Problema {
     }
     
     public void updatePorcentajeExitos(){
-        this.porcentaje_exito = (resuelto_por.size() / intentado_por.size()) * 100;
+        this.porcentaje_exito = (double) this.resuelto_por.size() / this.intentado_por.size() * 100;
     }
 
     public double getPorcentaje_exito() {
