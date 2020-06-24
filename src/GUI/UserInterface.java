@@ -71,7 +71,7 @@ public class UserInterface extends javax.swing.JFrame {
         listaProblemas.getListaProblemas().get(8).getIntentado_por().add(u4);
         listaProblemas.getListaProblemas().get(0).getResuelto_por().add(u4);
         listaProblemas.getListaProblemas().get(2).getResuelto_por().add(u4);
-        listaProblemas.getListaProblemas().get(4).getResuelto_por().add(u4);
+        listaProblemas.getListaProblemas().get(3).getResuelto_por().add(u4);
         listaProblemas.getListaProblemas().get(6).getResuelto_por().add(u4);
         u4.updatePorcentajeExitos();
         for (int i = 0; i < listaProblemas.getListaProblemas().size(); i++) {
@@ -850,18 +850,17 @@ public class UserInterface extends javax.swing.JFrame {
 
     private void jListaStatsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListaStatsMouseClicked
         JList list = (JList)evt.getSource();
-               if (evt.getClickCount() == 1) {
-                   int index = list.locationToIndex(evt.getPoint());
-                   String s = list.getModel().getElementAt(index).toString();
-                   if(s.contains("Problema")){
-                       jListaStats.setListData(mostrarProblema(index));
-                       problemaActivo=listaProblemas.getListaProblemas().get(index);
-                       jStatsPlayButton.setVisible(true);
-                       jResetStatsButton.setVisible(true);
-                   }else if (index>1){
-                       jListaStats.setListData(estadisticasToString(listaUsuarios.getUsuario(s)));
-                   }
-               }
+        if (evt.getClickCount() == 1) {
+            int index = list.locationToIndex(evt.getPoint());
+            String s = list.getModel().getElementAt(index).toString();
+            if(s.contains("Problema")){
+                jListaStats.setListData(mostrarProblema(index));
+                problemaActivo=listaProblemas.getListaProblemas().get(index);
+                jStatsPlayButton.setVisible(true);
+                jResetStatsButton.setVisible(true);
+            }else if (index>2 && listaUsuarios.existeUsuario(s))
+                jListaStats.setListData(estadisticasToString(listaUsuarios.getUsuario(s)));
+        }
     }//GEN-LAST:event_jListaStatsMouseClicked
 
     private void jStatsPlayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jStatsPlayButtonActionPerformed
@@ -1123,25 +1122,26 @@ public class UserInterface extends javax.swing.JFrame {
     }
     
     private String[] estadisticasToString(Usuario u){
-        String personalStats [] = new String[6]; //Tamaño fijo : atributos + 1
-        personalStats[0]="Nombre - Problemas intentados - Problemas resueltos - Errores totales - Porcentaje éxito";
-        personalStats[1]= u.getNombre();
-        personalStats[2]= (String.valueOf(u.getProblemas_intentados()));
-        personalStats[3]= (String.valueOf(u.getProblemas_resueltos()));
-        personalStats[4]= (String.valueOf(u.getErrores()));
-        personalStats[5]= (String.valueOf(u.getPorcentaje_exito()));
+        String personalStats [] = new String[5]; //Tamaño fijo : atributos
+        NumberFormat formatter = new DecimalFormat("#0.00");
+        personalStats[0]= "Nombre: "+u.getNombre();
+        personalStats[1]= "Problemas intentados: "+(String.valueOf(u.getProblemas_intentados()));
+        personalStats[2]= "Problemas resueltos :"+(String.valueOf(u.getProblemas_resueltos()));
+        personalStats[3]= "Errores totales: "+(String.valueOf(u.getErrores()));
+        personalStats[4]= "Porcentaje exito: "+(String.valueOf(formatter.format(u.getPorcentaje_exito())))+"%";
         return personalStats;
     }
     
     private String[] mostrarProblema(int index){  
         Problema p = listaProblemas.getListaProblemas().get(index);
         int tamaño = p.getResuelto_por().size();
-        String back[] = new String[tamaño+2];
+        String back[] = new String[tamaño+3];
         back[0]="Resuelto por: "+tamaño+" usuarios.";
         NumberFormat formatter = new DecimalFormat("#0.00");
         back[1]="Porcentaje de éxito= "+formatter.format(p.getPorcentaje_exito())+" %.";
-        back[2]="Usuarios que lo han resuelto: ";
         int i = 3;
+        if(!p.getResuelto_por().isEmpty())
+            back[2]="Usuarios que lo han resuelto: ";
         for (Usuario u : p.getResuelto_por()){
             back[i] = u.getNombre();
             i++;

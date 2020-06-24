@@ -6,7 +6,7 @@ public class Usuario {
     private int problemas_intentados;
     private int problemas_resueltos;
     private int errores;
-    private int porcentaje_exito;
+    private double porcentaje_exito;
 
     public Usuario (String nombre, String password){
         this.login=nombre;
@@ -47,7 +47,7 @@ public class Usuario {
         }
     }
     public void updatePorcentajeExitos(){
-        porcentaje_exito = problemas_resueltos / problemas_intentados * 100;
+        porcentaje_exito = (double) problemas_resueltos / problemas_intentados * 100;
     }
     
     @Override
@@ -82,7 +82,7 @@ public class Usuario {
     public int getErrores() {
         return errores;
     }
-    public int getPorcentaje_exito() {
+    public double getPorcentaje_exito() {
         return this.porcentaje_exito;
     }
 } // END USUARIO
