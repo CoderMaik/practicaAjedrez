@@ -63,7 +63,7 @@ public class UserInterface extends javax.swing.JFrame {
         listaProblemas.getListaProblemas().get(6).getResuelto_por().add(listaUsuarios.getUsuario("Pepu"));
     }
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanelLogin = new javax.swing.JPanel();
@@ -807,7 +807,7 @@ public class UserInterface extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>
+    }// </editor-fold>//GEN-END:initComponents
 
     private void jRadioRegistroActionPerformed(java.awt.event.ActionEvent evt) {
         if (jRadioLogin.isSelected())
@@ -1083,7 +1083,7 @@ public class UserInterface extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ioButton;
     private javax.swing.JButton jAccederButton;
     private javax.swing.JButton jComprobarButton;
@@ -1143,5 +1143,5 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JButton jVolverStatsButton;
     private javax.swing.JButton jVolverSubirProblemaButton;
     private javax.swing.JButton jVueltaPartidaButton;
-    // End of variables declaration
+    // End of variables declaration//GEN-END:variables
 }
