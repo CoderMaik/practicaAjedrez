@@ -20,7 +20,9 @@ public class Tablero {
     public Casilla getCasillaXY(int x, int y) {
         return mapa[x][y];
     }
-
+    public static boolean checkCasilla(int x, int y){
+        return  x<8 && x>=0 && y<8 && y>=0;
+    }
     public Casilla[][] getMapa() {
         return mapa;
     }

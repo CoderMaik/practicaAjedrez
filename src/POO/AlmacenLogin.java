@@ -10,11 +10,17 @@ public class AlmacenLogin {
     public AlmacenLogin() {
         listaUsuarios = new HashSet<>();
     }
-
+    //String nombre, String password, int problemas_intentados, int problemas_resueltos, int errores
+    public void initUsuariosPrueba(){
+        listaUsuarios.add(new Usuario("Pepe","1234",2,1,2));
+        listaUsuarios.add(new Usuario("Pepin","1234",3,2,4));
+        listaUsuarios.add(new Usuario("Pepa","1234",5,0,5));
+        listaUsuarios.add(new Usuario("Pepu","1234",9,4,0));
+    }
     public static HashSet<Usuario> getListaUsuarios() {
         return listaUsuarios;
     }
-
+    
     public boolean setListaUsuarios(HashSet<Usuario> lista) {
         if (listaUsuarios != null) {
             listaUsuarios = lista;
@@ -33,7 +39,7 @@ public class AlmacenLogin {
             found = (aux.equals(u));
         }
         return found;
-    }//Hace falta crear método existeUsuario(username,password)
+    }
 
     public Usuario getUsuario(Usuario u) {
         Iterator<Usuario> it = getListaUsuarios().iterator();
@@ -85,3 +91,4 @@ public class AlmacenLogin {
         }
     }
 }
+

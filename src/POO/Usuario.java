@@ -15,6 +15,14 @@ public class Usuario {
         this.problemas_resueltos = 0;
         this.errores = 0;
     }
+    public Usuario (String nombre, String password, int problemas_intentados, int problemas_resueltos, int errores){
+        this.login=nombre;
+        this.pwd=password;
+        this.problemas_intentados = problemas_intentados;
+        this.problemas_resueltos = problemas_resueltos;
+        this.errores = errores;
+    }
+
     public int newError() {
         return this.errores++;
     }

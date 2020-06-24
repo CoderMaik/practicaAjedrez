@@ -1,6 +1,7 @@
 package Piezas;
 
 import POO.Casilla;
+import POO.Tablero;
 
 public class Rey extends Pieza {
     private final char simbolo = 'R';
@@ -19,7 +20,18 @@ public class Rey extends Pieza {
                     Math.abs(destino.getCoorY()-origen.getCoorY())<=1);
     }
     public boolean reyEscapatoria(){
-        throw new RuntimeException("not implemented yet");
+        int x = Tablero.getRowInt(this.cas.getCoorX());
+        int y = cas.getCoorY();
+        return (Tablero.checkCasilla(x,y) && this.tab.getCasillaXY(x,y).amenazadaPor(tab,this.getOpColor())==0)
+                || (Tablero.checkCasilla(x+1,y) && this.tab.getCasillaXY(x+1,y).amenazadaPor(tab,this.getOpColor())==0)
+                || (Tablero.checkCasilla(x-1,y) && this.tab.getCasillaXY(x-1,y).amenazadaPor(tab,this.getOpColor())==0)
+                || (Tablero.checkCasilla(x,y+1) && this.tab.getCasillaXY(x,y+1).amenazadaPor(tab,this.getOpColor())==0)
+                || (Tablero.checkCasilla(x,y-1) && this.tab.getCasillaXY(x,y-1).amenazadaPor(tab,this.getOpColor())==0)
+                || (Tablero.checkCasilla(x+1,y+1) && this.tab.getCasillaXY(x+1,y+1).amenazadaPor(tab,this.getOpColor())==0)
+                || (Tablero.checkCasilla(x+1,y-1) && this.tab.getCasillaXY(x+1,y-1).amenazadaPor(tab,this.getOpColor())==0)
+                || (Tablero.checkCasilla(x-1,y+1) && this.tab.getCasillaXY(x-1,y+1).amenazadaPor(tab,this.getOpColor())==0)
+                || (Tablero.checkCasilla(x-1,y-1) && this.tab.getCasillaXY(x-1,y-1).amenazadaPor(tab,this.getOpColor())==0);
     }
+
     public char getLetra (){return this.simbolo;}
 }
