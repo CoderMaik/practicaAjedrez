@@ -484,12 +484,20 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="jVolverStatsButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="jStatsPlayButton" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="jVolverStatsButton" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
               </Group>
@@ -505,7 +513,9 @@
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jScrollPane2" min="-2" pref="462" max="-2" attributes="0"/>
-                  <EmptySpace pref="58" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jStatsPlayButton" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="20" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -548,6 +558,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jVolverStatsButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jStatsPlayButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Jugar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jStatsPlayButtonActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

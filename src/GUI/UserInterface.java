@@ -9,7 +9,6 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 
 public class UserInterface extends javax.swing.JFrame {
     private AlmacenLogin listaUsuarios;
@@ -28,6 +27,7 @@ public class UserInterface extends javax.swing.JFrame {
         jPanelPersonalStats.setVisible(false);
         jPanelIO.setVisible(false);
         jPanelSubirProblema.setVisible(false);
+        jStatsPlayButton.setVisible(false);
         jPanelStats.setVisible(false);
         jPanelPartida.setVisible(false);
     }
@@ -105,6 +105,7 @@ public class UserInterface extends javax.swing.JFrame {
         jListaStats = new javax.swing.JList<>();
         jLabel4 = new javax.swing.JLabel();
         jVolverStatsButton = new javax.swing.JButton();
+        jStatsPlayButton = new javax.swing.JButton();
         jPanelPersonalStats = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jListaPersonalStats = new javax.swing.JList<>();
@@ -399,17 +400,29 @@ public class UserInterface extends javax.swing.JFrame {
             }
         });
 
+        jStatsPlayButton.setText("Jugar");
+        jStatsPlayButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jStatsPlayButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelStatsLayout = new javax.swing.GroupLayout(jPanelStats);
         jPanelStats.setLayout(jPanelStatsLayout);
         jPanelStatsLayout.setHorizontalGroup(
             jPanelStatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelStatsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jVolverStatsButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelStatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
+                .addGroup(jPanelStatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelStatsLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jStatsPlayButton))
+                    .addGroup(jPanelStatsLayout.createSequentialGroup()
+                        .addComponent(jVolverStatsButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelStatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2))))
                 .addGap(42, 42, 42))
         );
         jPanelStatsLayout.setVerticalGroup(
@@ -421,7 +434,9 @@ public class UserInterface extends javax.swing.JFrame {
                     .addComponent(jVolverStatsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jStatsPlayButton)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jScrollPane4.setViewportView(jListaPersonalStats);
@@ -825,12 +840,24 @@ public class UserInterface extends javax.swing.JFrame {
                    String s = list.getModel().getElementAt(index).toString();
                    if(s.contains("Problema")){
                        jListaStats.setListData(mostrarProblema(index));
-                       //MOSTRAR BOTON PARA PODER JUGAR AL PROBLEMA
+                       problemaActivo=listaProblemas.getListaProblemas().get(index);
+                       jStatsPlayButton.setVisible(true);
                    }else if (index>1){
                        jListaStats.setListData(estadisticasToString(listaUsuarios.getUsuario(s)));
                    }
                }
     }//GEN-LAST:event_jListaStatsMouseClicked
+
+    private void jStatsPlayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jStatsPlayButtonActionPerformed
+        try{
+            miUsuario.problemaIntentado(problemaActivo);
+            jProblemaTextArea.setText(problemaActivo.getTablero().toString());
+            jPanelPartida.setVisible(true);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this,e.getMessage(),"LO SENTIMOS",JOptionPane.WARNING_MESSAGE);
+            jPanelMenu.setVisible(true);
+        }
+    }//GEN-LAST:event_jStatsPlayButtonActionPerformed
 
     private void jRadioRegistroActionPerformed(java.awt.event.ActionEvent evt) {
         if (jRadioLogin.isSelected())
@@ -1182,6 +1209,7 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextField jSolTextField;
+    private javax.swing.JButton jStatsPlayButton;
     private javax.swing.JButton jSubirButton;
     private javax.swing.JRadioButton jVictoriasRadio;
     private javax.swing.JButton jVolverClasificacionButton;
