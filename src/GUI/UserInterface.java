@@ -72,6 +72,8 @@ public class UserInterface extends javax.swing.JFrame {
         listaProblemas.getListaProblemas().get(4).getResuelto_por().add(u4);
         listaProblemas.getListaProblemas().get(6).getResuelto_por().add(u4);
         u4.updatePorcentajeExitos();
+        for (int i = 0; i < listaProblemas.getListaProblemas().size(); i++)       
+            listaProblemas.getListaProblemas().get(i).updatePorcentajeExitos();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -852,9 +854,11 @@ public class UserInterface extends javax.swing.JFrame {
         try{
             miUsuario.problemaIntentado(problemaActivo);
             jProblemaTextArea.setText(problemaActivo.getTablero().toString());
+            jPanelStats.setVisible(false);
             jPanelPartida.setVisible(true);
         }catch(Exception e){
             JOptionPane.showMessageDialog(this,e.getMessage(),"LO SENTIMOS",JOptionPane.WARNING_MESSAGE);
+            jPanelStats.setVisible(false);
             jPanelMenu.setVisible(true);
         }
     }//GEN-LAST:event_jStatsPlayButtonActionPerformed
