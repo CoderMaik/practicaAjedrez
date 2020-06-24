@@ -18,12 +18,48 @@ public class UserInterface extends javax.swing.JFrame {
         initComponents();
         listaUsuarios = new AlmacenLogin();
         listaProblemas = new AlmacenProblemas();
+        initTestData();
         jPanelMenu.setVisible(false);
         jPanelClasificacion.setVisible(false);
         jPanelPersonalStats.setVisible(false);
         jPanelIO.setVisible(false);
         jPanelSubirProblema.setVisible(false);
         jPanelStats.setVisible(false);
+        jPanelPartida.setVisible(false);
+    }
+    private void initTestData(){
+        //Añadir problemas
+        listaUsuarios.initUsuariosPrueba();
+        
+        listaProblemas.getListaProblemas().get(0).getIntentado_por().add(listaUsuarios.getUsuario("Pepe"));
+        listaProblemas.getListaProblemas().get(2).getIntentado_por().add(listaUsuarios.getUsuario("Pepe"));
+        listaProblemas.getListaProblemas().get(2).getResuelto_por().add(listaUsuarios.getUsuario("Pepe"));
+        
+        listaProblemas.getListaProblemas().get(0).getIntentado_por().add(listaUsuarios.getUsuario("Pepin"));
+        listaProblemas.getListaProblemas().get(3).getIntentado_por().add(listaUsuarios.getUsuario("Pepin"));
+        listaProblemas.getListaProblemas().get(6).getIntentado_por().add(listaUsuarios.getUsuario("Pepin"));
+        listaProblemas.getListaProblemas().get(0).getResuelto_por().add(listaUsuarios.getUsuario("Pepin"));
+        listaProblemas.getListaProblemas().get(3).getResuelto_por().add(listaUsuarios.getUsuario("Pepin"));
+        
+        listaProblemas.getListaProblemas().get(0).getIntentado_por().add(listaUsuarios.getUsuario("Pepa"));
+        listaProblemas.getListaProblemas().get(1).getIntentado_por().add(listaUsuarios.getUsuario("Pepa"));
+        listaProblemas.getListaProblemas().get(2).getIntentado_por().add(listaUsuarios.getUsuario("Pepa"));
+        listaProblemas.getListaProblemas().get(3).getIntentado_por().add(listaUsuarios.getUsuario("Pepa"));
+        listaProblemas.getListaProblemas().get(4).getIntentado_por().add(listaUsuarios.getUsuario("Pepa"));
+        
+        listaProblemas.getListaProblemas().get(0).getIntentado_por().add(listaUsuarios.getUsuario("Pepu"));
+        listaProblemas.getListaProblemas().get(1).getIntentado_por().add(listaUsuarios.getUsuario("Pepu"));
+        listaProblemas.getListaProblemas().get(2).getIntentado_por().add(listaUsuarios.getUsuario("Pepu"));
+        listaProblemas.getListaProblemas().get(3).getIntentado_por().add(listaUsuarios.getUsuario("Pepu"));
+        listaProblemas.getListaProblemas().get(4).getIntentado_por().add(listaUsuarios.getUsuario("Pepu"));
+        listaProblemas.getListaProblemas().get(5).getIntentado_por().add(listaUsuarios.getUsuario("Pepu"));
+        listaProblemas.getListaProblemas().get(6).getIntentado_por().add(listaUsuarios.getUsuario("Pepu"));
+        listaProblemas.getListaProblemas().get(7).getIntentado_por().add(listaUsuarios.getUsuario("Pepu"));
+        listaProblemas.getListaProblemas().get(8).getIntentado_por().add(listaUsuarios.getUsuario("Pepu"));
+        listaProblemas.getListaProblemas().get(0).getResuelto_por().add(listaUsuarios.getUsuario("Pepu"));
+        listaProblemas.getListaProblemas().get(2).getResuelto_por().add(listaUsuarios.getUsuario("Pepu"));
+        listaProblemas.getListaProblemas().get(4).getResuelto_por().add(listaUsuarios.getUsuario("Pepu"));
+        listaProblemas.getListaProblemas().get(6).getResuelto_por().add(listaUsuarios.getUsuario("Pepu"));
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
@@ -780,10 +816,7 @@ public class UserInterface extends javax.swing.JFrame {
     private void jAccederButtonActionPerformed(java.awt.event.ActionEvent evt) {
         if (jNombreTextField.getText().isEmpty() || jPasswordField.getPassword()==null)
             JOptionPane.showMessageDialog(this,"Compruebe que ningún campo esté vacío","ERROR",JOptionPane.ERROR_MESSAGE);
-        else if ("admin".equals(jNombreTextField.getText())){ //Para hacer pruebas sin cargar usuario
-            jPanelMenu.setVisible(true);
-            jPanelLogin.setVisible(false);
-        } else if (jRadioRegistro.isSelected()){
+        else if (jRadioRegistro.isSelected()){
             if(!(listaUsuarios.anadirUsuario(new Usuario(jNombreTextField.getText(),jPasswordField.getPassword().toString()))))
                 JOptionPane.showMessageDialog(this,"Ya existe una cuenta con ese nombre","ERROR",JOptionPane.ERROR_MESSAGE);
             else {
@@ -966,7 +999,6 @@ public class UserInterface extends javax.swing.JFrame {
     }
 
     private void jIOButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
         if (jImportRadio1.isSelected()){
             try{
                 listaUsuarios.leerAlmacenLogin(jIOTextField.getText());
