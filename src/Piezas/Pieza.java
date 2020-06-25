@@ -2,6 +2,7 @@ package Piezas;
 
 import POO.Casilla;
 import POO.Tablero;
+import java.io.IOException;
 import java.io.Serializable;
 
 public abstract class Pieza implements Serializable {
@@ -11,7 +12,7 @@ public abstract class Pieza implements Serializable {
 
     protected Pieza() {}
 
-    public static Pieza nuevaPieza(char c) {
+    public static Pieza nuevaPieza(char c) throws IOException {
         switch (c) {
             case 'T' | 't':
                 return new Torre();
@@ -26,7 +27,7 @@ public abstract class Pieza implements Serializable {
             case 'A' | 'a':
                 return new Alfil();
             default:
-                throw new RuntimeException("Error al crear la pieza");
+                return null;
         }
     }
 
