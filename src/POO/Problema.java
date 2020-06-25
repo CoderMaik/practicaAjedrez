@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashSet;
 
-public class Problema implements Serializable{
+public class Problema  implements Serializable{
     private HashSet<Usuario> intentado_por;
     private HashSet<Usuario> resuelto_por;
     private double porcentaje_exito;
@@ -21,13 +21,7 @@ public class Problema implements Serializable{
         this.intentado_por = new HashSet<>();
         this.porcentaje_exito = 0;
     }
-
-     public Problema(){
-        this.resuelto_por = new HashSet<>();
-        this.intentado_por = new HashSet<>();
-        this.porcentaje_exito = 0;
-    }
-
+    
         public Problema(FileReader file) throws IOException {
         this.intentado_por = new HashSet<>();
         this.resuelto_por = new HashSet<>();
