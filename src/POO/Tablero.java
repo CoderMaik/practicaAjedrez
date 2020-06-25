@@ -10,6 +10,11 @@ public class Tablero {
     //Constructor vacio
     public Tablero() {
         mapa = new Casilla[8][8];
+        for (int fil = 0; fil < 8; fil++) {
+            for (int col = 7; col >= 0; col--) {
+                mapa[fil][col]= new Casilla();
+            }    
+        }
     }
 
     public Casilla getCasilla(char x, int y) {
@@ -95,21 +100,21 @@ public class Tablero {
     public String toString(){
         String tab ="";
         for (int fila = 7; fila>=0; fila--){
+            tab+=" "+getRowChar(fila+1)+" ";
             for (int columna = 0; columna<8; columna++){
-                if (mapa[fila][columna].getContenido() == null){
-                    tab += "V ,";
+                if (mapa[fila][columna].esLibre()){
+                    tab += "| V  ";
                 }else {
-                    tab += mapa[fila][columna].getContenido().getLetra();
+                    tab += "|"+mapa[fila][columna].getContenido().getLetra();
                     if (mapa[fila][columna].getContenido().getColor() == Color.BLANCO){
-                        tab += "B ,";
+                        tab += "B";
                     }else{
-                        tab += "N ,";
+                        tab += "N";
                     }
                 }
             }
-            tab += "/n";
-        }
+            tab += "|\n";
+        }tab+="       1    2    3    4    5    6    7    8";
         return tab;
     }
-
 }

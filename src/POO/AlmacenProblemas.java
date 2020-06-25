@@ -5,6 +5,7 @@ import Piezas.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 public class AlmacenProblemas implements Serializable {
     private ArrayList<Problema> listaProblemas;
@@ -50,9 +51,16 @@ public class AlmacenProblemas implements Serializable {
         throw new RuntimeException("not implemented yet");
     }
     
-    public Problema problemAleatorio (Usuario u) throws Exception {
-            Problema p = listaProblemas.get((int) Math.floor( Math.random()*listaProblemas.size()+1));
+    public Problema problemAleatorio (Usuario u) {
+            Random rand = new Random();
+            Problema p = listaProblemas.get(rand.nextInt(listaProblemas.size()));
             return p;
+    }
+    public int getIndexOf(Problema p){
+        for (int i = 0; i < listaProblemas.size(); i++) {
+            if(listaProblemas.get(i).equals(p))
+                return i;           
+        }return -1;
     }
         /*Lo dejo comentado para saber las soluciones a los problemas pero no sirve
             case 1:

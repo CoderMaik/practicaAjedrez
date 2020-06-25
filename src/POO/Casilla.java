@@ -8,8 +8,9 @@ public class Casilla {
     private int coorY;
     private boolean libre;
     private Pieza contenido;
-
+    
     public Casilla() {
+        libre=true;
     }
 
     public Casilla(char x, int y) {

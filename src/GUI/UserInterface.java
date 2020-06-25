@@ -144,6 +144,7 @@ public class UserInterface extends javax.swing.JFrame {
         jSolTextField = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jComprobarButton = new javax.swing.JButton();
+        jLabelProblema = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Pantalla de acceso");
@@ -722,17 +723,24 @@ public class UserInterface extends javax.swing.JFrame {
             .addGroup(jPanelPartidaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jVueltaPartidaButton)
-                .addGap(37, 37, 37)
                 .addGroup(jPanelPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelPartidaLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelPartidaLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
                         .addGroup(jPanelPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jSolTextField, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(18, 18, 18)
                         .addComponent(jComprobarButton)))
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPartidaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabelProblema, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38))
         );
         jPanelPartidaLayout.setVerticalGroup(
             jPanelPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -743,10 +751,12 @@ public class UserInterface extends javax.swing.JFrame {
                         .addGap(8, 8, 8)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jVueltaPartidaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(1, 1, 1)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
-                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabelProblema))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jSolTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1023,15 +1033,11 @@ public class UserInterface extends javax.swing.JFrame {
 
     private void jMenuJugarButtonActionPerformed(java.awt.event.ActionEvent evt) {
         jPanelMenu.setVisible(false);
-        try{
-            problemaActivo = listaProblemas.problemAleatorio(miUsuario);//Elegir problema aleatorio y cargarlo
-            miUsuario.problemaIntentado(problemaActivo);
-            jProblemaTextArea.setText(problemaActivo.getTablero().toString());
-            jPanelPartida.setVisible(true);
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this,e.getMessage(),"LO SENTIMOS",JOptionPane.WARNING_MESSAGE);
-            jPanelMenu.setVisible(true);
-        }
+        problemaActivo = listaProblemas.problemAleatorio(miUsuario);
+        miUsuario.problemaIntentado(problemaActivo);
+        jProblemaTextArea.setText(problemaActivo.getTablero().toString());
+        jLabelProblema.setText("Problema "+ listaProblemas.getIndexOf(problemaActivo));
+        jPanelPartida.setVisible(true);
     }
 
     private void jComprobarButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1114,7 +1120,6 @@ public class UserInterface extends javax.swing.JFrame {
         String lista[] = new String[size];
         for (int i = 0; i < listaProblemas.getListaProblemas().size(); i++)
             lista[i] = "Problema "+(i+1); 
-
         return lista;
     }
     private void mostrarEstadisticas(){
@@ -1135,13 +1140,16 @@ public class UserInterface extends javax.swing.JFrame {
     private String[] mostrarProblema(int index){  
         Problema p = listaProblemas.getListaProblemas().get(index);
         int tamaño = p.getResuelto_por().size();
-        String back[] = new String[tamaño+3];
+        String back[];
+        if(!p.getResuelto_por().isEmpty()){
+            back = new String[tamaño+3];
+            back[2]="Usuarios que lo han resuelto: ";
+        }else
+            back = new String[tamaño+2];
         back[0]="Resuelto por: "+tamaño+" usuarios.";
         NumberFormat formatter = new DecimalFormat("#0.00");
         back[1]="Porcentaje de éxito= "+formatter.format(p.getPorcentaje_exito())+" %.";
         int i = 3;
-        if(!p.getResuelto_por().isEmpty())
-            back[2]="Usuarios que lo han resuelto: ";
         for (Usuario u : p.getResuelto_por()){
             back[i] = u.getNombre();
             i++;
@@ -1203,6 +1211,7 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelProblema;
     private javax.swing.JList<String> jListaClasificacion;
     private javax.swing.JList<String> jListaPersonalStats;
     private javax.swing.JList<String> jListaStats;
