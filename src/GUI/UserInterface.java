@@ -874,16 +874,10 @@ public class UserInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_jListaStatsMouseClicked
 
     private void jStatsPlayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jStatsPlayButtonActionPerformed
-        try{
             miUsuario.problemaIntentado(problemaActivo); 
             jProblemaTextArea.setText(problemaActivo.getTablero().toString());
             jPanelStats.setVisible(false);
             jPanelPartida.setVisible(true);
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this,e.getMessage(),"LO SENTIMOS",JOptionPane.WARNING_MESSAGE);
-            jPanelStats.setVisible(false);
-            jPanelMenu.setVisible(true);
-        }
     }//GEN-LAST:event_jStatsPlayButtonActionPerformed
 
     private void jResetStatsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jResetStatsButtonActionPerformed

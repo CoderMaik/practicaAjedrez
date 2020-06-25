@@ -36,7 +36,7 @@ public abstract class Pieza {
     }
 
     protected boolean inValido(Casilla origen) {
-        return (Tablero.getRowInt(origen.getCoorX()) > 0 && Tablero.getRowInt(origen.getCoorX()) < 8 && origen.getCoorY() < 8 && origen.getCoorY() > 0);
+        return (Tablero.getRowInt(origen.getCoorX()) >= 0 && Tablero.getRowInt(origen.getCoorX()) < 8 && origen.getCoorY() < 8 && origen.getCoorY() >= 0);
     }
 
     //Getters and setters

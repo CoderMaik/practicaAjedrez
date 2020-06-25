@@ -17,13 +17,13 @@ public class Tablero {
         }
     }
 
-    public Casilla getCasilla(char x, int y) {
+    public Casilla getCasilla(char x, int fil) {
         int n = getRowInt(x);
-        return mapa[n][y];
+        return mapa[fil][n];
     }
 
-    public Casilla getCasillaXY(int x, int y) {
-        return mapa[x][y];
+    public Casilla getCasillaXY(int fil, int col) {
+        return mapa[fil][col];
     }
     public static boolean checkCasilla(int x, int y){
         return  x<8 && x>=0 && y<8 && y>=0;
@@ -35,48 +35,26 @@ public class Tablero {
     public static int getRowInt(char x) {
         switch (x) {
             case 'a':
-                return 1;
-            case 'b':
-                return 2;
-            case 'c':
-                return 3;
-            case 'd':
-                return 4;
-            case 'e':
-                return 5;
-            case 'f':
-                return 6;
-            case 'g':
-                return 7;
-            case 'h':
-                return 8;
-            default:
                 return 0;
+            case 'b':
+                return 1;
+            case 'c':
+                return 2;
+            case 'd':
+                return 3;
+            case 'e':
+                return 4;
+            case 'f':
+                return 5;
+            case 'g':
+                return 6;
+            case 'h':
+                return 7;
+            default:
+                return -1;
         }
     }
 
-    public static char getRowChar(int x) {
-        switch (x) {
-            case 1:
-                return 'a';
-            case 2:
-                return 'b';
-            case 3:
-                return 'c';
-            case 4:
-                return 'd';
-            case 5:
-                return 'e';
-            case 6:
-                return 'f';
-            case 7:
-                return 'g';
-            case 8:
-                return 'h';
-            default:
-                return 'x';
-        }
-    }
     public Pieza moveR(char pieza,Casilla destino){ //CASO GENERICO
         Pieza p;
         for (int fil=7;fil>=0;fil--){
@@ -100,7 +78,7 @@ public class Tablero {
     public String toString(){
         String tab ="";
         for (int fila = 7; fila>=0; fila--){
-            tab+=" "+getRowChar(fila+1)+" ";
+            tab+=fila+1+"  ";
             for (int columna = 0; columna<8; columna++){
                 if (mapa[fila][columna].esLibre()){
                     tab += "| V  ";
@@ -114,7 +92,7 @@ public class Tablero {
                 }
             }
             tab += "|\n";
-        }tab+="       1    2    3    4    5    6    7    8";
+        }tab+="       a    b    c    d    e    f    g    h";
         return tab;
     }
 }

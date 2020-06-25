@@ -70,7 +70,7 @@ public class AlmacenLogin {
     }
 
     public boolean addUsuario(Usuario u) {
-        if(!existeUsuario(u)){
+        if(!existeUsuario(u.getNombre())){
             listaUsuarios.add(u);
             return true;
         }else{

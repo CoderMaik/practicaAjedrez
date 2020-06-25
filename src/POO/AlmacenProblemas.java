@@ -59,7 +59,7 @@ public class AlmacenProblemas implements Serializable {
     public int getIndexOf(Problema p){
         for (int i = 0; i < listaProblemas.size(); i++) {
             if(listaProblemas.get(i).equals(p))
-                return i;           
+                return i+1;           
         }return -1;
     }
         /*Lo dejo comentado para saber las soluciones a los problemas pero no sirve
