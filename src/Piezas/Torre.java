@@ -6,6 +6,7 @@ public class Torre extends Pieza {
     private final char simbolo = 'T';
     public Torre() {}
 
+    @Override
     public boolean mover(Casilla origen, Casilla destino) {
         if(!origenValido(origen) || !inValido(destino) || !movValido(origen,destino))
             return false;
@@ -35,6 +36,7 @@ public class Torre extends Pieza {
         return(!origen.equals(destino) && origen.getCoorX()-destino.getCoorX()==0 || origen.getCoorY()-destino.getCoorY()==0);
     }
     
+    @Override
     public char getLetra (){return this.simbolo;}
     @Override
     public boolean reyEscapatoria() {

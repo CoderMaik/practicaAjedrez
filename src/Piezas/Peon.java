@@ -7,6 +7,7 @@ public class Peon extends Pieza {
 
     public Peon() {}
     
+    @Override
     public boolean mover(Casilla origen, Casilla destino) {
         if (!inValido(destino) || !origenValido(origen))
             return false;
@@ -22,6 +23,7 @@ public class Peon extends Pieza {
                 return true;
         }return false;
     }
+    @Override
     public char getLetra (){return this.simbolo;}
     @Override
     public boolean reyEscapatoria() {

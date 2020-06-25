@@ -7,6 +7,7 @@ public class Dama extends Pieza {
 
     public Dama() {}
 
+    @Override
     public boolean mover(Casilla origen, Casilla destino) {
         if(!origenValido(origen) || !inValido(destino) || !movValido(origen,destino))
             return false;
@@ -63,6 +64,7 @@ public class Dama extends Pieza {
                 ||(!origen.equals(destino) && Math.abs(destino.getCoorY()-origen.getCoorY()) == Math.abs(destino.getCoorX()-origen.getCoorX()));
     }
     
+    @Override
     public char getLetra (){return this.simbolo;}
     @Override
     public boolean reyEscapatoria() {

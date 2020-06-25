@@ -7,6 +7,7 @@ public class Caballo extends Pieza {
 
     public Caballo() {}
 
+    @Override
     public boolean mover(Casilla o, Casilla d) {
        int movH = d.getCoorX()-o.getCoorX();
        int movV = d.getCoorY()-o.getCoorY();
@@ -61,6 +62,7 @@ public class Caballo extends Pieza {
         return (Math.abs(d.getCoorX()-o.getCoorX())==2 && Math.abs(d.getCoorY()-o.getCoorY())==1)
                 ||(Math.abs(d.getCoorX()-o.getCoorX())==1 && Math.abs(d.getCoorY()-o.getCoorY())==2);
     }
+    @Override
     public char getLetra (){return this.simbolo;}
 
     @Override

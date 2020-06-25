@@ -584,7 +584,7 @@ public class AlmacenProblemas implements Serializable {
                 p_64.setColor(Color.BLANCO);
                 p_64.setTab(tablero_6);
                 casilla_64.addPieza(p_64);
-                tablero_6.getMapa()[1][6] = casilla_64;
+                tablero_6.getMapa()[2][6] = casilla_64;
 
                 Pieza p_65 = new Rey();
                 Casilla casilla_65 = new Casilla('g', 1);

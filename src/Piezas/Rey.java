@@ -8,11 +8,9 @@ public class Rey extends Pieza {
 
     public Rey() {}
 
+    @Override
     public boolean mover(Casilla origen, Casilla destino) {
-        if (!inValido(destino) || !origenValido(origen) || !movValido(origen,destino) || (!destino.esLibre() && !destino.esComible(this.getOpColor())))
-            return false;
-        else
-            return true;
+        return !(!inValido(destino) || !origenValido(origen) || !movValido(origen,destino) || (!destino.esLibre() && !destino.esComible(this.getOpColor())));
     }
     private boolean movValido(Casilla origen, Casilla destino){
         return(!origen.equals(destino) &&
@@ -20,10 +18,12 @@ public class Rey extends Pieza {
                     Math.abs(destino.getCoorY()-origen.getCoorY())<=1);
     }
     
+    @Override
     public char getLetra (){return this.simbolo;}
     
     //DE LA PARTE OPCIONAL
     
+    @Override
     public boolean reyEscapatoria(){
         int x = Tablero.getRowInt(this.cas.getCoorX());
         int y = cas.getCoorY();
@@ -38,6 +38,7 @@ public class Rey extends Pieza {
                 || (Tablero.checkCasilla(x-1,y-1) && this.tab.getCasillaXY(x-1,y-1).amenazadaPor(tab,this.getOpColor())==0);
     }
     
+    @Override
     public boolean mitigarUnaAmenaza(){ //No se contempla que pueda comerme la amenaza con varias piezas y solo una opción sirva. Coge la primera siempre :(
         int x=Tablero.getRowInt(this.cas.getCoorX());
         int y = cas.getCoorY();
