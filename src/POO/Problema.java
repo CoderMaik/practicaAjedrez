@@ -21,9 +21,7 @@ public class Problema  implements Serializable{
         this.intentado_por = new HashSet<>();
         this.porcentaje_exito = 0;
     }
-    
-        public Problema(FileReader file) throws IOException {
-        this.intentado_por = new HashSet<>();
+     public Problema(File fichero) throws IOException {
         this.resuelto_por = new HashSet<>();
         this.porcentaje_exito = 0;
         boolean rey_blanco = false;
@@ -31,14 +29,8 @@ public class Problema  implements Serializable{
         int cPeonesBlancos = 0;
         int cPeonesNegros = 0;
         int contPiezasT = 0;
-        
-        /*String linea=br.readLine();
-            while(linea!=null){
-                System.out.println(linea);
-                linea=br.readLine();
-            }*/
 
-        try (BufferedReader br = new BufferedReader(file)) {
+        try (BufferedReader br = new BufferedReader(new FileReader(fichero))) {
             int charLeido = br.read();
             tab = new Tablero();
             int columna = 0;

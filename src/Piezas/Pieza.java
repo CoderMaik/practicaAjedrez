@@ -2,16 +2,17 @@ package Piezas;
 
 import POO.Casilla;
 import POO.Tablero;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Pieza {
+public abstract class Pieza implements Serializable {
     protected Color color;
     protected Tablero tab;
     protected Casilla cas;
 
     protected Pieza() {}
 
-    public Pieza nuevaPieza(char c) {
+    public static Pieza nuevaPieza(char c) {
         switch (c) {
             case 'T' | 't':
                 return new Torre();

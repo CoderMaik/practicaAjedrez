@@ -879,10 +879,16 @@ public class UserInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_jListaStatsMouseClicked
 
     private void jStatsPlayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jStatsPlayButtonActionPerformed
-            miUsuario.problemaIntentado(problemaActivo); 
+            miUsuario.problemaIntentado(problemaActivo);
+                    if(problemaActivo == null){
+                        System.out.println("Problema activo null"); 
+                    }else if (problemaActivo.getTablero() == null){
+                        System.out.println("get tablero null");
+                    }else{
+                        System.out.println(problemaActivo.getTablero().getMapa()[5][5]);
+                    }
             jProblemaTextArea.setText(problemaActivo.getTablero().toString());
             jPanelStats.setVisible(false);
-            jLabelProblema.setText("Problema "+ listaProblemas.getIndexOf(problemaActivo));
             jPanelPartida.setVisible(true);
     }//GEN-LAST:event_jStatsPlayButtonActionPerformed
 
@@ -1019,13 +1025,12 @@ public class UserInterface extends javax.swing.JFrame {
 
     private void jSubirButtonActionPerformed(java.awt.event.ActionEvent evt) {
         try{
-                String name = ""+jRutaProblemaTextField.getText()+".txt";
-                FileReader fileRead = new FileReader (name);
-                listaProblemas.addProblema(new Problema(fileRead));
-                if( fileRead != null){
+            File file = new File(jRutaProblemaTextField.getText());
+            listaProblemas.addProblema(new Problema(file));
+            if (file != null){
                 JOptionPane.showMessageDialog(this,"YUPI PROBLEMA AÑADIDO","CHUPICHUPI",JOptionPane.INFORMATION_MESSAGE);}
-            }catch(IOException e){
-                JOptionPane.showMessageDialog(this,e.getMessage(),"ERROR DE CARGA",JOptionPane.ERROR_MESSAGE);
+        }catch(IOException e){
+            JOptionPane.showMessageDialog(this,e.getMessage(),"ERROR DE CARGA",JOptionPane.ERROR_MESSAGE);
         }
         jRutaProblemaTextField.setText("");
     }
@@ -1084,7 +1089,6 @@ public class UserInterface extends javax.swing.JFrame {
             try{
                 listaProblemas.leerAlmacenProblemas(jIOTextField.getText());
                 JOptionPane.showMessageDialog(this,jIOTextField.getText().toString()+" ha sido leido correctamente. "+"\n");
-                System.out.println("Leido ejeje ");
             }catch(IOException | ClassNotFoundException ioException){
                 JOptionPane.showMessageDialog(this,"Error de lectura: "+ioException.getMessage(),"UPS...",JOptionPane.ERROR_MESSAGE);
             }       
@@ -1092,7 +1096,6 @@ public class UserInterface extends javax.swing.JFrame {
             try{
                listaProblemas.escribeAlmacenProblemas(jIOTextField.getText());
                JOptionPane.showMessageDialog(this, "Lista guardada en "+ jIOTextField1.getText().toString()+ "\n");
-               System.out.println("Leido ejeje ");
             }catch(IOException ioException){
                 JOptionPane.showMessageDialog(this,"Error de escritura: "+ioException.getMessage(),"UPS...",JOptionPane.ERROR_MESSAGE);}
         }else

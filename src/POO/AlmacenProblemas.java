@@ -91,7 +91,7 @@ public class AlmacenProblemas implements Serializable {
         for (Iterator it = listaProblemas.iterator(); it.hasNext();){
         System.out.println (it.next());
         }
-        s.writeObject(listaProblemas.toString());
+        s.writeObject(listaProblemas);
         s.close();
         
     }
