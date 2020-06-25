@@ -2,6 +2,7 @@ package Piezas;
 
 import POO.Casilla;
 import POO.Tablero;
+import java.util.ArrayList;
 
 public abstract class Pieza {
     protected Color color;
@@ -58,4 +59,8 @@ public abstract class Pieza {
 
     public void setCas(Casilla cas) {this.cas = cas;}
     public abstract char getLetra ();
+    
+    //METODOS JAQUE MATE MANUAL
+    public abstract boolean reyEscapatoria();
+    public abstract boolean mitigarUnaAmenaza();
 }

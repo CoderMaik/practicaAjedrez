@@ -62,4 +62,13 @@ public class Caballo extends Pieza {
                 ||(Math.abs(d.getCoorX()-o.getCoorX())==1 && Math.abs(d.getCoorY()-o.getCoorY())==2);
     }
     public char getLetra (){return this.simbolo;}
+
+    @Override
+    public boolean reyEscapatoria() {
+        throw new RuntimeException("No es un Rey");
+    }
+    @Override
+    public boolean mitigarUnaAmenaza() {
+        throw new RuntimeException("No es un Rey");
+    }
 }

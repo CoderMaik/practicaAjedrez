@@ -36,4 +36,13 @@ public class Alfil extends Pieza {
         return (!origen.equals(destino) && Math.abs(destino.getCoorY()-origen.getCoorY()) == Math.abs(destino.getCoorX()-origen.getCoorX()));
     }
     public char getLetra (){return this.simbolo;}
+    
+    @Override
+    public boolean reyEscapatoria() {
+        throw new RuntimeException("No es un Rey");
+    }
+    @Override
+    public boolean mitigarUnaAmenaza() {
+        throw new RuntimeException("No es un Rey");
+    }
 }

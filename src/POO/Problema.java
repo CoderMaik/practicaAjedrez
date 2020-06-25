@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Problema {
@@ -225,8 +226,10 @@ public class Problema {
     public void setJugada_ganadora(String jugada_ganadora) {
         this.jugada_ganadora = jugada_ganadora;
     }
-
-    private boolean checkMov(String s) throws Exception{
+    
+    //PARTE OPCIONAL - JAQUE MATE
+    
+    public boolean checkMov(String s) {
         //NO SE PUEDEN USAR SWITCH CON EL MATCHER
         char c; //letra de Pieza
         Casilla destino;
@@ -235,36 +238,36 @@ public class Problema {
             c = 'P';
             destino = tab.getCasilla(s.charAt(0), Character.getNumericValue(s.charAt(1)));
             p = tab.moveR(c,destino);
-            return saveStatus(destino,p);
+            return saveAndTryCheckMate(destino,p);
         }else if(s.matches("[a-h]x[a-h][1-8]++")){ //PEON COMER
             c = 'P';
             destino =tab.getCasilla(s.charAt(2), Character.getNumericValue(s.charAt(3)));
             p = tab.moveR(c,destino,s.charAt(0));
-            return !((!destino.esLibre() && !destino.esComible(Color.NEGRO)) || !saveStatus(destino,p));
+            return !((!destino.esLibre() && !destino.esComible(Color.NEGRO)) || !saveAndTryCheckMate(destino,p));
         }else if(s.matches("[ACDRT][a-h][1-8]++")){ //MOVER PIEZA
             c = s.charAt(0);
             destino = tab.getCasilla(s.charAt(1), Character.getNumericValue(s.charAt(2)));
             p = tab.moveR(c,destino);
-            return saveStatus(destino,p);
+            return saveAndTryCheckMate(destino,p);
         }else if(s.matches("[ACDRT]x[a-h][1-8]++")){ // COMER PIEZA
             c = s.charAt(0);
             destino = tab.getCasilla(s.charAt(2), Character.getNumericValue(s.charAt(3)));
             p = tab.moveR(c,destino);
-            return saveStatus(destino,p);
+            return saveAndTryCheckMate(destino,p);
         }else if(s.matches("[ACDRT][a-h]x[a-h][1-8]++")){ // COMER PIEZA VARIOS
             c = s.charAt(0);
             destino = tab.getCasilla(s.charAt(3),Character.getNumericValue(s.charAt(4)));
             p = tab.moveR(c,destino,s.charAt(1));
-            return saveStatus(destino,p);
+            return saveAndTryCheckMate(destino,p);
         }else if(s.matches("[ACDRT][a-h][a-h][1-8]++")){ //MOVER PIEZA VARIOS
             c = s.charAt(0);
             destino = tab.getCasilla(s.charAt(3),Character.getNumericValue(s.charAt(4)));
             p = tab.moveR(c,destino,s.charAt(1));
-            return saveStatus(destino,p);
+            return saveAndTryCheckMate(destino,p);
         }else
             return false;
     }
-    public boolean saveStatus(Casilla destino, Pieza p){
+    public boolean saveAndTryCheckMate(Casilla destino, Pieza p){
         Casilla origen;
         Pieza comida;
         if(p!=null){
@@ -292,8 +295,14 @@ public class Problema {
         }else
             return false;
     }
-    public boolean checkMate(){
-        throw new RuntimeException("not implemented yet");
+    public boolean checkMate(){ //ME FALTÓ LA CONDICIÓN DE LA LINEA DE VISIÓN (Y LA DEL ENROQUE QUE NO SE PUEDE HACER)
+        Pieza r = tab.getRey(Color.NEGRO);
+        //Si el rey tiene escapatoria o mi rey está amenazado jaque mate falla
+        if(r.reyEscapatoria() || tab.getRey(Color.BLANCO).getCas().amenazadaPor(tab, Color.NEGRO)>0)
+            return false;
+        else{ //Busco mitigar alguna de las amenazas blancas
+            return !r.mitigarUnaAmenaza();
+        }
     }
 /*Formato PGN
     Letra de pieza
@@ -303,14 +312,15 @@ public class Problema {
     ++ (jaquemate)
     
   Condiciones de jaque mate:
-    Si el rey tiene escapatoria return false
-        si no: miro las casillas amenazadas por una sola figura
+    Si el rey tiene escapatoria o mi rey está amenazado return false 
+        si no: miro las casillas amenazadas por una sola figura blanca
             si me puedo comer a alguna de esas figuras lo hago y
-                 si reyEscapatoria && miRey.casilla.amenazado=0 entonces return false
+                 si reyEscapatoria entonces return false
                  si no entonces vuelvo atrás
-            identifico la linea de visión que tienen
+        si no: identifico la linea de visión que tienen
                  si puedo bloquearla con alguna pieza lo hago y 
-                    si reyEscapatoria && miRey.casilla.amenazado=0 entonces return false
+                    si reyEscapatoria entonces return false
                     si no entonces vuelvo atrás
+        si no: probaría a esconderme con enroque (no se puede comprobar)
     return true*/
 }

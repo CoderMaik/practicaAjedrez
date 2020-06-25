@@ -138,6 +138,7 @@ public class UserInterface extends javax.swing.JFrame {
         jImportRadio1 = new javax.swing.JRadioButton();
         jPanelPartida = new javax.swing.JPanel();
         jVueltaPartidaButton = new javax.swing.JButton();
+        jManualCheckMateRadio = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jProblemaTextArea = new javax.swing.JTextArea();
@@ -697,6 +698,8 @@ public class UserInterface extends javax.swing.JFrame {
             }
         });
 
+        jManualCheckMateRadio.setText("Jaque Mate manual");
+
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("RETO ALEATORIO DE MASTERCHESS");
@@ -723,24 +726,24 @@ public class UserInterface extends javax.swing.JFrame {
             .addGroup(jPanelPartidaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jVueltaPartidaButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelPartidaLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanelPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanelPartidaLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
                         .addGroup(jPanelPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jSolTextField, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(18, 18, 18)
-                        .addComponent(jComprobarButton)))
-                .addContainerGap(37, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPartidaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanelPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabelProblema, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38))
+                        .addComponent(jComprobarButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jManualCheckMateRadio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelProblema, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38))))
         );
         jPanelPartidaLayout.setVerticalGroup(
             jPanelPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -751,16 +754,17 @@ public class UserInterface extends javax.swing.JFrame {
                         .addGap(8, 8, 8)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jVueltaPartidaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(1, 1, 1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabelProblema))
+                .addGap(7, 7, 7)
+                .addGroup(jPanelPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelProblema)
+                    .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jSolTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComprobarButton))
+                    .addComponent(jComprobarButton)
+                    .addComponent(jManualCheckMateRadio))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -1013,7 +1017,7 @@ public class UserInterface extends javax.swing.JFrame {
     private void jSubirButtonActionPerformed(java.awt.event.ActionEvent evt) {
         try{
             listaProblemas.addProblema(new Problema(new File(jRutaProblemaTextField.getText())));
-            JOptionPane.showMessageDialog(this,"YUPI PROBLEMA AÑADIDO","CHUPICHUPI",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this,"PROBLEMA AÑADIDO","EXITO",JOptionPane.INFORMATION_MESSAGE);
         }catch(IOException e){
             JOptionPane.showMessageDialog(this,e.getMessage(),"ERROR DE CARGA",JOptionPane.ERROR_MESSAGE);
         }
@@ -1035,15 +1039,28 @@ public class UserInterface extends javax.swing.JFrame {
     }
 
     private void jComprobarButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        if(problemaActivo.checkSol(jSolTextField.getText())){
-            JOptionPane.showMessageDialog(this,"SOLUCION CORRECTA","FELICIDADES",JOptionPane.INFORMATION_MESSAGE);
-            miUsuario.problemaResuelto(problemaActivo);
-            jPanelMenu.setVisible(true);
-            jPanelPartida.setVisible(false);
+        if(!jManualCheckMateRadio.isSelected()){
+            if(problemaActivo.checkSol(jSolTextField.getText())){
+                JOptionPane.showMessageDialog(this,"SOLUCION CORRECTA","FELICIDADES",JOptionPane.INFORMATION_MESSAGE);
+                miUsuario.problemaResuelto(problemaActivo);
+                jPanelMenu.setVisible(true);
+                jPanelPartida.setVisible(false);
+            }else{
+                JOptionPane.showMessageDialog(this,"SOLUCION INCORRECTA","INTENTELO DE NUEVO",JOptionPane.WARNING_MESSAGE);
+                miUsuario.problemaFallido(problemaActivo);
+                jSolTextField.setText("");
+            }
         }else{
-            JOptionPane.showMessageDialog(this,"SOLUCION INCORRECTA","INTENTELO DE NUEVO",JOptionPane.WARNING_MESSAGE);
-            miUsuario.problemaFallido(problemaActivo);
-            jSolTextField.setText("");
+            if(problemaActivo.checkMov(jSolTextField.getText())){
+                JOptionPane.showMessageDialog(this,"SOLUCION CORRECTÍSIMA","MUCHAS FELICIDADES",JOptionPane.INFORMATION_MESSAGE);
+                miUsuario.problemaResuelto(problemaActivo);
+                jPanelMenu.setVisible(true);
+                jPanelPartida.setVisible(false);
+            }else{
+                JOptionPane.showMessageDialog(this,"UPS, SOLUCION INCORRECTA","INTENTELO DE NUEVO",JOptionPane.WARNING_MESSAGE);
+                miUsuario.problemaFallido(problemaActivo);
+                jSolTextField.setText("");
+            }
         }
     }
 
@@ -1209,6 +1226,7 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JList<String> jListaClasificacion;
     private javax.swing.JList<String> jListaPersonalStats;
     private javax.swing.JList<String> jListaStats;
+    private javax.swing.JRadioButton jManualCheckMateRadio;
     private javax.swing.JButton jMenuCerrarButton;
     private javax.swing.JButton jMenuClasificacionButton;
     private javax.swing.JButton jMenuJugarButton;

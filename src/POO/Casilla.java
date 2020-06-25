@@ -21,12 +21,15 @@ public class Casilla {
     public void addPieza(Pieza p) {
         libre = false;
         this.contenido = p;
+        p.setCas(this);
     }
 
     public void removePieza() {
+        this.contenido.setCas(null);
         this.contenido = null; //Creo que es opcional
         libre = true;
     }
+    //DE LA PARTE OPCIONAL
     public int amenazadaPor(Tablero tab, Color color){ //Devuelve el numero de piezas amenazando la casilla
         int cont=0;
         for(int fil=7;fil>=0;fil--){

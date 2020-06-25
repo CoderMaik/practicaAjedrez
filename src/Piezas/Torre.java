@@ -36,4 +36,12 @@ public class Torre extends Pieza {
     }
     
     public char getLetra (){return this.simbolo;}
+    @Override
+    public boolean reyEscapatoria() {
+        throw new RuntimeException("No es un Rey");
+    }
+    @Override
+    public boolean mitigarUnaAmenaza() {
+        throw new RuntimeException("No es un Rey");
+    }
 }

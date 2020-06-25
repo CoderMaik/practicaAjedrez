@@ -54,7 +54,18 @@ public class Tablero {
                 return -1;
         }
     }
-
+    
+    public Pieza getRey(Color c){
+        Pieza p;
+        for (int fil=7;fil>=0;fil--){
+            for(int col=0;col<8;col++){
+                p = this.mapa[fil][col].getContenido();
+                if(p.getLetra()=='R' && p.getColor().equals(c))
+                    return p;
+            }
+        }return null;
+    }
+    
     public Pieza moveR(char pieza,Casilla destino){ //CASO GENERICO
         Pieza p;
         for (int fil=7;fil>=0;fil--){
@@ -74,6 +85,17 @@ public class Tablero {
                 return p;
         }return null;
     }
+    
+    public Pieza findAmenaza(Casilla c, Color color){
+        for(int fil=7;fil>=0;fil--){
+            for(int col=0;col<8;col++){
+                Pieza p = mapa[fil][col].getContenido();
+                if(p.getColor().equals(color) && p.mover(this.getCasillaXY(fil,col),c))
+                    return p;
+            }
+        }return null;
+    }
+    
     @Override
     public String toString(){
         String tab ="";
