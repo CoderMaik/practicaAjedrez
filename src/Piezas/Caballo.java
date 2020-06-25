@@ -13,7 +13,7 @@ public class Caballo extends Pieza {
        int movH = d.getCoorXi()-o.getCoorXi();
        int movV = d.getCoorY()-o.getCoorY();
        int i = 0;
-       if(!origenValido(o) || !inValido(d) || !movValido(o,d))
+       if(!origenValido(o) || !movValido(o,d))
             return false;
        if(movH>0 && movV>0)
            return checkCasilla(o.getCoorXi()+1, o.getCoorY()) && submoverH(tab.getCasillaXY(o.getCoorXi()+1, o.getCoorY()),d,movH-1,movV,i) 
@@ -30,7 +30,7 @@ public class Caballo extends Pieza {
       
     }
     private boolean submoverH(Casilla o, Casilla d, int movH, int movV, int i){ //Mover incrementando primero la columna
-           if (!inValido(o) || i==2)
+           if (i==2)
                return false;
            else if (movH == 0 && movV ==0 && (o.esLibre() || o.esComible(this.getOpColor())))
                return true;
@@ -47,7 +47,7 @@ public class Caballo extends Pieza {
            }
     }
     private boolean submoverV(Casilla o, Casilla d, int movH, int movV, int i){ //Mover incrementando primero la fila
-        if (!inValido(o) || i==2)
+        if (i==2)
                return false;
            else if (movH == 0 && movV ==0 && (o.esLibre() || o.esComible(this.getOpColor())))
                return true;

@@ -100,7 +100,7 @@ public class Tablero {
         }return null;
     }
     public Pieza moveR(char pieza,Casilla destino,char colOrigen){ //MOVER PEON COMIENDO O PIEZA CON VARIAS POSIBILIDADES
-        int colInt = Character.getNumericValue(colOrigen);
+        int colInt = Character.getNumericValue(colOrigen)-1;
         Pieza p;
         for (int fil=7;fil>=0;fil--){
             p = this.mapa[fil][colInt].getContenido();
@@ -110,13 +110,28 @@ public class Tablero {
     }
     
     public Pieza findAmenaza(Casilla c, Color color){
+        Pieza blanca = null;
+        if(!c.esLibre()){
+            blanca = c.getContenido();
+            c.removePieza();
+        }
         for(int fil=7;fil>=0;fil--){
             for(int col=0;col<8;col++){
                 Pieza p = mapa[fil][col].getContenido();
-                if(p!=null && p.getColor().equals(color) && p.mover(this.getCasillaXY(col,fil),c))
+                if(p!=null && p.getColor().equals(color) && p.mover(this.getCasillaXY(col,fil),c)){
+                    if(blanca!=null)
+                        c.addPieza(blanca);
                     return p;
+                }else if (p!=null && p.getColor().equals(color) && (p.getLetra()=='P' || p.getLetra()=='p')){
+                    Pieza ghost = Pieza.nuevaPieza('p'); //SIMULAR PIEZA NEGRA PARA PODER MOVER EN DIAGONAL
+                    ghost.setColor(Color.NEGRO);  
+                    c.addPieza(ghost);
+                    if(p.mover(this.getCasillaXY(col,fil),c))
+                        ghost.getCas().removePieza();
+                    return p;
+                }
             }
-        }System.out.println("find amenaza null");return null;
+        }return null;
     }
     
     @Override

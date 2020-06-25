@@ -2,7 +2,6 @@ package Piezas;
 
 import POO.Casilla;
 import POO.Tablero;
-import java.util.ArrayList;
 
 public abstract class Pieza {
     protected Color color;
@@ -11,7 +10,7 @@ public abstract class Pieza {
 
     protected Pieza() {}
 
-    public Pieza nuevaPieza(char c) {
+    public static Pieza nuevaPieza(char c) {
         switch (c) {
             case 'T' | 't':
                 return new Torre();
@@ -33,11 +32,7 @@ public abstract class Pieza {
     public abstract boolean mover(Casilla origen, Casilla destino);
 
     protected boolean origenValido(Casilla origen) {
-        return (origen.equals(cas) && inValido(origen));
-    }
-
-    protected boolean inValido(Casilla origen) {
-        return (origen!=null && Tablero.getRowInt(origen.getCoorX()) >= 0 && Tablero.getRowInt(origen.getCoorX()) < 8 && origen.getCoorY() < 8 && origen.getCoorY() >= 0);
+        return (origen.equals(cas));
     }
 
     //Getters and setters

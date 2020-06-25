@@ -180,11 +180,10 @@ public class Problema {
         int size = tab.getMapa().length;
         boolean columnas = false;
         for(int i = 0; i < size + 1; i ++ ) {
-            if (tab.getMapa()[i].length == 8) {
+            if (tab.getMapa()[i].length == 8)
                 columnas = true;
-            } else {
+            else 
                 return false;
-            }
         }
         return (tab.getMapa().length == 8) && (columnas = true);
     }
@@ -298,22 +297,17 @@ public class Problema {
                    origen.addPieza(p);
                    return true;
                }
-        }else{
-         System.out.println("save and try putada");
+        }else
          return false;
-        }
     }
     public boolean checkMate(){ //ME FALTÓ LA CONDICIÓN DE LA LINEA DE VISIÓN (Y LA DEL ENROQUE QUE NO SE PUEDE HACER)
         Pieza r = tab.getRey(Color.NEGRO);
         //Si el rey tiene escapatoria o mi rey está amenazado jaque mate falla
-        if(r.reyEscapatoria() || (tab.getRey(Color.BLANCO).getCas().amenazadaPor(tab, Color.NEGRO)>0)){
-            System.out.println("REYESCAPATORIA");
+        if(r.reyEscapatoria() || (tab.getRey(Color.BLANCO).getCas().amenazadaPor(tab, Color.NEGRO)>0))
             return false;
-        }else {
+        else 
             //Busco mitigar alguna de las amenazas blancas
-            System.out.println("MITIGAR");
             return !r.mitigarUnaAmenaza();
-        }
     }
 /*Formato PGN
     Letra de pieza

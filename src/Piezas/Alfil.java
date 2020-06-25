@@ -9,7 +9,7 @@ public class Alfil extends Pieza {
     
     @Override
     public boolean mover(Casilla origen, Casilla destino) {
-        if(!origenValido(origen) || !inValido(destino) || !movValido(origen,destino))
+        if(!origenValido(origen) || !movValido(origen,destino))
             return false;
         return submover(origen,destino);
     }

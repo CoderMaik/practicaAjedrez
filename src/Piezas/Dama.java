@@ -9,7 +9,7 @@ public class Dama extends Pieza {
 
     @Override
     public boolean mover(Casilla origen, Casilla destino) {
-        if(!origenValido(origen) || !inValido(destino) || !movValido(origen,destino))
+        if(!origenValido(origen) || !movValido(origen,destino))
             return false;
         if(origen.getCoorXi()-destino.getCoorXi()==0 || origen.getCoorY()-destino.getCoorY()==0)
             return submoverAsTorre(origen,destino);

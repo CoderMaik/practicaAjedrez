@@ -44,8 +44,14 @@ public class Casilla {
             for(int col=0;col<8;col++){
                 Pieza p = tab.getMapa()[fil][col].getContenido();
                 if(p!=null && p.getColor().equals(color) && p.mover(tab.getCasillaXY(col,fil),this)){
-                    cont++;
-                    System.out.println("Fil: "+fil+" Col: "+col+" cont: "+cont);
+                    cont++;                
+                }else if(p!=null && p.getColor().equals(color) && (p.getLetra()=='P' || p.getLetra()=='p')){
+                    Pieza ghost = Pieza.nuevaPieza('p'); //SIMULAR PIEZA NEGRA PARA PODER MOVER EN DIAGONAL
+                    ghost.setColor(Color.NEGRO);  
+                    this.addPieza(ghost);
+                    if(p.mover(tab.getCasillaXY(col,fil),this))
+                        cont++;
+                    this.removePieza();
                 }
             }
         }if(s!=null)this.addPieza(s);

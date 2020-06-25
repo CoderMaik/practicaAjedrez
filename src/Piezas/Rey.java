@@ -10,7 +10,7 @@ public class Rey extends Pieza {
 
     @Override
     public boolean mover(Casilla origen, Casilla destino) {
-        return !(!inValido(destino) || !origenValido(origen) || !movValido(origen,destino) || (!destino.esLibre() && !destino.esComible(this.getOpColor())));
+        return !(!origenValido(origen) || !movValido(origen,destino) || (!destino.esLibre() && !destino.esComible(this.getOpColor())));
     }
     private boolean movValido(Casilla origen, Casilla destino){
         return(!origen.equals(destino) &&
@@ -26,22 +26,24 @@ public class Rey extends Pieza {
     @Override
     public boolean reyEscapatoria(){
         int x = this.cas.getCoorXi();
-        int y = cas.getCoorY();                
-        if(Tablero.checkCasilla(x,y) && this.tab.getCasillaXY(x,y).amenazadaPor(tab,this.getOpColor())==0)
-            System.out.println("x,y");
-        if(Tablero.checkCasilla(x+1,y) && this.tab.getCasillaXY(x+1,y).amenazadaPor(tab,this.getOpColor())==0){
-            System.out.println("x+1,y");System.out.println(x+1+" "+y);
-        }if(Tablero.checkCasilla(x-1,y) && this.tab.getCasillaXY(x-1,y).amenazadaPor(tab,this.getOpColor())==0)
-            System.out.println("x-1,y");
-        return (Tablero.checkCasilla(x,y) && this.tab.getCasillaXY(x,y).amenazadaPor(tab,this.getOpColor())==0 &&(this.tab.getCasillaXY(x,y).esLibre() || this.tab.getCasillaXY(x,y).esComible(getOpColor()))) 
-                || (Tablero.checkCasilla(x+1,y) && this.tab.getCasillaXY(x+1,y).amenazadaPor(tab,this.getOpColor())==0 &&(this.tab.getCasillaXY(x+1,y).esLibre() || this.tab.getCasillaXY(x,y).esComible(getOpColor())))
-                || (Tablero.checkCasilla(x-1,y) && this.tab.getCasillaXY(x-1,y).amenazadaPor(tab,this.getOpColor())==0 &&(this.tab.getCasillaXY(x-1,y).esLibre() || this.tab.getCasillaXY(x,y).esComible(getOpColor())))
-                || (Tablero.checkCasilla(x,y+1) && this.tab.getCasillaXY(x,y+1).amenazadaPor(tab,this.getOpColor())==0 &&(this.tab.getCasillaXY(x,y+1).esLibre() || this.tab.getCasillaXY(x,y).esComible(getOpColor())))
-                || (Tablero.checkCasilla(x,y-1) && this.tab.getCasillaXY(x,y-1).amenazadaPor(tab,this.getOpColor())==0 &&(this.tab.getCasillaXY(x,y-1).esLibre() || this.tab.getCasillaXY(x,y).esComible(getOpColor())))
-                || (Tablero.checkCasilla(x+1,y+1) && this.tab.getCasillaXY(x+1,y+1).amenazadaPor(tab,this.getOpColor())==0 &&(this.tab.getCasillaXY(x+1,y+1).esLibre() || this.tab.getCasillaXY(x,y).esComible(getOpColor())))
-                || (Tablero.checkCasilla(x+1,y-1) && this.tab.getCasillaXY(x+1,y-1).amenazadaPor(tab,this.getOpColor())==0 &&(this.tab.getCasillaXY(x+1,y-1).esLibre() || this.tab.getCasillaXY(x,y).esComible(getOpColor())))
-                || (Tablero.checkCasilla(x-1,y+1) && this.tab.getCasillaXY(x-1,y+1).amenazadaPor(tab,this.getOpColor())==0 &&(this.tab.getCasillaXY(x-1,y+1).esLibre() || this.tab.getCasillaXY(x,y).esComible(getOpColor())))
-                || (Tablero.checkCasilla(x-1,y-1) && this.tab.getCasillaXY(x-1,y-1).amenazadaPor(tab,this.getOpColor())==0 &&(this.tab.getCasillaXY(x-1,y-1).esLibre() || this.tab.getCasillaXY(x,y).esComible(getOpColor())));
+        int y = cas.getCoorY();
+        Casilla save = this.getCas();
+        save.removePieza();
+        if((Tablero.checkCasilla(x,y) && this.tab.getCasillaXY(x,y).amenazadaPor(tab,this.getOpColor())==0 &&(this.tab.getCasillaXY(x,y).esLibre() || this.tab.getCasillaXY(x,y).esComible(getOpColor()))) 
+                || (Tablero.checkCasilla(x+1,y) && this.tab.getCasillaXY(x+1,y).amenazadaPor(tab,this.getOpColor())==0 &&(this.tab.getCasillaXY(x+1,y).esLibre() || this.tab.getCasillaXY(x+1,y).esComible(getOpColor())))
+                || (Tablero.checkCasilla(x-1,y) && this.tab.getCasillaXY(x-1,y).amenazadaPor(tab,this.getOpColor())==0 &&(this.tab.getCasillaXY(x-1,y).esLibre() || this.tab.getCasillaXY(x-1,y).esComible(getOpColor())))
+                || (Tablero.checkCasilla(x,y+1) && this.tab.getCasillaXY(x,y+1).amenazadaPor(tab,this.getOpColor())==0 &&(this.tab.getCasillaXY(x,y+1).esLibre() || this.tab.getCasillaXY(x,y+1).esComible(getOpColor())))
+                || (Tablero.checkCasilla(x,y-1) && this.tab.getCasillaXY(x,y-1).amenazadaPor(tab,this.getOpColor())==0 &&(this.tab.getCasillaXY(x,y-1).esLibre() || this.tab.getCasillaXY(x,y-1).esComible(getOpColor())))
+                || (Tablero.checkCasilla(x+1,y+1) && this.tab.getCasillaXY(x+1,y+1).amenazadaPor(tab,this.getOpColor())==0 &&(this.tab.getCasillaXY(x+1,y+1).esLibre() || this.tab.getCasillaXY(x+1,y+1).esComible(getOpColor())))
+                || (Tablero.checkCasilla(x+1,y-1) && this.tab.getCasillaXY(x+1,y-1).amenazadaPor(tab,this.getOpColor())==0 &&(this.tab.getCasillaXY(x+1,y-1).esLibre() || this.tab.getCasillaXY(x+1,y-1).esComible(getOpColor())))
+                || (Tablero.checkCasilla(x-1,y+1) && this.tab.getCasillaXY(x-1,y+1).amenazadaPor(tab,this.getOpColor())==0 &&(this.tab.getCasillaXY(x-1,y+1).esLibre() || this.tab.getCasillaXY(x-1,y+1).esComible(getOpColor())))
+                || (Tablero.checkCasilla(x-1,y-1) && this.tab.getCasillaXY(x-1,y-1).amenazadaPor(tab,this.getOpColor())==0 &&(this.tab.getCasillaXY(x-1,y-1).esLibre() || this.tab.getCasillaXY(x-1,y-1).esComible(getOpColor())))){
+            save.addPieza(this);
+            return true;
+        }else{
+           save.addPieza(this);
+           return false; 
+        }
     }
     
     @Override

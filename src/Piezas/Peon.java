@@ -1,6 +1,7 @@
 package Piezas;
 
 import POO.Casilla;
+import static POO.Tablero.checkCasilla;
 
 public class Peon extends Pieza {
     private final char simbolo = 'P';
@@ -9,13 +10,13 @@ public class Peon extends Pieza {
     
     @Override
     public boolean mover(Casilla origen, Casilla destino) {
-        if (!inValido(destino) || !origenValido(origen))
+        if (!origenValido(origen))
             return false;
         if (origen.getCoorXi()-destino.getCoorXi() == 0){ //Movimiento normal
             if (!destino.esLibre())
                 return false;
-            else if ((this.getColor()==Color.BLANCO && tab.getCasilla(cas.getCoorX(),cas.getCoorY()+1)==destino)
-                    || (this.getColor()==Color.NEGRO && tab.getCasilla(cas.getCoorX(),cas.getCoorY()-1)==destino))
+            else if ((this.getColor()==Color.BLANCO && checkCasilla(cas.getCoorX(),cas.getCoorY()+1) && tab.getCasilla(cas.getCoorX(),cas.getCoorY()+1)==destino)
+                    || (this.getColor()==Color.NEGRO && checkCasilla(cas.getCoorX(),cas.getCoorY()-1) && tab.getCasilla(cas.getCoorX(),cas.getCoorY()-1)==destino))
                 return true;
         }else{ //Movimiento para comer falta es comible
             if ((this.getColor()==Color.BLANCO && (!destino.esLibre() && destino.esComible(Color.NEGRO)) && (destino.getCoorY()-origen.getCoorY())==1)||
