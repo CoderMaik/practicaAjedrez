@@ -4,6 +4,7 @@ package GUI;
 import POO.Problema;
 import POO.*;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -997,8 +998,7 @@ public class UserInterface extends javax.swing.JFrame {
         jPanelLogin.setVisible(true);
         jPanelIO.setVisible(false);
     }
-
-    private void jExportRadioActionPerformed(java.awt.event.ActionEvent evt) {
+     private void jExportRadioActionPerformed(java.awt.event.ActionEvent evt) {
         if (jImportRadio.isSelected())
             jImportRadio.setSelected(false);
     }
@@ -1007,6 +1007,8 @@ public class UserInterface extends javax.swing.JFrame {
         if (jExportRadio.isSelected())
             jExportRadio.setSelected(false);
     }
+
+    
 
     private void jVictoriasRadioActionPerformed(java.awt.event.ActionEvent evt) {
         if (jProblemasRadio.isSelected())
@@ -1017,10 +1019,13 @@ public class UserInterface extends javax.swing.JFrame {
 
     private void jSubirButtonActionPerformed(java.awt.event.ActionEvent evt) {
         try{
-            listaProblemas.addProblema(new Problema(new File(jRutaProblemaTextField.getText())));
-            JOptionPane.showMessageDialog(this,"PROBLEMA AÑADIDO","EXITO",JOptionPane.INFORMATION_MESSAGE);
-        }catch(IOException e){
-            JOptionPane.showMessageDialog(this,e.getMessage(),"ERROR DE CARGA",JOptionPane.ERROR_MESSAGE);
+                String name = ""+jRutaProblemaTextField.getText()+".txt";
+                FileReader fileRead = new FileReader (name);
+                listaProblemas.addProblema(new Problema(fileRead));
+                if( fileRead != null){
+                JOptionPane.showMessageDialog(this,"YUPI PROBLEMA AÑADIDO","CHUPICHUPI",JOptionPane.INFORMATION_MESSAGE);}
+            }catch(IOException e){
+                JOptionPane.showMessageDialog(this,e.getMessage(),"ERROR DE CARGA",JOptionPane.ERROR_MESSAGE);
         }
         jRutaProblemaTextField.setText("");
     }
@@ -1078,33 +1083,39 @@ public class UserInterface extends javax.swing.JFrame {
         if (jImportRadio.isSelected()){
             try{
                 listaProblemas.leerAlmacenProblemas(jIOTextField.getText());
-            }catch(IOException | ClassNotFoundException i){
-                JOptionPane.showMessageDialog(this,"Error de lectura: "+i.getMessage(),"UPS...",JOptionPane.ERROR_MESSAGE);
-            }
+                JOptionPane.showMessageDialog(this,jIOTextField.getText().toString()+" ha sido leido correctamente. "+"\n");
+                System.out.println("Leido ejeje ");
+            }catch(IOException | ClassNotFoundException ioException){
+                JOptionPane.showMessageDialog(this,"Error de lectura: "+ioException.getMessage(),"UPS...",JOptionPane.ERROR_MESSAGE);
+            }       
         }else if(jExportRadio.isSelected()){
             try{
-                listaProblemas.escribeAlmacenProblemas(jIOTextField.getText());
-            }catch(IOException i){
-                JOptionPane.showMessageDialog(this,"Error de escritura: "+i.getMessage(),"UPS...",JOptionPane.ERROR_MESSAGE);
-            }
+               listaProblemas.escribeAlmacenProblemas(jIOTextField.getText());
+               JOptionPane.showMessageDialog(this, "Lista guardada en "+ jIOTextField1.getText().toString()+ "\n");
+               System.out.println("Leido ejeje ");
+            }catch(IOException ioException){
+                JOptionPane.showMessageDialog(this,"Error de escritura: "+ioException.getMessage(),"UPS...",JOptionPane.ERROR_MESSAGE);}
         }else
-            JOptionPane.showMessageDialog(this,"Seleccione una opción","UPS...",JOptionPane.WARNING_MESSAGE);
+           JOptionPane.showMessageDialog(this,"Seleccione una opción","UPS...",JOptionPane.WARNING_MESSAGE);
     }
 
     private void jExportRadio1ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+          if (jImportRadio1.isSelected())
+            jImportRadio1.setSelected(false);
     }
 
     private void jIOButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         if (jImportRadio1.isSelected()){
             try{
-                listaUsuarios.leerAlmacenLogin(jIOTextField.getText());
+                listaUsuarios.leerAlmacenLogin(jIOTextField1.getText());
+                JOptionPane.showMessageDialog(this,jIOTextField1.getText().toString()+" ha sido leido correctamente. "+"\n");
             }catch(IOException | ClassNotFoundException ioException){
                 JOptionPane.showMessageDialog(this,"Error de lectura: "+ioException.getMessage(),"UPS...",JOptionPane.ERROR_MESSAGE);
             }
         }else if(jExportRadio1.isSelected()){
             try{
-                listaUsuarios.escribeAlmacenLogin(jIOTextField.getText());
+                listaUsuarios.escribeAlmacenLogin(jIOTextField1.getText());
+                JOptionPane.showMessageDialog(this, "Lista guardada en "+ jIOTextField1.getText().toString()+ "\n");
             }catch(IOException ioException){
                 JOptionPane.showMessageDialog(this,"Error de escritura: "+ioException.getMessage(),"UPS...",JOptionPane.ERROR_MESSAGE);
             }
@@ -1117,7 +1128,8 @@ public class UserInterface extends javax.swing.JFrame {
     }
 
     private void jImportRadio1ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        if (jExportRadio1.isSelected())
+            jExportRadio1.setSelected(false);
     }
     private void mostrarClasificacion(){
         jListaClasificacion.setListData(clasificacionToString());

@@ -1,9 +1,10 @@
 package POO;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
-public class Usuario {
+public class Usuario  implements Serializable{
     private String login;
     private String pwd;
     private int problemas_intentados;

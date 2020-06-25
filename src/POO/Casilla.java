@@ -3,8 +3,9 @@ package POO;
 import static POO.Tablero.getRowInt;
 import Piezas.Color;
 import Piezas.Pieza;
+import java.io.Serializable;
 
-public class Casilla {
+public class Casilla implements Serializable{
     private char coorX;
     private int coorY;
     private boolean libre;

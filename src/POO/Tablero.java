@@ -2,8 +2,9 @@ package POO;
 
 import Piezas.Color;
 import Piezas.Pieza;
+import java.io.Serializable;
 
-public class Tablero {
+public class Tablero implements Serializable{
 
     private Casilla[][] mapa;
 

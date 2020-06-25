@@ -6,9 +6,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.HashSet;
 
-public class Problema {
+public class Problema implements Serializable{
     private HashSet<Usuario> intentado_por;
     private HashSet<Usuario> resuelto_por;
     private double porcentaje_exito;
@@ -21,7 +22,13 @@ public class Problema {
         this.porcentaje_exito = 0;
     }
 
-    public Problema(File fichero) throws IOException {
+     public Problema(){
+        this.resuelto_por = new HashSet<>();
+        this.intentado_por = new HashSet<>();
+        this.porcentaje_exito = 0;
+    }
+
+        public Problema(FileReader file) throws IOException {
         this.intentado_por = new HashSet<>();
         this.resuelto_por = new HashSet<>();
         this.porcentaje_exito = 0;
@@ -30,20 +37,28 @@ public class Problema {
         int cPeonesBlancos = 0;
         int cPeonesNegros = 0;
         int contPiezasT = 0;
+        
+        /*String linea=br.readLine();
+            while(linea!=null){
+                System.out.println(linea);
+                linea=br.readLine();
+            }*/
 
-        try (BufferedReader br = new BufferedReader(new FileReader(fichero))) {
+        try (BufferedReader br = new BufferedReader(file)) {
             int charLeido = br.read();
             tab = new Tablero();
             int columna = 0;
             int fila = 7;
             while (charLeido != -1 || fila>=0) {
+                System.out.println("Entra en el while");
                 char caracter = ((char) charLeido);
                 if (fila != 0) {
+                    System.out.println("Entra en el if");
                     switch (caracter) {
                         case 'V':
                             tab.getMapa()[fila][columna] = null; // no metemos pieza
                         case ',':
-                            if (columna == 8) {
+                            if (columna == 7) {
                                 columna = 0;
                                 fila--;
                             } else
@@ -169,12 +184,15 @@ public class Problema {
                     fila--; //ya termino, fila = -1
                 }
             }
+           br.close();
         } catch (IOException ioEx) {
             this.tab = null;
             this.jugada_ganadora = null;
             System.out.println(ioEx.getMessage());
         }
+        
     }
+
 
     public boolean comprobarSizeTablero(Tablero tab){
         int size = tab.getMapa().length;

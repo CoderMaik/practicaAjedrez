@@ -84,14 +84,19 @@ public class AlmacenProblemas implements Serializable {
             case 10:
                 jugada_ganadora = "Txc7++";*/
 
-    public void escribeAlmacenProblemas(String n) throws IOException {
-        FileOutputStream fileOut = new FileOutputStream(n);
-        ObjectOutputStream salida = new ObjectOutputStream(fileOut);
-        salida.writeObject(this.listaProblemas);
-        salida.close();
+     public void escribeAlmacenProblemas(String nFile) throws IOException {
+        String name = nFile+".bin";
+        FileOutputStream fOut = new FileOutputStream(name);
+        ObjectOutputStream s = new ObjectOutputStream(fOut);
+        for (Iterator it = listaProblemas.iterator(); it.hasNext();){
+        System.out.println (it.next());
+        }
+        s.writeObject(listaProblemas.toString());
+        s.close();
+        
     }
-
-    public boolean leerAlmacenProblemas(String nameFile) throws IOException, ClassNotFoundException {
+  
+     public boolean leerAlmacenProblemas(String nameFile) throws IOException, ClassNotFoundException {
         try {
             FileInputStream fichero = new FileInputStream(nameFile);
             ObjectInputStream input = new ObjectInputStream(fichero);
@@ -102,6 +107,29 @@ public class AlmacenProblemas implements Serializable {
             return false;
         }
     }
+ 
+    public boolean AlmacenProblemasEnTXT(String fichero) throws IOException {
+        String n = fichero+".txt";
+        FileWriter fileOut = new FileWriter(n);
+        BufferedWriter buffer = new BufferedWriter(fileOut);
+        PrintWriter salida = new PrintWriter(buffer);
+        for (Problema problema : getListaProblemas())
+            salida.println(problema);
+        salida.close();
+        return true;
+    }
+    public String leeProblemaDeTXT(String fichero) throws IOException{
+        String ruta = fichero+".txt";
+        FileReader  fileIn = new FileReader(ruta);
+        BufferedReader  buffer = new BufferedReader (fileIn);
+        String s="";
+        String texto="";
+        while((s = buffer.readLine()) != null)
+          texto += s + "\n";
+        buffer.close();
+        return texto;
+    }
+
 
     public void problemasBase() {
 
