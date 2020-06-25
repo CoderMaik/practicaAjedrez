@@ -12,7 +12,7 @@ public class Tablero {
         mapa = new Casilla[8][8];
         for (int fil = 0; fil < 8; fil++) {
             for (int col = 7; col >= 0; col--) {
-                mapa[fil][col]= new Casilla();
+                mapa[fil][col]= new Casilla(getRowChar(col),fil);
             }    
         }
     }
@@ -22,8 +22,8 @@ public class Tablero {
         return mapa[fil][n];
     }
 
-    public Casilla getCasillaXY(int fil, int col) {
-        return mapa[fil][col];
+    public Casilla getCasillaXY(int col, int fil) {
+            return mapa[fil][col];
     }
     public static boolean checkCasilla(int x, int y){
         return  x<8 && x>=0 && y<8 && y>=0;
@@ -55,12 +55,35 @@ public class Tablero {
         }
     }
     
+    public static char getRowChar(int x){
+        switch (x) {
+            case 0:
+                return 'a';
+            case 1:
+                return 'b';
+            case 2:
+                return 'c';
+            case 3:
+                return 'd';
+            case 4:
+                return 'e';
+            case 5:
+                return 'f';
+            case 6:
+                return 'g';
+            case 7:
+                return 'h';
+            default:
+                return 'x';
+        }
+    }
+    
     public Pieza getRey(Color c){
         Pieza p;
         for (int fil=7;fil>=0;fil--){
             for(int col=0;col<8;col++){
                 p = this.mapa[fil][col].getContenido();
-                if(p.getLetra()=='R' && p.getColor().equals(c))
+                if(p!=null && p.getLetra()=='R' && p.getColor().equals(c))
                     return p;
             }
         }return null;
@@ -71,7 +94,7 @@ public class Tablero {
         for (int fil=7;fil>=0;fil--){
             for(int col=0;col<8;col++){
                 p = this.mapa[fil][col].getContenido();
-                if(p.getLetra()==pieza && p.getColor().equals(Color.BLANCO)&& p.mover(this.getCasillaXY(fil,col),destino))
+                if(p!=null && p.getLetra()==pieza && p.getColor().equals(Color.BLANCO) && p.mover(this.getCasillaXY(col,fil),destino))
                     return p;
             }
         }return null;
@@ -81,7 +104,7 @@ public class Tablero {
         Pieza p;
         for (int fil=7;fil>=0;fil--){
             p = this.mapa[fil][colInt].getContenido();
-            if(p.getLetra()==pieza && p.getColor().equals(Color.BLANCO) && p.mover(this.getCasillaXY(fil,colInt),destino))
+            if(p!=null && p.getLetra()==pieza && p.getColor().equals(Color.BLANCO) && p.mover(this.getCasillaXY(colInt,fil),destino))
                 return p;
         }return null;
     }
@@ -90,10 +113,10 @@ public class Tablero {
         for(int fil=7;fil>=0;fil--){
             for(int col=0;col<8;col++){
                 Pieza p = mapa[fil][col].getContenido();
-                if(p.getColor().equals(color) && p.mover(this.getCasillaXY(fil,col),c))
+                if(p!=null && p.getColor().equals(color) && p.mover(this.getCasillaXY(col,fil),c))
                     return p;
             }
-        }return null;
+        }System.out.println("find amenaza null");return null;
     }
     
     @Override

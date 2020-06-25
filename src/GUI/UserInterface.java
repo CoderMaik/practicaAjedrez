@@ -881,6 +881,7 @@ public class UserInterface extends javax.swing.JFrame {
             miUsuario.problemaIntentado(problemaActivo); 
             jProblemaTextArea.setText(problemaActivo.getTablero().toString());
             jPanelStats.setVisible(false);
+            jLabelProblema.setText("Problema "+ listaProblemas.getIndexOf(problemaActivo));
             jPanelPartida.setVisible(true);
     }//GEN-LAST:event_jStatsPlayButtonActionPerformed
 
@@ -1026,6 +1027,7 @@ public class UserInterface extends javax.swing.JFrame {
 
     private void jVueltaPartidaButtonActionPerformed(java.awt.event.ActionEvent evt) {
         jPanelMenu.setVisible(true);
+        jManualCheckMateRadio.setSelected(false);
         jPanelPartida.setVisible(false);
     }
 
@@ -1043,6 +1045,8 @@ public class UserInterface extends javax.swing.JFrame {
             if(problemaActivo.checkSol(jSolTextField.getText())){
                 JOptionPane.showMessageDialog(this,"SOLUCION CORRECTA","FELICIDADES",JOptionPane.INFORMATION_MESSAGE);
                 miUsuario.problemaResuelto(problemaActivo);
+                jSolTextField.setText("");
+                jManualCheckMateRadio.setSelected(false);
                 jPanelMenu.setVisible(true);
                 jPanelPartida.setVisible(false);
             }else{
@@ -1054,6 +1058,8 @@ public class UserInterface extends javax.swing.JFrame {
             if(problemaActivo.checkMov(jSolTextField.getText())){
                 JOptionPane.showMessageDialog(this,"SOLUCION CORRECTÍSIMA","MUCHAS FELICIDADES",JOptionPane.INFORMATION_MESSAGE);
                 miUsuario.problemaResuelto(problemaActivo);
+                jSolTextField.setText("");
+                jManualCheckMateRadio.setSelected(false);
                 jPanelMenu.setVisible(true);
                 jPanelPartida.setVisible(false);
             }else{

@@ -18,17 +18,17 @@ public class Alfil extends Pieza {
         //Casos base
         if(origen.equals(destino) && (origen.esLibre() || origen.esComible(this.getOpColor())))
             return true;
-        else if(!origen.esLibre())
+        else if(!origen.equals(this.getCas()) && !origen.esLibre())
             return false;
         //Casos recursivos
-        if(destino.getCoorX()-origen.getCoorX()>0 && destino.getCoorY()-origen.getCoorY()>0) //UPRIGHT
-            return submover(tab.getCasillaXY(origen.getCoorX()+1,origen.getCoorY()+1),destino);
-        else if (destino.getCoorX()-origen.getCoorX()<0 && destino.getCoorY()-origen.getCoorY()>0) //UPLEFT
-            return submover(tab.getCasillaXY(origen.getCoorX()-1,origen.getCoorY()+1),destino);
-        else if (destino.getCoorX()-origen.getCoorX()<0 && destino.getCoorY()-origen.getCoorY()<0) //DOWNLEFT
-            return submover(tab.getCasillaXY(origen.getCoorX()-1,origen.getCoorY()-1),destino);
-        else if (destino.getCoorX()-origen.getCoorX()>0 && destino.getCoorY()-origen.getCoorY()<0) //DOWNRIGHT
-            return submover(tab.getCasillaXY(origen.getCoorX()+1,origen.getCoorY()-1),destino);
+        if(destino.getCoorXi()-origen.getCoorXi()>0 && destino.getCoorY()-origen.getCoorY()>0) //UPRIGHT
+            return submover(tab.getCasillaXY(origen.getCoorXi()+1,origen.getCoorY()+1),destino);
+        else if (destino.getCoorXi()-origen.getCoorXi()<0 && destino.getCoorY()-origen.getCoorY()>0) //UPLEFT
+            return submover(tab.getCasillaXY(origen.getCoorXi()-1,origen.getCoorY()+1),destino);
+        else if (destino.getCoorXi()-origen.getCoorXi()<0 && destino.getCoorY()-origen.getCoorY()<0) //DOWNLEFT
+            return submover(tab.getCasillaXY(origen.getCoorXi()-1,origen.getCoorY()-1),destino);
+        else if (destino.getCoorXi()-origen.getCoorXi()>0 && destino.getCoorY()-origen.getCoorY()<0) //DOWNRIGHT
+            return submover(tab.getCasillaXY(origen.getCoorXi()+1,origen.getCoorY()-1),destino);
         else
             return false;
     }

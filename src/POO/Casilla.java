@@ -1,5 +1,6 @@
 package POO;
 
+import static POO.Tablero.getRowInt;
 import Piezas.Color;
 import Piezas.Pieza;
 
@@ -16,6 +17,7 @@ public class Casilla {
     public Casilla(char x, int y) {
         coorX = x;
         coorY = y;
+        libre=true;
     }
 
     public void addPieza(Pieza p) {
@@ -25,23 +27,33 @@ public class Casilla {
     }
 
     public void removePieza() {
-        this.contenido.setCas(null);
+        if(this.contenido!=null)
+            this.contenido.setCas(null);
         this.contenido = null; //Creo que es opcional
         libre = true;
     }
     //DE LA PARTE OPCIONAL
     public int amenazadaPor(Tablero tab, Color color){ //Devuelve el numero de piezas amenazando la casilla
+        Pieza s = null;
+        if(this.getContenido()!=null){
+            s = this.getContenido();
+            this.removePieza();
+        }
         int cont=0;
         for(int fil=7;fil>=0;fil--){
             for(int col=0;col<8;col++){
                 Pieza p = tab.getMapa()[fil][col].getContenido();
-                if(p.getColor().equals(color) && p.mover(tab.getCasillaXY(fil,col),this))
+                if(p!=null && p.getColor().equals(color) && p.mover(tab.getCasillaXY(col,fil),this)){
                     cont++;
+                    System.out.println("Fil: "+fil+" Col: "+col+" cont: "+cont);
+                }
             }
-        }return cont;
+        }if(s!=null)this.addPieza(s);
+        return cont;
     }
 
     public Pieza getContenido() {return this.contenido;}
+    public int getCoorXi(){return getRowInt(coorX);}
     public char getCoorX() {return coorX;}
     public int getCoorY() {return coorY;}
     public boolean esLibre() {return libre;}

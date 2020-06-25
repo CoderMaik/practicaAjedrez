@@ -82,7 +82,7 @@ public class AlmacenProblemas implements Serializable {
             case 9:
                 jugada_ganadora = "h7++";
             case 10:
-                jugada_ganadora = "TxC7++";*/
+                jugada_ganadora = "Txc7++";*/
 
     public void escribeAlmacenProblemas(String n) throws IOException {
         FileOutputStream fileOut = new FileOutputStream(n);

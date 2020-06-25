@@ -6,7 +6,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Problema {
@@ -228,79 +227,91 @@ public class Problema {
     }
     
     //PARTE OPCIONAL - JAQUE MATE
-    
     public boolean checkMov(String s) {
         //NO SE PUEDEN USAR SWITCH CON EL MATCHER
         char c; //letra de Pieza
         Casilla destino;
         Pieza p;
-        if(s.matches("[a-h][1-8]++")){ //MOVER PEON
+        //Notaciones del jaque mate
+        s = s.replace('+','0');
+        s = s.replaceAll("#","00");
+        if(s.matches("[a-h][1-8]00")){ //MOVER PEON
             c = 'P';
-            destino = tab.getCasilla(s.charAt(0), Character.getNumericValue(s.charAt(1)));
+            destino = tab.getCasilla(s.charAt(0), Character.getNumericValue(s.charAt(1))-1);
             p = tab.moveR(c,destino);
             return saveAndTryCheckMate(destino,p);
-        }else if(s.matches("[a-h]x[a-h][1-8]++")){ //PEON COMER
+        }else if(s.matches("[a-h]x[a-h][1-8]00")){ //PEON COMER
             c = 'P';
-            destino =tab.getCasilla(s.charAt(2), Character.getNumericValue(s.charAt(3)));
+            destino =tab.getCasilla(s.charAt(2), Character.getNumericValue(s.charAt(3))-1);
             p = tab.moveR(c,destino,s.charAt(0));
             return !((!destino.esLibre() && !destino.esComible(Color.NEGRO)) || !saveAndTryCheckMate(destino,p));
-        }else if(s.matches("[ACDRT][a-h][1-8]++")){ //MOVER PIEZA
+        }else if(s.matches("[ACDRT][a-h][1-8]00")){ //MOVER PIEZA
             c = s.charAt(0);
-            destino = tab.getCasilla(s.charAt(1), Character.getNumericValue(s.charAt(2)));
+            destino = tab.getCasilla(s.charAt(1), Character.getNumericValue(s.charAt(2))-1);
             p = tab.moveR(c,destino);
             return saveAndTryCheckMate(destino,p);
-        }else if(s.matches("[ACDRT]x[a-h][1-8]++")){ // COMER PIEZA
+        }else if(s.matches("[ACDRT]x[a-h][1-8]00")){ // COMER PIEZA
             c = s.charAt(0);
-            destino = tab.getCasilla(s.charAt(2), Character.getNumericValue(s.charAt(3)));
+            destino = tab.getCasilla(s.charAt(2), Character.getNumericValue(s.charAt(3))-1);
             p = tab.moveR(c,destino);
             return saveAndTryCheckMate(destino,p);
-        }else if(s.matches("[ACDRT][a-h]x[a-h][1-8]++")){ // COMER PIEZA VARIOS
+        }else if(s.matches("[ACDRT][a-h]x[a-h][1-8]00")){ // COMER PIEZA VARIOS
             c = s.charAt(0);
-            destino = tab.getCasilla(s.charAt(3),Character.getNumericValue(s.charAt(4)));
+            destino = tab.getCasilla(s.charAt(3),Character.getNumericValue(s.charAt(4))-1);
             p = tab.moveR(c,destino,s.charAt(1));
             return saveAndTryCheckMate(destino,p);
-        }else if(s.matches("[ACDRT][a-h][a-h][1-8]++")){ //MOVER PIEZA VARIOS
+        }else if(s.matches("[ACDRT][a-h][a-h][1-8]00")){ //MOVER PIEZA VARIOS
             c = s.charAt(0);
-            destino = tab.getCasilla(s.charAt(3),Character.getNumericValue(s.charAt(4)));
+            destino = tab.getCasilla(s.charAt(3),Character.getNumericValue(s.charAt(4))-1);
             p = tab.moveR(c,destino,s.charAt(1));
             return saveAndTryCheckMate(destino,p);
         }else
-            return false;
+        return false;
     }
     public boolean saveAndTryCheckMate(Casilla destino, Pieza p){
         Casilla origen;
-        Pieza comida;
+        Pieza comida = null;
+        Boolean comido = false;
         if(p!=null){
                 //Guardar estado actual
                origen = p.getCas();
-               comida = destino.getContenido();
+               if(!destino.esLibre()){
+                    comida = destino.getContenido();
+                    comido=true;
+               }
                //Mover pieza
                p.getCas().removePieza();
-               p.setCas(destino);
                destino.addPieza(p);
                //comprobar jaquemate
                if(!checkMate()){ //NO GANADOR
                    //Volver al estado original
-                   p.getCas().addPieza(comida);
-                   p.setCas(origen);
+                   if(comido)
+                        destino.addPieza(comida);
+                   else
+                       destino.removePieza();
                    origen.addPieza(p);
                    return false;
                }else{ //GANADOR
                    //Volver al estado original
-                   p.getCas().addPieza(comida);
-                   p.setCas(origen);
+                   if(comido)
+                        p.getCas().addPieza(comida);
                    origen.addPieza(p);
                    return true;
                }
-        }else
-            return false;
+        }else{
+         System.out.println("save and try putada");
+         return false;
+        }
     }
     public boolean checkMate(){ //ME FALTÓ LA CONDICIÓN DE LA LINEA DE VISIÓN (Y LA DEL ENROQUE QUE NO SE PUEDE HACER)
         Pieza r = tab.getRey(Color.NEGRO);
         //Si el rey tiene escapatoria o mi rey está amenazado jaque mate falla
-        if(r.reyEscapatoria() || tab.getRey(Color.BLANCO).getCas().amenazadaPor(tab, Color.NEGRO)>0)
+        if(r.reyEscapatoria() || (tab.getRey(Color.BLANCO).getCas().amenazadaPor(tab, Color.NEGRO)>0)){
+            System.out.println("REYESCAPATORIA");
             return false;
-        else{ //Busco mitigar alguna de las amenazas blancas
+        }else {
+            //Busco mitigar alguna de las amenazas blancas
+            System.out.println("MITIGAR");
             return !r.mitigarUnaAmenaza();
         }
     }

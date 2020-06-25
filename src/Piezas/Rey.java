@@ -14,7 +14,7 @@ public class Rey extends Pieza {
     }
     private boolean movValido(Casilla origen, Casilla destino){
         return(!origen.equals(destino) &&
-                Math.abs(destino.getCoorX()-origen.getCoorX())<=1 &&
+                Math.abs(destino.getCoorXi()-origen.getCoorXi())<=1 &&
                     Math.abs(destino.getCoorY()-origen.getCoorY())<=1);
     }
     
@@ -25,17 +25,23 @@ public class Rey extends Pieza {
     
     @Override
     public boolean reyEscapatoria(){
-        int x = Tablero.getRowInt(this.cas.getCoorX());
-        int y = cas.getCoorY();
-        return (Tablero.checkCasilla(x,y) && this.tab.getCasillaXY(x,y).amenazadaPor(tab,this.getOpColor())==0)
-                || (Tablero.checkCasilla(x+1,y) && this.tab.getCasillaXY(x+1,y).amenazadaPor(tab,this.getOpColor())==0)
-                || (Tablero.checkCasilla(x-1,y) && this.tab.getCasillaXY(x-1,y).amenazadaPor(tab,this.getOpColor())==0)
-                || (Tablero.checkCasilla(x,y+1) && this.tab.getCasillaXY(x,y+1).amenazadaPor(tab,this.getOpColor())==0)
-                || (Tablero.checkCasilla(x,y-1) && this.tab.getCasillaXY(x,y-1).amenazadaPor(tab,this.getOpColor())==0)
-                || (Tablero.checkCasilla(x+1,y+1) && this.tab.getCasillaXY(x+1,y+1).amenazadaPor(tab,this.getOpColor())==0)
-                || (Tablero.checkCasilla(x+1,y-1) && this.tab.getCasillaXY(x+1,y-1).amenazadaPor(tab,this.getOpColor())==0)
-                || (Tablero.checkCasilla(x-1,y+1) && this.tab.getCasillaXY(x-1,y+1).amenazadaPor(tab,this.getOpColor())==0)
-                || (Tablero.checkCasilla(x-1,y-1) && this.tab.getCasillaXY(x-1,y-1).amenazadaPor(tab,this.getOpColor())==0);
+        int x = this.cas.getCoorXi();
+        int y = cas.getCoorY();                
+        if(Tablero.checkCasilla(x,y) && this.tab.getCasillaXY(x,y).amenazadaPor(tab,this.getOpColor())==0)
+            System.out.println("x,y");
+        if(Tablero.checkCasilla(x+1,y) && this.tab.getCasillaXY(x+1,y).amenazadaPor(tab,this.getOpColor())==0){
+            System.out.println("x+1,y");System.out.println(x+1+" "+y);
+        }if(Tablero.checkCasilla(x-1,y) && this.tab.getCasillaXY(x-1,y).amenazadaPor(tab,this.getOpColor())==0)
+            System.out.println("x-1,y");
+        return (Tablero.checkCasilla(x,y) && this.tab.getCasillaXY(x,y).amenazadaPor(tab,this.getOpColor())==0 &&(this.tab.getCasillaXY(x,y).esLibre() || this.tab.getCasillaXY(x,y).esComible(getOpColor()))) 
+                || (Tablero.checkCasilla(x+1,y) && this.tab.getCasillaXY(x+1,y).amenazadaPor(tab,this.getOpColor())==0 &&(this.tab.getCasillaXY(x+1,y).esLibre() || this.tab.getCasillaXY(x,y).esComible(getOpColor())))
+                || (Tablero.checkCasilla(x-1,y) && this.tab.getCasillaXY(x-1,y).amenazadaPor(tab,this.getOpColor())==0 &&(this.tab.getCasillaXY(x-1,y).esLibre() || this.tab.getCasillaXY(x,y).esComible(getOpColor())))
+                || (Tablero.checkCasilla(x,y+1) && this.tab.getCasillaXY(x,y+1).amenazadaPor(tab,this.getOpColor())==0 &&(this.tab.getCasillaXY(x,y+1).esLibre() || this.tab.getCasillaXY(x,y).esComible(getOpColor())))
+                || (Tablero.checkCasilla(x,y-1) && this.tab.getCasillaXY(x,y-1).amenazadaPor(tab,this.getOpColor())==0 &&(this.tab.getCasillaXY(x,y-1).esLibre() || this.tab.getCasillaXY(x,y).esComible(getOpColor())))
+                || (Tablero.checkCasilla(x+1,y+1) && this.tab.getCasillaXY(x+1,y+1).amenazadaPor(tab,this.getOpColor())==0 &&(this.tab.getCasillaXY(x+1,y+1).esLibre() || this.tab.getCasillaXY(x,y).esComible(getOpColor())))
+                || (Tablero.checkCasilla(x+1,y-1) && this.tab.getCasillaXY(x+1,y-1).amenazadaPor(tab,this.getOpColor())==0 &&(this.tab.getCasillaXY(x+1,y-1).esLibre() || this.tab.getCasillaXY(x,y).esComible(getOpColor())))
+                || (Tablero.checkCasilla(x-1,y+1) && this.tab.getCasillaXY(x-1,y+1).amenazadaPor(tab,this.getOpColor())==0 &&(this.tab.getCasillaXY(x-1,y+1).esLibre() || this.tab.getCasillaXY(x,y).esComible(getOpColor())))
+                || (Tablero.checkCasilla(x-1,y-1) && this.tab.getCasillaXY(x-1,y-1).amenazadaPor(tab,this.getOpColor())==0 &&(this.tab.getCasillaXY(x-1,y-1).esLibre() || this.tab.getCasillaXY(x,y).esComible(getOpColor())));
     }
     
     @Override
@@ -54,9 +60,11 @@ public class Rey extends Pieza {
                 original = p2.getCas();
                 p2.getCas().removePieza();
                 p.getCas().addPieza(p2);
-                if(this.reyEscapatoria())//Me la como y miro si tengo escapatoria y ha fallado el jaque mate
+                if(this.reyEscapatoria()){//Me la como y miro si tengo escapatoria y ha fallado el jaque mate
+                    original.addPieza(p2);
+                    p.getCas().addPieza(p);
                     return true;
-                else{
+                }else{
                     original.addPieza(p2);
                     p.getCas().addPieza(p);
                 }
@@ -68,9 +76,11 @@ public class Rey extends Pieza {
                 original = p2.getCas();
                 p2.getCas().removePieza();
                 p.getCas().addPieza(p2);
-                if(this.reyEscapatoria())//Me la como y miro si tengo escapatoria y ha fallado el jaque mate
+                if(this.reyEscapatoria()){//Me la como y miro si tengo escapatoria y ha fallado el jaque mate
+                    original.addPieza(p2);
+                    p.getCas().addPieza(p);
                     return true;
-                else{
+                }else{
                     original.addPieza(p2);
                     p.getCas().addPieza(p);
                 }
@@ -82,9 +92,11 @@ public class Rey extends Pieza {
                 original = p2.getCas();
                 p2.getCas().removePieza();
                 p.getCas().addPieza(p2);
-                if(this.reyEscapatoria())//Me la como y miro si tengo escapatoria y ha fallado el jaque mate
+                if(this.reyEscapatoria()){//Me la como y miro si tengo escapatoria y ha fallado el jaque mate
+                    original.addPieza(p2);
+                    p.getCas().addPieza(p);
                     return true;
-                else{
+                }else{
                     original.addPieza(p2);
                     p.getCas().addPieza(p);
                 }
@@ -96,9 +108,11 @@ public class Rey extends Pieza {
                 original = p2.getCas();
                 p2.getCas().removePieza();
                 p.getCas().addPieza(p2);
-                if(this.reyEscapatoria())//Me la como y miro si tengo escapatoria y ha fallado el jaque mate
+                if(this.reyEscapatoria()){//Me la como y miro si tengo escapatoria y ha fallado el jaque mate
+                    original.addPieza(p2);
+                    p.getCas().addPieza(p);
                     return true;
-                else{
+                }else{
                     original.addPieza(p2);
                     p.getCas().addPieza(p);
                 }
@@ -110,9 +124,11 @@ public class Rey extends Pieza {
                 original = p2.getCas();
                 p2.getCas().removePieza();
                 p.getCas().addPieza(p2);
-                if(this.reyEscapatoria())//Me la como y miro si tengo escapatoria y ha fallado el jaque mate
+                if(this.reyEscapatoria()){//Me la como y miro si tengo escapatoria y ha fallado el jaque mate
+                    original.addPieza(p2);
+                    p.getCas().addPieza(p);
                     return true;
-                else{
+                }else{
                     original.addPieza(p2);
                     p.getCas().addPieza(p);
                 }
@@ -124,9 +140,11 @@ public class Rey extends Pieza {
                 original = p2.getCas();
                 p2.getCas().removePieza();
                 p.getCas().addPieza(p2);
-                if(this.reyEscapatoria())//Me la como y miro si tengo escapatoria y ha fallado el jaque mate
+                if(this.reyEscapatoria()){//Me la como y miro si tengo escapatoria y ha fallado el jaque mate
+                    original.addPieza(p2);
+                    p.getCas().addPieza(p);
                     return true;
-                else{
+                }else{
                     original.addPieza(p2);
                     p.getCas().addPieza(p);
                 }
@@ -138,9 +156,11 @@ public class Rey extends Pieza {
                 original = p2.getCas();
                 p2.getCas().removePieza();
                 p.getCas().addPieza(p2);
-                if(this.reyEscapatoria())//Me la como y miro si tengo escapatoria y ha fallado el jaque mate
+                if(this.reyEscapatoria()){//Me la como y miro si tengo escapatoria y ha fallado el jaque mate
+                    original.addPieza(p2);
+                    p.getCas().addPieza(p);
                     return true;
-                else{
+                }else{
                     original.addPieza(p2);
                     p.getCas().addPieza(p);
                 }
@@ -152,9 +172,11 @@ public class Rey extends Pieza {
                 original = p2.getCas();
                 p2.getCas().removePieza();
                 p.getCas().addPieza(p2);
-                if(this.reyEscapatoria())//Me la como y miro si tengo escapatoria y ha fallado el jaque mate
+                if(this.reyEscapatoria()){//Me la como y miro si tengo escapatoria y ha fallado el jaque mate
+                    original.addPieza(p2);
+                    p.getCas().addPieza(p);
                     return true;
-                else{
+                }else{
                     original.addPieza(p2);
                     p.getCas().addPieza(p);
                 }
@@ -166,9 +188,11 @@ public class Rey extends Pieza {
                 original = p2.getCas();
                 p2.getCas().removePieza();
                 p.getCas().addPieza(p2);
-                if(this.reyEscapatoria())//Me la como y miro si tengo escapatoria y ha fallado el jaque mate
+                if(this.reyEscapatoria()){//Me la como y miro si tengo escapatoria y ha fallado el jaque mate
+                    original.addPieza(p2);
+                    p.getCas().addPieza(p);
                     return true;
-                else{
+                }else{
                     original.addPieza(p2);
                     p.getCas().addPieza(p);
                 }
