@@ -1,5 +1,8 @@
 package POO;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 public class Usuario {
     private String login;
     private String pwd;
@@ -14,6 +17,7 @@ public class Usuario {
         this.problemas_intentados = 0;
         this.problemas_resueltos = 0;
         this.errores = 0;
+        this.porcentaje_exito=0;
     }
     public Usuario (String nombre, String password, int problemas_intentados, int problemas_resueltos, int errores){
         this.login=nombre;
@@ -47,12 +51,17 @@ public class Usuario {
         }
     }
     public void updatePorcentajeExitos(){
-        porcentaje_exito = (double) problemas_resueltos / problemas_intentados * 100;
+        if(problemas_resueltos == 0 || problemas_intentados == 0)
+            porcentaje_exito = 0;
+        else
+            porcentaje_exito = (double) problemas_resueltos / problemas_intentados * 100;
     }
     
     @Override
     public String toString(){
-        return login+"  "+problemas_intentados+" \t"+problemas_resueltos+" \t"+errores+"\t"+porcentaje_exito;
+        NumberFormat formatter = new DecimalFormat("#0.00");
+        return login+"               "+problemas_intentados+"                                                           \t"+problemas_resueltos
+                +"                                        \t"+errores+"                      \t"+formatter.format(porcentaje_exito)+"%";
     }
     //Getters y Setters
     public String getNombre() {

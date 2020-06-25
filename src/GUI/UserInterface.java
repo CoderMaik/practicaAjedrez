@@ -900,7 +900,7 @@ public class UserInterface extends javax.swing.JFrame {
         if (jNombreTextField.getText().isEmpty() || "".equals(jPasswordField.getText()) || (!jRadioLogin.isSelected() && !jRadioRegistro.isSelected()))
             JOptionPane.showMessageDialog(this,"Compruebe que ningún campo esté vacío","ERROR",JOptionPane.ERROR_MESSAGE);
         else if (jRadioRegistro.isSelected()){
-            if(!(listaUsuarios.anadirUsuario(new Usuario(jNombreTextField.getText(),jPasswordField.getText()))))
+            if(!(listaUsuarios.addUsuario(new Usuario(jNombreTextField.getText(),jPasswordField.getText()))))
                 JOptionPane.showMessageDialog(this,"Ya existe una cuenta con ese nombre","ERROR",JOptionPane.ERROR_MESSAGE);
             else {
                 miUsuario=listaUsuarios.getUsuario(jNombreTextField.getText());

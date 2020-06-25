@@ -69,8 +69,13 @@ public class AlmacenLogin {
         return (!(getUsuario(name)==null));
     }
 
-    public boolean anadirUsuario(Usuario u) {
-        return !existeUsuario(u);
+    public boolean addUsuario(Usuario u) {
+        if(!existeUsuario(u)){
+            listaUsuarios.add(u);
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public void escribeAlmacenLogin(String n) throws IOException{
