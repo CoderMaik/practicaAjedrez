@@ -875,7 +875,7 @@ public class UserInterface extends javax.swing.JFrame {
 
     private void jStatsPlayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jStatsPlayButtonActionPerformed
         try{
-            miUsuario.problemaIntentado(problemaActivo);
+            miUsuario.problemaIntentado(problemaActivo); 
             jProblemaTextArea.setText(problemaActivo.getTablero().toString());
             jPanelStats.setVisible(false);
             jPanelPartida.setVisible(true);

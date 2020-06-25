@@ -488,12 +488,12 @@ public class AlmacenProblemas implements Serializable {
                 tablero_5.getMapa()[4][7] = c_52;
 
                 Pieza p_53 = new Torre();
-                Casilla c_53 = new Casilla('c', 7);
+                Casilla c_53 = new Casilla('f', 7);
                 p_53.setCas(c_53);
                 p_53.setColor(Color.NEGRO);
                 p_53.setTab(tablero_5);
                 c_53.addPieza(p_53);
-                tablero_5.getMapa()[2][7] = c_53;
+                tablero_5.getMapa()[5][7] = c_53;
 
                 Pieza p_54 = new Torre();
                 Casilla c_54 = new Casilla('a', 6);
@@ -850,7 +850,7 @@ public class AlmacenProblemas implements Serializable {
                 Problema prob = new Problema();
                 prob.setTab(tablero_10);
                 addProblema(prob);
-                prob.setJugada_ganadora("TxC7++");
+                prob.setJugada_ganadora("Txc7++");
 
     }
 }
