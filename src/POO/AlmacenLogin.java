@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.HashSet;
 import java.util.Iterator;
 
-public class AlmacenLogin {
+public class AlmacenLogin  implements Serializable{
     private static HashSet<Usuario> listaUsuarios;
 
     public AlmacenLogin() {
@@ -78,22 +78,32 @@ public class AlmacenLogin {
         }
     }
 
-    public void escribeAlmacenLogin(String n) throws IOException{
+    public void escribeAlmacenLogin(String nameFile) throws IOException{
+        String n = nameFile+".bin";
         FileOutputStream fileOut = new FileOutputStream(n);
-        ObjectOutputStream salida = new ObjectOutputStream(fileOut);
-        salida.writeObject(listaUsuarios);
+        ObjectOutputStream salida = new ObjectOutputStream(fileOut); 
+            salida.writeObject(listaUsuarios);
         salida.close();
     }
 
-    public boolean leerAlmacenLogin (String nameFile) throws IOException, ClassNotFoundException {
-        try {
-            FileInputStream fichero = new FileInputStream(nameFile);
+    public void leerAlmacenLogin (String ruta) throws FileNotFoundException, IOException, ClassNotFoundException{
+            String s = ""+ruta+".bin";
+            FileInputStream fichero = new FileInputStream(s);
             ObjectInputStream input = new ObjectInputStream(fichero);
             listaUsuarios = (HashSet<Usuario>)input.readObject();
             input.close();
-            return true;
-        } catch (ClassNotFoundException | IOException noEncontrado) { return false;
-        }
+ 
     }
+    
+    public boolean AlmacenLoginEnTXT(String fichero) throws IOException {
+        String n = fichero+".txt";
+        FileWriter fileOut = new FileWriter(n);
+        BufferedWriter buffer = new BufferedWriter(fileOut);
+        PrintWriter salida = new PrintWriter(buffer);
+        salida.close();
+        return true;
+    }
+    
+    
 }
 

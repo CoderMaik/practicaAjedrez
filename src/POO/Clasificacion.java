@@ -1,10 +1,11 @@
 package POO;
 
 import POO.Comparators.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Clasificacion{
+public class Clasificacion implements Serializable{
     private ArrayList<Usuario> listaClasificacion;
 
     public Clasificacion(){this.listaClasificacion = new ArrayList<>(AlmacenLogin.getListaUsuarios());}

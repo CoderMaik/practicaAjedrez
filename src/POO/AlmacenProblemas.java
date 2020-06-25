@@ -42,14 +42,6 @@ public class AlmacenProblemas implements Serializable {
         else
             return false;
     }
-
-    public boolean validarProblema(Problema problem) {
-        return !existeProblema(problem) && EsValido(problem);
-    }
-
-    private boolean EsValido(Problema problem) {
-        throw new RuntimeException("not implemented yet");
-    }
     
     public Problema problemAleatorio (Usuario u) {
             Random rand = new Random();
@@ -62,36 +54,17 @@ public class AlmacenProblemas implements Serializable {
                 return i+1;           
         }return -1;
     }
-        /*Lo dejo comentado para saber las soluciones a los problemas pero no sirve
-            case 1:
-                jugada_ganadora = "Td8++";
-            case 2:
-                jugada_ganadora = "Cg6++";
-            case 3:
-                jugada_ganadora = "fxg8=C++";
-            case 4:
-                jugada_ganadora = "f8=D++";
-            case 5:
-                jugada_ganadora = "dxe8=C++";
-            case 6:
-                jugada_ganadora= "Dc6++";
-            case 7:
-                jugada_ganadora = "Cd7++ ";
-            case 8:
-                jugada_ganadora = "Cxe6++";
-            case 9:
-                jugada_ganadora = "h7++";
-            case 10:
-                jugada_ganadora = "Txc7++";*/
 
-    public void escribeAlmacenProblemas(String n) throws IOException {
-        FileOutputStream fileOut = new FileOutputStream(n);
-        ObjectOutputStream salida = new ObjectOutputStream(fileOut);
-        salida.writeObject(this.listaProblemas);
-        salida.close();
+     public void escribeAlmacenProblemas(String nFile) throws IOException {
+        String name = nFile+".bin";
+        FileOutputStream fOut = new FileOutputStream(name);
+        ObjectOutputStream s = new ObjectOutputStream(fOut);
+        s.writeObject(listaProblemas);
+        s.close();
+        
     }
-
-    public boolean leerAlmacenProblemas(String nameFile) throws IOException, ClassNotFoundException {
+  
+     public boolean leerAlmacenProblemas(String nameFile) throws IOException, ClassNotFoundException {
         try {
             FileInputStream fichero = new FileInputStream(nameFile);
             ObjectInputStream input = new ObjectInputStream(fichero);
@@ -102,6 +75,27 @@ public class AlmacenProblemas implements Serializable {
             return false;
         }
     }
+ 
+    public boolean AlmacenProblemasEnTXT(String fichero) throws IOException {
+        String n = fichero+".txt";
+        FileWriter fileOut = new FileWriter(n);
+        BufferedWriter buffer = new BufferedWriter(fileOut);
+        PrintWriter salida = new PrintWriter(buffer);
+        salida.close();
+        return true;
+    }
+    public String leeProblemaDeTXT(String fichero) throws IOException{
+        String ruta = fichero+".txt";
+        FileReader  fileIn = new FileReader(ruta);
+        BufferedReader  buffer = new BufferedReader (fileIn);
+        String s="";
+        String texto="";
+        while((s = buffer.readLine()) != null)
+          texto += s + "\n";
+        buffer.close();
+        return texto;
+    }
+
 
     public void problemasBase() {
 

@@ -2,8 +2,9 @@ package Piezas;
 
 import POO.Casilla;
 import POO.Tablero;
+import java.io.Serializable;
 
-public abstract class Pieza {
+public abstract class Pieza implements Serializable {
     protected Color color;
     protected Tablero tab;
     protected Casilla cas;
